@@ -3,7 +3,8 @@
 @import "./themes/light-theme";
 
 body {
-  min-width: 360px;
+  min-width: 320px;
+  overflow: hidden;
 }
 
 html {
