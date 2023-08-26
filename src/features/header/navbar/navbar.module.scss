@@ -1,0 +1,50 @@
+.navbar {
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__link {
+    color: #fff;
+    font-weight: 600;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      left: 50%;
+      height: 1px;
+      bottom: 0;
+      background-color: #2bff00;
+      transition: all 0.1s linear;
+    }
+
+    &_active {
+      color: #2bff00;
+      font-weight: 600;
+      text-shadow: 0 0 8px #2bff00;
+
+      @media (max-width: 30em) {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        &::before {
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+
+    @media (max-width: 30em) {
+      font-size: 0.8rem;
+    }
+  }
+}

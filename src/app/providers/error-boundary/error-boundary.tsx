@@ -9,16 +9,13 @@ interface IErrorBoundaryState {
   hasError: boolean;
 }
 
-export class ErrorBoundary extends React.Component<
-  IErrorBoundaryProps,
-  IErrorBoundaryState
-  > {
+export class ErrorBoundary extends React.Component<IErrorBoundaryProps, IErrorBoundaryState> {
   constructor(props: IErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: Error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 

@@ -1,5 +1,5 @@
-import { ErrorBoundary } from "./error-boundary";
 import React, { ReactNode } from "react";
+import { ErrorBoundary } from "./error-boundary";
 
 interface IProvidersProps {
   className?: string;
@@ -7,13 +7,11 @@ interface IProvidersProps {
 }
 
 export const Providers = (props: IProvidersProps) => {
-  const { className, children } = props;
+  const { children } = props;
 
   return (
     <React.StrictMode>
-      <ErrorBoundary>
-        {children}
-      </ErrorBoundary>
+      <ErrorBoundary>{children}</ErrorBoundary>
     </React.StrictMode>
   );
 };
