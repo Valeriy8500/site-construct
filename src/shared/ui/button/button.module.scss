@@ -1,3 +1,48 @@
-.button{
+// common styles button
+.button {
+  font-family: 'Roboto', sans-serif;
+  padding: 6px 15px;
+  border-radius: var(--base-border-radius);
+  cursor: pointer;
+  border: 1px solid var(--base-light-color);
+}
 
+// theme button
+.clear-theme {
+  color: var(--base-black);
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  border: none;
+}
+
+.default-theme {
+  color: var(--base-light-color);
+  background-color: transparent;
+  border-color: var(--base-light-color);
+}
+
+.filled-theme  {
+  color: var(--base-white);
+  background-color: var(--base-primary);
+  border-color: var(--base-primary);
+}
+
+// type button
+.failed-type  {
+  color: var(--base-white);
+  background-color: var(--base-failed);
+  border-color: var(--base-failed);
+}
+
+.success-type  {
+  color: var(--base-white);
+  background-color: var(--base-success);
+  border-color: var(--base-success);
+}
+
+.primary-type  {
+  color: var(--base-white);
+  background-color: var(--base-primary);
+  border-color: var(--base-primary);
 }

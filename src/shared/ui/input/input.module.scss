@@ -1,0 +1,34 @@
+.input-container {
+  position: relative;
+  display: inline-block;
+}
+
+.input-icon {
+  position: absolute;
+  right: 10px;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+}
+
+.input {
+  font-family: "Roboto", sans-serif;
+  padding: 6px 15px;
+  border: 1px solid var(--base-light-color);
+  border-radius: var(--base-border-radius);
+  color: var(--base-light-color);
+}
+
+.right-space {
+  padding-right: 30px;
+}
+
+.error {
+  border-color: var(--base-failed);
+}
+
+.text-error {
+  color: var(--base-failed);
+  font-size: 0.7rem;
+  line-height: 1rem;
+}
