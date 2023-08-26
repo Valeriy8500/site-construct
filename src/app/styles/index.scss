@@ -2,6 +2,34 @@
 @import "./variables";
 @import "./themes/light-theme";
 
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    src: url('./fonts/Roboto/Roboto-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    src: url('./fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+}
+
 body {
   min-width: 320px;
   overflow: hidden;
@@ -10,6 +38,7 @@ body {
 html {
   color: white;
   background-color: #202020;
+  font-family: 'Roboto', sans-serif;
 }
 
 * {
