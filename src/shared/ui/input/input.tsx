@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, InputHTMLAttributes, ReactElement } from "react";
+import React, { ChangeEventHandler, InputHTMLAttributes } from "react";
 import clsx from "clsx";
 import cls from "./input.module.scss";
 

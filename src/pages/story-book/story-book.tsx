@@ -8,6 +8,7 @@ const StoryBook = () => {
 
   return (
     <div>
+      <br /><br /><br /><br />
       <Button typeButton="primary">Редактировать сайт</Button>
       <br />
       <Button typeButton="failed">Удалить сайт</Button>

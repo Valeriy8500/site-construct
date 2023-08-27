@@ -5,6 +5,16 @@
   border-radius: var(--base-border-radius);
   cursor: pointer;
   border: 1px solid var(--base-light-color);
+
+  &:hover {
+    transition: all var(--base-transition-time);
+  }
+}
+
+.custom {
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 // theme button
@@ -20,6 +30,9 @@
   color: var(--base-light-color);
   background-color: transparent;
   border-color: var(--base-light-color);
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 .filled-theme  {
@@ -33,16 +46,32 @@
   color: var(--base-white);
   background-color: var(--base-failed);
   border-color: var(--base-failed);
+
+  &:hover {
+    background-color: var(--base-failed-hover);
+    border-color: var(--base-failed-hover);
+  }
+
 }
 
 .success-type  {
   color: var(--base-white);
   background-color: var(--base-success);
   border-color: var(--base-success);
+
+  &:hover {
+    background-color: var(--base-success-hover);
+    border-color: var(--base-success-hover);
+  }
 }
 
 .primary-type  {
   color: var(--base-white);
   background-color: var(--base-primary);
   border-color: var(--base-primary);
+
+  &:hover {
+    background-color: var(--base-primary-hover);
+    border-color: var(--base-primary-hover);
+  }
 }
