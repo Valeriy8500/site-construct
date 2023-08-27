@@ -1,0 +1,35 @@
+@import "@/app/styles/variables.scss";
+
+.user {
+  position: relative;
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    svg {
+      fill: #fff;
+      font-size: 1.3rem;
+      transition: all 0.1s linear;
+
+      @media (any-hover: hover) {
+        &:hover {
+          fill: $green-color;
+        }
+      }
+
+      @media (max-width: 48em) {
+        font-size: 1.1rem;
+      }
+
+      @media (max-width: 30em) {
+        font-size: 1rem;
+      }
+    }
+    &_active {
+      svg {
+        fill: $green-color;
+      }
+    }
+  }
+}
