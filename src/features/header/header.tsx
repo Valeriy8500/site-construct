@@ -1,5 +1,5 @@
 import { Navbar } from "./navbar";
-import { UserButton } from "./user-button";
+import { UserIcon } from "./user-icon";
 import cls from "./header.module.scss";
 
 export const Header = () => {
@@ -11,7 +11,7 @@ export const Header = () => {
             <Navbar />
           </div>
           <div className={cls.header__userIcon}>
-            <UserButton />
+            <UserIcon />
           </div>
         </div>
       </div>
