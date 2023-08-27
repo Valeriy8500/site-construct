@@ -1,11 +1,22 @@
 import React, { ButtonHTMLAttributes, ReactElement } from "react";
-import { ButtonHTMLAttributes } from "react";
 import clsx from "clsx";
 import cls from "./button.module.scss";
 
+enum Themes {
+  filled = "filled",
+  clear = "clear",
+  default = "default",
+};
+
+enum TypesButton {
+  primary = "primary",
+  failed = "failed",
+  success = "success",
+};
+
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  theme?: "filled" | "clear" | "default";
-  typeButton?: "primary" | "failed" | "success",
+  theme?: Themes;
+  typeButton?: TypesButton,
   color?: string,
   children: string | ReactElement,
   className?: string,
@@ -30,6 +41,7 @@ export const Button = (props: ButtonProps) => {
       id={id}
       className={clsx(
         cls['button'],
+        { [cls.custom]: color },
         cls[`${theme}-theme`],
         cls[`${color}-color`],
         cls[`${typeButton}-type`],
