@@ -1,4 +1,5 @@
 export {} from "./ui";
-export {} from "./model/user.slice";
+export { userActions, userReducer, userSlice } from "./model/user.slice";
 export {} from "./model/user.selectors";
-export {} from "./api/user.api";
+export type { IUserState } from "./model/user.types";
+export { useLoginMutation, userApi } from "./api/user.api";

@@ -25,6 +25,7 @@
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
     "import/order": ["error", { "groups": [["builtin", "external", "internal"]] }],
-    "import/default": "off"
+    "import/default": "off",
+    "@typescript-eslint/no-unused-vars": "warn"
   }
 }
