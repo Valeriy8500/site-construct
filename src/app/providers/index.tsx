@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { ErrorBoundary } from "./error-boundary";
+import { StoreProvider } from "./store-provider/store-provider";
 
 interface IProvidersProps {
   className?: string;
@@ -11,7 +12,9 @@ export const Providers = (props: IProvidersProps) => {
 
   return (
     <React.StrictMode>
-      <ErrorBoundary>{children}</ErrorBoundary>
+      <ErrorBoundary>
+        <StoreProvider>{children}</StoreProvider>
+      </ErrorBoundary>
     </React.StrictMode>
   );
 };
