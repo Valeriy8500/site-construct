@@ -1,0 +1,41 @@
+.panel {
+  width: 250px;
+  height: calc(100vh - 56px - 19px);
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.panel_wrapper {
+  width: 250px;
+  height: calc(100vh - 56px - 19px);
+  overflow-y: auto;
+}
+
+.panel_item {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  &_title {
+    flex-basis: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    color: #838383;
+    margin-bottom: 10px;
+  }
+
+  &_feature {
+    flex-basis: 48%;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+
+    // Временные стили для обозначения мест под фичи, после добавления фич нужно убрать
+    border: 1px solid #838383;
+    border-radius: 20px;
+  }
+}

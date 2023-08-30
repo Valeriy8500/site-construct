@@ -1,8 +1,10 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import { ProtectedRoute } from "./protected-route";
 import { StoryBook } from "@/pages/story-book";
 import { Layout } from "@/widgets/layout";
-import { Main } from "@/pages/main";
+const Main = lazy(() => import("@/pages/main"));
+const SitesNew = lazy(() => import("@/pages/sites-new"));
 
 export const RoutesProvider = () => {
   return (
@@ -15,10 +17,24 @@ export const RoutesProvider = () => {
           </ProtectedRoute>
         }
       >
-        <Route index element={<Main />} />
+        <Route
+          index
+          element={
+            <Suspense>
+              <Main />
+            </Suspense>
+          }
+        />
         <Route path="me" element={<>me</>} />
         <Route path="sites">
-          <Route path="new" element={<>new</>} />
+          <Route
+            path="new"
+            element={
+              <Suspense>
+                <SitesNew />
+              </Suspense>
+            }
+          />
           <Route path=":siteId" element={<>siteId</>} />
         </Route>
         <Route path="story-book" element={<StoryBook />} />
