@@ -3,8 +3,8 @@ import { lazy, Suspense } from "react";
 import { ProtectedRoute } from "./protected-route";
 import { StoryBook } from "@/pages/story-book";
 import { Layout } from "@/widgets/layout";
-import { UserProfile } from "@/features/user-profile";
 const Main = lazy(() => import("@/pages/main"));
+const UserProfile = lazy(() => import("@/features/user-profile"));
 const SitesNew = lazy(() => import("@/pages/sites-new"));
 
 export const RoutesProvider = () => {
@@ -26,7 +26,13 @@ export const RoutesProvider = () => {
             </Suspense>
           }
         />
-        <Route path="me" element={<UserProfile />} />
+        <Route
+          path="me"
+          element={
+            <Suspense>
+              <UserProfile />
+            </Suspense>}
+        />
         <Route path="sites">
           <Route
             path="new"
