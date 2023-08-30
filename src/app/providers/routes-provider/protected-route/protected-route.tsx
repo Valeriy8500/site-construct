@@ -1,6 +1,10 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { ReactNode } from "react";
 
-export const ProtectedRoute = () => {
+interface ProtectedRouteProps {
+  children: ReactNode;
+}
+export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   // TODO: получить данные из redux, вошел ли пользователь в систему
   const isAuth: boolean = true;
 
@@ -8,5 +12,5 @@ export const ProtectedRoute = () => {
     return <Navigate to="/login" />;
   }
 
-  return <Outlet />;
+  return <>{children}</>;
 };
