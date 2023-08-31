@@ -31,7 +31,8 @@ export const RoutesProvider = () => {
           element={
             <Suspense>
               <UserProfile />
-            </Suspense>}
+            </Suspense>
+          }
         />
         <Route path="sites">
           <Route

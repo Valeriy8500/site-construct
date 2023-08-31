@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 import { FaRegUser } from "react-icons/fa";
+import clsx from "clsx";
 import { Dropdown } from "../dropdown";
 import cls from "./user-icon.module.scss";
-import clsx from "clsx";
 
 export const UserIcon = () => {
   const [isOpen, setOpen] = useState(false);
