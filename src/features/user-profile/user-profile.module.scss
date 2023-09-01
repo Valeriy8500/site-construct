@@ -17,25 +17,25 @@
     border-radius: 10px;
   }
 
-  &__btn-container {
+  &__btn_container {
     align-self: flex-end;
     position: absolute;
     top: 10px;
     right: 10px;
   }
 
-  &__btn-container:hover {
+  &__btn_container:hover {
     cursor: pointer;
     opacity: 0.6;
   }
 
-  &__check-btn {
+  &__check_btn {
     width: 40px;
     height: 40px;
     color: #00b96b;
   }
 
-  &__edit-btn {
+  &__edit_btn {
     width: 40px;
     height: 40px;
     color: #1677ff;
@@ -47,7 +47,7 @@
     margin-top: 20px;
   }
 
-  &__disabled-user-data-container {
+  &__disabled_user_data_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,11 +55,11 @@
     margin-bottom: 15px;
   }
 
-  &__disabled-user-data {
+  &__disabled_user_data {
     text-align: center;
   }
 
-  &__enable-form-container {
+  &__enable_form_container {
     width: 100%;
     box-sizing: border-box;
     margin-top: 10px;
@@ -70,19 +70,19 @@
     color: #000;
   }
 
-  &__input-container {
+  &__input_container {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
   }
 
-  &__input-container > div > input {
+  &__input_container>div>input {
     width: 100%;
     color: #000;
     border-radius: 8px;
   }
 
-  &__input-container > label {
+  &__input_container>label {
     font-size: small;
   }
 }

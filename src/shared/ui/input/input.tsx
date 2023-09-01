@@ -4,7 +4,7 @@ import cls from "./input.module.scss";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
-  defaultValue: string;
+  defaultValue?: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
   rightIcon?: React.ReactNode;
 }
@@ -15,7 +15,6 @@ export const Input = (props: InputProps) => {
     rightIcon,
     error = false,
     className = "",
-    defaultValue = "",
     onChange,
     ...other
   } = props;
@@ -26,7 +25,6 @@ export const Input = (props: InputProps) => {
         <input
           id={id}
           onChange={onChange}
-          defaultValue={defaultValue}
           className={clsx(
             cls["input"],
             className,
