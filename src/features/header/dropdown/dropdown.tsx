@@ -1,13 +1,13 @@
 import { FC, RefObject, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { PiUserSquareBold } from "react-icons/pi";
 import { MdOutlineLogout } from "react-icons/md";
-import clsx from "clsx";
 import { useClickOutside } from "@/shared/hooks/useClickOutside";
-import cls from "./dropdown.module.scss";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks";
 import { userActions } from "@/entities/user";
+import cls from "./dropdown.module.scss";
 
 const variants = {
   open: { opacity: 1, y: 0 },

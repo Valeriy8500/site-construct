@@ -7,7 +7,7 @@ export const rtkFetchBaseQuery = fetchBaseQuery({
   prepareHeaders: headers => {
     headers.append("Content-Type", "application/json");
     headers.append("Accept", "application/json");
-    headers.append("Authorization", `Bearer ${localStorage.getItem("access_token") || ""}`);
+    headers.append("Authorization", `Bearer ${localStorage.getItem("accessToken") || ""}`);
     return headers;
   },
   credentials: "include",
