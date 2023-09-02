@@ -36,8 +36,8 @@ export const Input = (props: InputProps) => {
           {...other}
         />
         {rightIcon && <i className={clsx(cls["input-icon"])}>{rightIcon}</i>}
+        <p className={clsx(cls["text-error"])}>{error}</p>
       </div>
-      <p className={clsx(cls["text-error"])}>{error}</p>
     </>
   );
 };
