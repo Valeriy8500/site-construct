@@ -8,7 +8,6 @@ const SitesNew = lazy(() => import("@/pages/sites-new"));
 const LoginForm = lazy(() => import("@/pages/login"));
 const RegisterForm = lazy(() => import("@/pages/register"));
 
-
 export const RoutesProvider = () => {
   return (
     <Routes>
