@@ -1,6 +1,7 @@
 import { Label } from "@/shared/ui/label";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
+import { Themes, TypesButton } from "@/shared/ui/button/button";
 
 const ICON = (
   <svg
@@ -23,13 +24,13 @@ const StoryBook = () => {
       <br />
       <br />
       <br />
-      <Button typeButton="primary">Редактировать сайт</Button>
+      <Button typeButton={TypesButton.primary}>Редактировать сайт</Button>
       <br />
-      <Button typeButton="failed">Удалить сайт</Button>
+      <Button typeButton={TypesButton.failed}>Удалить сайт</Button>
       <br />
-      <Button typeButton="success">Успешная кнопка</Button>
+      <Button typeButton={TypesButton.success}>Успешная кнопка</Button>
       <br />
-      <Button theme="default">Дефолтная кнопка</Button>
+      <Button theme={Themes.default}>Дефолтная кнопка</Button>
       <br />
       <Button color="#000">Кастомная кнопка</Button>
       <br />

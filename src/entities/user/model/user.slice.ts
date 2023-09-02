@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IUserState } from "./user.types";
 import { userApi } from "../api/user.api";
+import { IRegisterRes } from "../api/user.api.types";
 
 type ErrorType = {
   data: { error: { message: string } };
@@ -39,9 +40,6 @@ export const userSlice = createSlice({
       state.refreshToken = payload.refreshToken;
       state.expires = payload.expiresIn;
       state.error = null;
-
-      console.log(payload);
-
       localStorage.setItem("accessToken", payload.idToken);
       localStorage.setItem("refreshToken", payload.refreshToken);
       localStorage.setItem("expiresIn", payload.expiresIn);
@@ -54,6 +52,31 @@ export const userSlice = createSlice({
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("expiresIn");
+      }
+    );
+    //регистрация
+    builder.addMatcher<PayloadAction<ErrorType>>(
+      userApi.endpoints.register.matchRejected,
+      (state, { payload }) => {
+        state.error = payload.data.error.message;
+        console.log(payload);
+      }
+    );
+    builder.addMatcher<PayloadAction<IRegisterRes>>(
+      userApi.endpoints.register.matchFulfilled,
+      (state, { payload }) => {
+        state.userId = payload.idToken;
+        state.name = payload.displayName;
+        state.registered = true;
+        state.email = payload.email;
+        state.accessToken = payload.idToken;
+        state.refreshToken = payload.refreshToken;
+        state.expires = payload.expiresIn;
+        state.error = null;
+
+        localStorage.setItem("accessToken", payload.idToken);
+        localStorage.setItem("refreshToken", payload.refreshToken);
+        localStorage.setItem("expiresIn", payload.expiresIn);
       }
     );
   },

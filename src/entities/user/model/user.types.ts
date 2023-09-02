@@ -8,3 +8,7 @@ export interface IUserState {
   registered: boolean;
   error?: string | null;
 }
+
+export type ErrorType = {
+  data: { error: { message: string } };
+};

@@ -1,21 +1,21 @@
 import { FC, FormEvent, useState, useEffect } from "react";
-import styles from "./login-form.module.scss";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/shared/ui/button";
 import { Label } from "@/shared/ui/label";
 import { Input } from "@/shared/ui/input";
 import { errorLoginCodes } from "@/entities/user/lib/errorCodes";
 import { useLoginMutation } from "@/entities/user";
 import { useAppSelector } from "@/app/providers/store-provider/store.types";
-import { getLoginError } from "@/entities/user/model/user.selectors";
-import { useNavigate } from "react-router-dom";
+import { getUserAuthError } from "@/entities/user/model/user.selectors";
+import styles from "./login-form.module.scss";
 
 export const LoginForm: FC = () => {
   const [errorEmail, setErrorEmail] = useState<string>("");
   const [errorPassword, setErrorPassword] = useState<string>("");
 
   const navigate = useNavigate();
-  const [login, {}] = useLoginMutation();
-  const loginError = useAppSelector(getLoginError);
+  const [login] = useLoginMutation();
+  const loginError = useAppSelector(getUserAuthError);
 
   const setError = (err: string) => {
     if (err.match(/EMAIL/g)) {
@@ -88,6 +88,11 @@ export const LoginForm: FC = () => {
           </div>
 
           <Button type="submit">Войти</Button>
+          <br />
+          <p>Нет аккаунта?</p>
+          <Button onClick={() => navigate("/register")} type="button">
+            Зарегистрироваться
+          </Button>
         </form>
       </div>
     </>

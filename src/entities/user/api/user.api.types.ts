@@ -38,3 +38,11 @@ export interface ILoginRes {
   refreshToken: string;
   expiresIn: string;
 }
+
+export interface IRegisterReq {
+  displayName: string;
+  email: string;
+  password: string;
+  returnSecureToken?: boolean;
+}
+export interface IRegisterRes extends ILoginRes {}
