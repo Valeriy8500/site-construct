@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PiUserSquareBold } from "react-icons/pi";
 import { MdOutlineLogout } from "react-icons/md";
+import clsx from "clsx";
 import { useClickOutside } from "@/shared/hooks/useClickOutside";
 import cls from "./dropdown.module.scss";
-import clsx from "clsx";
 
 const variants = {
   open: { opacity: 1, y: 0 },

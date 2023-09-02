@@ -1,12 +1,14 @@
-@import "@/app/styles/variables.scss";
+@import "@/app/styles/variables";
 
 .user {
   position: relative;
+
   &__icon {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+
     svg {
       fill: #fff;
       font-size: 1.3rem;
@@ -26,6 +28,7 @@
         font-size: 1rem;
       }
     }
+
     &_active {
       svg {
         fill: $green-color;

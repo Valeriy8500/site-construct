@@ -1,42 +1,49 @@
-@import "@/app/styles/variables.scss";
+@import "@/app/styles/variables";
 
 .dropdown {
   position: absolute;
   top: 160%;
   right: 0;
   display: none;
+
   &_active {
     display: block;
   }
 
   &__list {
     padding: 0.5rem 1rem;
-    background-color: #000000;
+    background-color: #000;
     box-shadow: 2px 2px 4px #3b3b3b;
   }
+
   &__item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #cccccc;
+    color: #ccc;
     cursor: pointer;
+
     &:not(:last-child) {
       margin-bottom: 10px;
     }
+
     span {
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
     @media (any-hover: hover) {
       &:hover {
         text-decoration: underline;
         color: #fff;
+
         svg {
           color: $green-color;
         }
       }
     }
+
     @media (max-width: 30em) {
       font-size: 0.8rem;
     }

@@ -6,6 +6,7 @@
   top: 0;
   left: 0;
   background-color: #353535;
+  z-index: 50;
 
   &__container {
     @include container;

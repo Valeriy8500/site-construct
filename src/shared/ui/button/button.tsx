@@ -6,22 +6,22 @@ enum Themes {
   filled = "filled",
   clear = "clear",
   default = "default",
-};
+}
 
 enum TypesButton {
   primary = "primary",
   failed = "failed",
   success = "success",
-};
+}
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: Themes;
-  typeButton?: TypesButton,
-  color?: string,
-  children: string | ReactElement,
-  className?: string,
-  id?: string,
-  style?: object,
+  typeButton?: TypesButton;
+  color?: string;
+  children: string | ReactElement;
+  className?: string;
+  id?: string;
+  style?: object;
 }
 
 export const Button = (props: ButtonProps) => {
@@ -32,7 +32,7 @@ export const Button = (props: ButtonProps) => {
       type="button"
       id={id}
       className={clsx(
-        cls['button'],
+        cls["button"],
         { [cls.custom]: color },
         cls[`${theme}-theme`],
         cls[`${color}-color`],

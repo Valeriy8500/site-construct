@@ -5,11 +5,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    visualizer() as unknown as PluginOption,
-    svgr(),
-  ],
+  plugins: [react(), visualizer() as unknown as PluginOption, svgr()],
   resolve: {
     alias: [{ find: "@", replacement: "/src" }],
   },
