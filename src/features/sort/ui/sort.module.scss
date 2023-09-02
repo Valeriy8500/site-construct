@@ -1,0 +1,63 @@
+.sort {
+  position: relative;
+
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    svg {
+      width: 50px;
+      height: 50px;
+      border: 1px solid var(--base-light-color);
+      border-radius: var(--base-border-radius);
+      fill: #fff;
+      font-size: 1.3rem;
+      transition: all 0.1s linear;
+
+      @media (any-hover: hover) {
+        &:hover {
+          fill: var(--base-success);
+          border-color: var(--base-success);
+        }
+      }
+
+      @media (max-width: 48em) {
+        font-size: 1.1rem;
+      }
+
+      @media (max-width: 30em) {
+        font-size: 1rem;
+      }
+    }
+
+    &_active {
+      border-color: var(--base-success);
+
+      svg {
+        fill: var(--base-success);
+      }
+    }
+  }
+
+  &_list {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0.5rem 1rem;
+    background-color: var(--base-black);
+  }
+
+  &_list_item {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+
+    & * {
+      cursor: pointer;
+    }
+  }
+}

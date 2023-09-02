@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, ReactElement } from "react";
+import { ButtonHTMLAttributes, ReactElement } from "react";
 import clsx from "clsx";
 import cls from "./button.module.scss";
 
