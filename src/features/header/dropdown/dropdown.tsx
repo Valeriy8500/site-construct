@@ -6,6 +6,8 @@ import { MdOutlineLogout } from "react-icons/md";
 import clsx from "clsx";
 import { useClickOutside } from "@/shared/hooks/useClickOutside";
 import cls from "./dropdown.module.scss";
+import { useAppDispatch } from "@/shared/hooks/redux-hooks";
+import { userActions } from "@/entities/user";
 
 const variants = {
   open: { opacity: 1, y: 0 },
@@ -20,6 +22,7 @@ interface DropdownProps {
 
 export const Dropdown: FC<DropdownProps> = ({ isOpen, iconRef, handleClick }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const navRef = useRef<HTMLElement>(null);
 
   useClickOutside(iconRef, navRef, () => handleClick());
@@ -30,7 +33,7 @@ export const Dropdown: FC<DropdownProps> = ({ isOpen, iconRef, handleClick }) =>
   };
 
   const handleLogOut = () => {
-    // TODO: dispatch('обнулить данные о пользователе в redux')
+    dispatch(userActions.logout());
     navigate("/login", { replace: true });
     handleClick();
   };

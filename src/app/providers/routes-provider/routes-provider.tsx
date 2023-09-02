@@ -5,6 +5,7 @@ import { StoryBook } from "@/pages/story-book";
 import { Layout } from "@/widgets/layout";
 const Main = lazy(() => import("@/pages/main"));
 const SitesNew = lazy(() => import("@/pages/sites-new"));
+const LoginForm = lazy(() => import("@/pages/login"));
 
 export const RoutesProvider = () => {
   return (
@@ -39,7 +40,14 @@ export const RoutesProvider = () => {
         </Route>
         <Route path="story-book" element={<StoryBook />} />
       </Route>
-      <Route path="/login" element={<>Log in</>} />
+      <Route
+        path="/login"
+        element={
+          <Suspense>
+            <LoginForm />
+          </Suspense>
+        }
+      />
       <Route path="/signup" element={<>sign up</>} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

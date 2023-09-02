@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.form {
+  margin: 20px 20px;
+  padding: 20px;
+  outline: 1px solid white;
+  width: 450px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+
+  .block {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: end;
+  }
+}
