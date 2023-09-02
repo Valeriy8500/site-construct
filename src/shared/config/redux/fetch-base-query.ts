@@ -10,5 +10,5 @@ export const rtkFetchBaseQuery = fetchBaseQuery({
     headers.append("Authorization", `Bearer ${localStorage.getItem("accessToken") || ""}`);
     return headers;
   },
-  credentials: "include",
+  // credentials: "include",
 });
