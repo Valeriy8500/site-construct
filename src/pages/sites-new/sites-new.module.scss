@@ -1,4 +1,9 @@
 .sites_new {
   width: 100%;
   display: flex;
+  gap: 1rem;
+
+  &_list {
+    flex: 1 1 auto;
+  }
 }

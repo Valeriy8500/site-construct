@@ -1,6 +1,6 @@
 // common styles button
 .button {
-  font-family: 'Roboto', sans-serif;
+  font-family: Roboto, sans-serif;
   padding: 6px 15px;
   border-radius: var(--base-border-radius);
   cursor: pointer;
@@ -30,19 +30,20 @@
   color: var(--base-light-color);
   background-color: transparent;
   border-color: var(--base-light-color);
+
   &:hover {
     opacity: 0.7;
   }
 }
 
-.filled-theme  {
+.filled-theme {
   color: var(--base-white);
   background-color: var(--base-primary);
   border-color: var(--base-primary);
 }
 
 // type button
-.failed-type  {
+.failed-type {
   color: var(--base-white);
   background-color: var(--base-failed);
   border-color: var(--base-failed);
@@ -51,10 +52,9 @@
     background-color: var(--base-failed-hover);
     border-color: var(--base-failed-hover);
   }
-
 }
 
-.success-type  {
+.success-type {
   color: var(--base-white);
   background-color: var(--base-success);
   border-color: var(--base-success);
@@ -65,7 +65,7 @@
   }
 }
 
-.primary-type  {
+.primary-type {
   color: var(--base-white);
   background-color: var(--base-primary);
   border-color: var(--base-primary);

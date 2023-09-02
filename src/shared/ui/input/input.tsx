@@ -3,10 +3,10 @@ import clsx from "clsx";
 import cls from "./input.module.scss";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  error?: string,
-  defaultValue: string,
-  onChange: ChangeEventHandler<HTMLInputElement>,
-  rightIcon?: React.ReactNode,
+  error?: string;
+  defaultValue: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  rightIcon?: React.ReactNode;
 }
 
 export const Input = (props: InputProps) => {
@@ -15,35 +15,29 @@ export const Input = (props: InputProps) => {
     rightIcon,
     error = false,
     className = "",
-    defaultValue = '',
+    defaultValue = "",
     onChange,
     ...other
   } = props;
 
   return (
     <>
-      <div className={clsx(
-        cls['input-container'],
-      )}>
+      <div className={clsx(cls["input-container"])}>
         <input
           id={id}
           onChange={onChange}
           defaultValue={defaultValue}
           className={clsx(
-            cls['input'],
+            cls["input"],
             className,
             { [cls.error]: error },
-            { [cls['right-space']]: rightIcon },
+            { [cls["right-space"]]: rightIcon }
           )}
           {...other}
         />
-        {rightIcon &&
-          <i className={clsx(
-            cls['input-icon'],
-          )}>{rightIcon}</i>
-        }
+        {rightIcon && <i className={clsx(cls["input-icon"])}>{rightIcon}</i>}
       </div>
-      <p className={clsx(cls['text-error'])}>{error}</p>
+      <p className={clsx(cls["text-error"])}>{error}</p>
     </>
   );
 };
