@@ -1,0 +1,20 @@
+.sites_list {
+  width: 100%;
+
+  &_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  &_item {
+    flex-basis: 32%;
+  }
+
+  &_not_sites_title {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+  }
+}

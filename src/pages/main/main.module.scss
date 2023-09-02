@@ -1,0 +1,15 @@
+@import "@/shared/ui/scss/mixins";
+
+.main {
+  @include container;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+
+  &_filters {
+    display: flex;
+    gap: 10px;
+  }
+}

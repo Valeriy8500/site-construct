@@ -1,0 +1,19 @@
+.site_card {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: var(--base-border-radius);
+
+  &_title {
+    margin-bottom: 10px;
+  }
+
+  &_buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
