@@ -69,11 +69,13 @@ export const UserProfile = () => {
           className={cls[`profile__btn_container`]}
           onClick={() => setOnEdit(prev => !prev)}
           disabled={Object.keys(error).length !== 0 ? true : false}
+          style={
+            Object.keys(error).length !== 0 ?
+              { opacity: "0.2", cursor: "auto" } : undefined
+          }
         >
           {onEdit ? (
-            <FaCheckCircle
-              className={cls[`profile__check_btn`]}
-              style={Object.keys(error).length !== 0 ? { opacity: "0.2" } : null}
+            <FaCheckCircle className={cls[`profile__check_btn`]}
             />
           ) : (
             <FaRegEdit className={cls[`profile__edit_btn`]} />
