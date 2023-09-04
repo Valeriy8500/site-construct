@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { PiUserSquareBold } from "react-icons/pi";
 import { MdOutlineLogout } from "react-icons/md";
-import clsx from "clsx";
 import { useClickOutside } from "@/shared/hooks/useClickOutside";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks";
 import { userActions } from "@/entities/user";
