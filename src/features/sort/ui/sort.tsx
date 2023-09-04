@@ -4,6 +4,7 @@ import cls from "./sort.module.scss";
 import { SortType } from "@/features/sort";
 import { Dropdown } from "@/shared/ui/dropdown";
 import { SortIcon } from "@/shared/icons/sort-icon.tsx";
+import { Button } from "@/shared/ui/button";
 
 interface SortProps {
   sort: SortType;
@@ -20,13 +21,12 @@ export const Sort = ({ sort, onSetSort }: SortProps) => {
 
   return (
     <div className={cls.sort}>
-      <button
+      <Button
         className={clsx(cls.sort__icon, isOpen && cls.sort__icon_active)}
         onClick={() => setOpen(!isOpen)}
-        ref={iconRef}
       >
         <SortIcon />
-      </button>
+      </Button>
       <Dropdown isOpen={isOpen} iconRef={iconRef} handleClick={() => setOpen(false)}>
         <div className={cls.sort_list}>
           <div className={cls.sort_list_item}>
