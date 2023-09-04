@@ -1,9 +1,5 @@
-import "quill/dist/quill.snow.css";
+import "./construct-divider.module.scss";
 
 export const Divider = () => {
-  return (
-    <div>
-      <hr />
-    </div>
-  );
+  return <hr />;
 };
