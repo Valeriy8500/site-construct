@@ -1,1 +1,1 @@
-export { ImageQuill } from "./construct-image";
+export { ConstructImage } from "./construct-image";

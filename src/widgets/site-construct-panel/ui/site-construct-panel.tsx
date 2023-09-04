@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { TitleQuill } from "@/features/construct-components/construct-title";
 import { ParagraphQuill } from "@/features/construct-components/construct-paragraph";
-import { ImageQuill } from "@/features/construct-components/construct-image";
+import { ConstructImage } from "@/features/construct-components/construct-image";
 import cls from "./site-construct-panel.module.scss";
 
 interface SiteConstructPanelProps {
@@ -28,7 +28,7 @@ export const SiteConstructPanel: FC<SiteConstructPanelProps> = ({ onClick }) => 
           </div>
           <div className={cls.panel_item_feature}></div>
           <div className={cls.panel_item_feature}></div>
-          <div className={cls.panel_item_feature} onClick={() => onClick(<ImageQuill />)}>
+          <div className={cls.panel_item_feature} onClick={() => onClick(<ConstructImage />)}>
             image
           </div>
           <div className={cls.panel_item_feature}></div>

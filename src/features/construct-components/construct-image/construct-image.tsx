@@ -1,54 +1,72 @@
-import { useState } from "react";
-
-import parse from "html-react-parser";
-import ReactQuill from "react-quill";
-import Quill from "quill";
-// @ts-ignore
-import ImageUploader from "quill-image-uploader";
-
-import "quill/dist/quill.snow.css";
-import "quill-image-uploader/dist/quill.imageUploader.min.css";
+import React, { useState, useRef } from "react";
 import cls from "./construct-image.module.scss";
-Quill.register("modules/imageUploader", ImageUploader);
+import { GiPencil } from "react-icons/gi";
 
-export const ImageQuill = () => {
-  const [value, setValue] = useState("");
+export const ConstructImage = () => {
+  const [url, setUrl] = useState<string>("");
+  const [showBnt, setShowBtn] = useState<boolean>(true);
+  const inputFile: React.MutableRefObject<any> = useRef(null);
 
-  const toolbarOptions = [["image"]];
+  const upload = (file: string | Blob): Promise<string> => {
+    return new Promise((resolve, reject): void => {
+      const formData = new FormData();
+      formData.append("image", file);
 
-  const imageUploader = {
-    upload: (file: string | Blob) => {
-      console.log(file);
-
-      return new Promise((resolve, reject): void => {
-        const formData = new FormData();
-        formData.append("image", file);
-
-        fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_LOAD_IMAGE_KEY}`, {
-          method: "POST",
-          body: formData,
+      fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_LOAD_IMAGE_KEY}`, {
+        method: "POST",
+        body: formData,
+      })
+        .then(response => response.json())
+        .then(result => {
+          resolve(result.data.url);
         })
-          .then(response => response.json())
-          .then(result => {
-            resolve(result.data.url);
-            setValue(`<p><img src=${result.data.url}></p>`);
-          })
-          .catch(error => {
-            reject("Upload failed");
-            console.error("Error:", error);
-          });
-      });
-    },
+        .catch(error => {
+          reject("Upload failed");
+          console.error("Error:", error);
+        });
+    });
   };
-  const modules = {
-    toolbar: toolbarOptions,
-    imageUploader,
+
+  const onButtonClick = () => {
+    inputFile.current && inputFile.current?.click();
+  };
+
+  const onChangeFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.stopPropagation();
+    event.preventDefault();
+    const file = (event.target.files && event.target.files[0]) || "";
+    const res = await upload(file);
+    setUrl(res);
+    setShowBtn(false);
   };
 
   return (
     <div className={cls.image}>
-      <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
-      <div>{parse(value)}</div>
+      <input
+        type="file"
+        id="file"
+        onChange={onChangeFile}
+        ref={inputFile}
+        style={{ display: "none" }}
+      />
+      {showBnt && (
+        <button className={cls.btn} onClick={onButtonClick}>
+          Открыть картинку
+        </button>
+      )}
+
+      <div className={cls.image__button}>
+        <img src={url} />
+        <div
+          title="Заменить картинку"
+          className={cls.image__button_ok}
+          onClick={() => {
+            inputFile.current?.click();
+          }}
+        >
+          <GiPencil />
+        </div>
+      </div>
     </div>
   );
 };
