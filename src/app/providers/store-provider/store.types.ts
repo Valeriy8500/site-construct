@@ -10,5 +10,5 @@ export interface IStateSchema {
 export type RootState = ReturnType<typeof rootReducer>;
 
 export const useAppDispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>;
-export const useAppSelector: TypedUseSelectorHook<IStateSchema> = useSelector;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const useAppStore = useStore<RootState>;

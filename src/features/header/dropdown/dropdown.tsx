@@ -1,10 +1,13 @@
 import { FC, RefObject, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { PiUserSquareBold } from "react-icons/pi";
 import { MdOutlineLogout } from "react-icons/md";
 import clsx from "clsx";
 import { useClickOutside } from "@/shared/hooks/useClickOutside";
+import { useAppDispatch } from "@/shared/hooks/redux-hooks";
+import { userActions } from "@/entities/user";
 import cls from "./dropdown.module.scss";
 
 const variants = {
@@ -20,6 +23,7 @@ interface DropdownProps {
 
 export const Dropdown: FC<DropdownProps> = ({ isOpen, iconRef, handleClick }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const navRef = useRef<HTMLElement>(null);
 
   useClickOutside(iconRef, navRef, () => handleClick());
@@ -30,7 +34,7 @@ export const Dropdown: FC<DropdownProps> = ({ isOpen, iconRef, handleClick }) =>
   };
 
   const handleLogOut = () => {
-    // TODO: dispatch('обнулить данные о пользователе в redux')
+    dispatch(userActions.logout());
     navigate("/login", { replace: true });
     handleClick();
   };

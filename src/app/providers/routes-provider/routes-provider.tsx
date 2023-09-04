@@ -6,6 +6,8 @@ import { Layout } from "@/widgets/layout";
 const Main = lazy(() => import("@/pages/main"));
 const UserProfile = lazy(() => import("@/features/user-profile"));
 const SitesNew = lazy(() => import("@/pages/sites-new"));
+const LoginForm = lazy(() => import("@/pages/login"));
+const RegisterForm = lazy(() => import("@/pages/register"));
 
 export const RoutesProvider = () => {
   return (
@@ -47,8 +49,23 @@ export const RoutesProvider = () => {
         </Route>
         <Route path="story-book" element={<StoryBook />} />
       </Route>
-      <Route path="/login" element={<>Log in</>} />
-      <Route path="/signup" element={<>sign up</>} />
+      <Route
+        path="/login"
+        element={
+          <Suspense>
+            <LoginForm />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <Suspense>
+            <RegisterForm />
+          </Suspense>
+        }
+      />
+
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

@@ -2,13 +2,13 @@ import { ButtonHTMLAttributes, ReactElement } from "react";
 import clsx from "clsx";
 import cls from "./button.module.scss";
 
-enum Themes {
+export enum Themes {
   filled = "filled",
   clear = "clear",
   default = "default",
 }
 
-enum TypesButton {
+export enum TypesButton {
   primary = "primary",
   failed = "failed",
   success = "success",
