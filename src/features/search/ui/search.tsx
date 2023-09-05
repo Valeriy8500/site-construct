@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import cls from "./search.module.scss";
 import { useDebounce } from "@/shared/hooks/useDebounce.ts";
 import { SearchIcon } from "@/shared/icons/search-icon.tsx";
+import { Input } from "@/shared/ui/input";
 
 interface SearchProps {
   placeholder: string;
@@ -17,13 +18,13 @@ export const Search = ({ placeholder, onChange }: SearchProps) => {
 
   return (
     <div className={cls.search}>
-      <input
+      <Input
         className={cls.search_input}
         onChange={handleChange}
         value={value}
         placeholder={placeholder}
+        rightIcon={<SearchIcon className={cls.search_icon} />}
       />
-      <SearchIcon className={cls.search_icon} />
     </div>
   );
 };
