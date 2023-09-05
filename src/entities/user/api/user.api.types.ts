@@ -45,4 +45,29 @@ export interface IRegisterReq {
   password: string;
   returnSecureToken?: boolean;
 }
-export interface IRegisterRes extends ILoginRes {}
+export interface IRegisterRes extends ILoginRes { }
+
+export interface IUserProfileReq {
+  idToken: string;
+  email?: string;
+  displayName?: string;
+  returnSecureToken?: boolean;
+}
+
+export interface IProviderUserInfo {
+  providerId: string;
+  displayName: string;
+  federatedId: string;
+  email: string;
+  rawId: string;
+}
+
+export interface IUserProfileRes {
+  kind: string;
+  localId: string;
+  email: string;
+  displayName: string;
+  providerUserInfo: IProviderUserInfo[];
+  passwordHash: string;
+  emailVerified: boolean;
+}

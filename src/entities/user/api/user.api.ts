@@ -1,12 +1,13 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import { ILoginReq, ILoginRes, IRegisterReq, IRegisterRes } from "./user.api.types";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { ILoginReq, ILoginRes, IRegisterReq, IRegisterRes, IUserProfileReq, IUserProfileRes } from "./user.api.types";
 import { ErrorType } from "../model/user.types";
-import { rtkFetchBaseQuery } from "@/shared/config/redux/fetch-base-query";
 
 export const userApi = createApi({
   reducerPath: "userApi",
   tagTypes: ["User"],
-  baseQuery: rtkFetchBaseQuery,
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://identitytoolkit.googleapis.com/v1/"
+  }),
   endpoints: build => ({
     login: build.mutation<ILoginRes, ILoginReq>({
       query: obj => ({
@@ -24,7 +25,15 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    updateProfile: build.mutation<IUserProfileRes, IUserProfileReq>({
+      query: obj => ({
+        url: `accounts:update?key=${import.meta.env.VITE_FIREBASE_KEY}`,
+        method: "POST",
+        body: obj,
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = userApi;
+export const { useLoginMutation, useRegisterMutation, useUpdateProfileMutation } = userApi;

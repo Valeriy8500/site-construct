@@ -4,21 +4,26 @@ import UserProfileIcon from "../../shared/assets/user_profile_icon.png";
 import cls from "./user-profile.module.scss";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
+import { useUpdateProfileMutation } from "@/entities/user/api/user.api";
+import { useValidateProfile } from "./hooks/useValidateProfile";
 
-interface IInputValue {
+export interface IInputValue {
   name: string;
   lastname: string;
   email: string;
 }
 
-type IErrorData = {
+export type IErrorData = {
   [P in IInputValue[keyof IInputValue]]: {
     message: string;
   };
 };
 
 export const UserProfile = () => {
-  const logProfileData = {
+  const [update] = useUpdateProfileMutation();
+  const idToken = localStorage.getItem("accessToken")!;
+
+  const logProfileData: IInputValue = {
     name: localStorage.getItem("fullName")!.split(' ')[0],
     lastname: localStorage.getItem("fullName")!.split(' ')[1],
     email: localStorage.getItem("email")!
@@ -32,6 +37,18 @@ export const UserProfile = () => {
     email: logProfileData.email
   });
 
+  const onUpdateProfile = async (): Promise<void> => {
+    if (!onEdit) {
+      setOnEdit(prev => !prev);
+    } else {
+      setOnEdit(prev => !prev);
+      const email = inputValue.email;
+      const displayName = `${inputValue.name} ${inputValue.lastname}`;
+
+      await update({ email, idToken, displayName, returnSecureToken: true });
+    }
+  };
+
   const onChange = (e: React.ChangeEvent) => {
     const element = e.target as HTMLInputElement;
 
@@ -40,7 +57,7 @@ export const UserProfile = () => {
       [element.name]: element.value
     };
 
-    const validate = inputsValidation(inputsData);
+    const validate = useValidateProfile(inputsData);
     setError(validate);
 
     setInputValue((prev) => ({
@@ -49,30 +66,12 @@ export const UserProfile = () => {
     }));
   };
 
-  const inputsValidation = (data: IInputValue) => {
-    const error: IErrorData = {
-      name: { message: "" },
-      lastname: { message: "" },
-      email: { message: "" }
-    };
-
-    if (data.name === "") error.name.message = "Поле не должно быть пустым";
-    if (data.lastname === "") error.lastname.message = "Поле не должно быть пустым";
-    if (!data.email.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/)) error.email.message = "Email не валиден";
-
-    for (const key of Object.keys(error)) {
-      if (error[key].message !== "") return error;
-    }
-
-    return {};
-  };
-
   return (
     <div className={cls.profile}>
       <div className={cls.profile__container}>
         <button
           className={cls[`profile__btn_container`]}
-          onClick={() => setOnEdit(prev => !prev)}
+          onClick={() => onUpdateProfile()}
           disabled={Object.keys(error).length !== 0 ? true : false}
           style={
             Object.keys(error).length !== 0 ?
@@ -80,10 +79,10 @@ export const UserProfile = () => {
           }
         >
           {onEdit ? (
-            <FaCheckCircle className={cls[`profile__check_btn`]}
+            <FaCheckCircle title='Отправить' className={cls[`profile__check_btn`]}
             />
           ) : (
-            <FaRegEdit className={cls[`profile__edit_btn`]} />
+            <FaRegEdit title='Редактировать' className={cls[`profile__edit_btn`]} />
           )}
         </button>
         <img src={UserProfileIcon} className={cls.profile__img} alt="icon" />
