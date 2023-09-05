@@ -4,7 +4,7 @@ export const useValidateProfile = (data: IInputValue) => {
   const error: IErrorData = {
     name: { message: "" },
     lastname: { message: "" },
-    email: { message: "" }
+    email: { message: "" },
   };
 
   if (data.name === "") error.name.message = "Поле не должно быть пустым";

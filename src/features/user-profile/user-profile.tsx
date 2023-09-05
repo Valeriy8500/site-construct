@@ -24,9 +24,9 @@ export const UserProfile = () => {
   const idToken = localStorage.getItem("accessToken")!;
 
   const logProfileData: IInputValue = {
-    name: localStorage.getItem("fullName")!.split(' ')[0],
-    lastname: localStorage.getItem("fullName")!.split(' ')[1],
-    email: localStorage.getItem("email")!
+    name: localStorage.getItem("fullName")!.split(" ")[0],
+    lastname: localStorage.getItem("fullName")!.split(" ")[1],
+    email: localStorage.getItem("email")!,
   };
 
   const [onEdit, setOnEdit] = useState<boolean>(false);
@@ -34,7 +34,7 @@ export const UserProfile = () => {
   const [inputValue, setInputValue] = useState<IInputValue>({
     name: logProfileData.name,
     lastname: logProfileData.lastname,
-    email: logProfileData.email
+    email: logProfileData.email,
   });
 
   const onUpdateProfile = async (): Promise<void> => {
@@ -43,26 +43,28 @@ export const UserProfile = () => {
     } else {
       setOnEdit(prev => !prev);
       const email = inputValue.email;
+      console.log('email: ', email);
       const displayName = `${inputValue.name} ${inputValue.lastname}`;
 
       await update({ email, idToken, displayName, returnSecureToken: true });
     }
   };
 
-  const onChange = (e: React.ChangeEvent) => {
+  const OnChange = (e: React.ChangeEvent) => {
     const element = e.target as HTMLInputElement;
+    console.log('element.value: ', element.value);
 
     const inputsData = {
       ...inputValue,
-      [element.name]: element.value
+      [element.name]: element.value,
     };
 
     const validate = useValidateProfile(inputsData);
     setError(validate);
 
-    setInputValue((prev) => ({
+    setInputValue(prev => ({
       ...prev,
-      [element.name]: element.value
+      [element.name]: element.value,
     }));
   };
 
@@ -73,16 +75,12 @@ export const UserProfile = () => {
           className={cls[`profile__btn_container`]}
           onClick={() => onUpdateProfile()}
           disabled={Object.keys(error).length !== 0 ? true : false}
-          style={
-            Object.keys(error).length !== 0 ?
-              { opacity: "0.2", cursor: "auto" } : undefined
-          }
+          style={Object.keys(error).length !== 0 ? { opacity: "0.2", cursor: "auto" } : undefined}
         >
           {onEdit ? (
-            <FaCheckCircle title='Отправить' className={cls[`profile__check_btn`]}
-            />
+            <FaCheckCircle title="Отправить" className={cls[`profile__check_btn`]} />
           ) : (
-            <FaRegEdit title='Редактировать' className={cls[`profile__edit_btn`]} />
+            <FaRegEdit title="Редактировать" className={cls[`profile__edit_btn`]} />
           )}
         </button>
         <img src={UserProfileIcon} className={cls.profile__img} alt="icon" />
@@ -95,7 +93,7 @@ export const UserProfile = () => {
                 type="text"
                 id="form_name"
                 name="name"
-                onChange={(e) => onChange(e)}
+                onChange={e => OnChange(e)}
                 value={inputValue.name}
                 placeholder="Name"
               />
@@ -107,7 +105,7 @@ export const UserProfile = () => {
                 type="text"
                 id="form_lastname"
                 name="lastname"
-                onChange={onChange}
+                onChange={e => OnChange(e)}
                 value={inputValue.lastname}
                 placeholder="Lastname"
               />
@@ -119,7 +117,7 @@ export const UserProfile = () => {
                 type="email"
                 id="form_email"
                 name="email"
-                onChange={(e) => onChange(e)}
+                onChange={e => OnChange(e)}
                 value={inputValue.email}
                 placeholder="Email"
               />

@@ -1,12 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ILoginReq, ILoginRes, IRegisterReq, IRegisterRes, IUserProfileReq, IUserProfileRes } from "./user.api.types";
+import {
+  ILoginReq,
+  ILoginRes,
+  IRegisterReq,
+  IRegisterRes,
+  IUserProfileReq,
+  IUserProfileRes,
+} from "./user.api.types";
 import { ErrorType } from "../model/user.types";
 
 export const userApi = createApi({
   reducerPath: "userApi",
   tagTypes: ["User"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://identitytoolkit.googleapis.com/v1/"
+    baseUrl: "https://identitytoolkit.googleapis.com/v1/",
   }),
   endpoints: build => ({
     login: build.mutation<ILoginRes, ILoginReq>({

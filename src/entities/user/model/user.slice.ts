@@ -87,17 +87,15 @@ export const userSlice = createSlice({
         localStorage.setItem("email", payload.email);
       }
     );
-    builder.addMatcher(
-      userApi.endpoints.updateProfile.matchFulfilled,
-      (state, { payload }) => {
-        state.name = payload.displayName;
-        state.registered = true;
-        state.email = payload.email;
-        state.error = null;
+    builder.addMatcher(userApi.endpoints.updateProfile.matchFulfilled, (state, { payload }) => {
+      state.name = payload.displayName;
+      state.registered = true;
+      state.email = payload.email;
+      state.error = null;
 
-        localStorage.setItem("fullName", payload.displayName);
-        localStorage.setItem("email", payload.email);
-      });
+      localStorage.setItem("fullName", payload.displayName);
+      localStorage.setItem("email", payload.email);
+    });
   },
 });
 
