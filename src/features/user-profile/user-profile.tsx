@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FaRegEdit, FaCheckCircle } from "react-icons/fa";
 import UserProfileIcon from "../../shared/assets/user_profile_icon.png";
 import cls from "./user-profile.module.scss";
-import { objForTest } from "../../app/data/data";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
 
@@ -19,12 +18,18 @@ type IErrorData = {
 };
 
 export const UserProfile = () => {
+  const logProfileData = {
+    name: localStorage.getItem("fullName")!.split(' ')[0],
+    lastname: localStorage.getItem("fullName")!.split(' ')[1],
+    email: localStorage.getItem("email")!
+  };
+
   const [onEdit, setOnEdit] = useState<boolean>(false);
   const [error, setError] = useState<IErrorData>({});
   const [inputValue, setInputValue] = useState<IInputValue>({
-    name: 'Иван',
-    lastname: 'Иванович',
-    email: 'Иван@mail.ru'
+    name: logProfileData.name,
+    lastname: logProfileData.lastname,
+    email: logProfileData.email
   });
 
   const onChange = (e: React.ChangeEvent) => {
@@ -124,9 +129,9 @@ export const UserProfile = () => {
         ) : (
           <div className={cls[`profile__disabled_user_data_container`]}>
             <span className={cls[`profile__disabled_user_data`]}>
-              {`${objForTest.name} ${objForTest.surname}`}
+              {`${logProfileData.name} ${logProfileData.lastname}`}
             </span>
-            <span className={cls[`profile__disabled-user-data`]}>{objForTest.email}</span>
+            <span className={cls[`profile__disabled-user-data`]}>{logProfileData.email}</span>
           </div>
         )}
       </div>
