@@ -43,7 +43,6 @@ export const UserProfile = () => {
     } else {
       setOnEdit(prev => !prev);
       const email = inputValue.email;
-      console.log('email: ', email);
       const displayName = `${inputValue.name} ${inputValue.lastname}`;
 
       await update({ email, idToken, displayName, returnSecureToken: true });
@@ -52,7 +51,6 @@ export const UserProfile = () => {
 
   const OnChange = (e: React.ChangeEvent) => {
     const element = e.target as HTMLInputElement;
-    console.log('element.value: ', element.value);
 
     const inputsData = {
       ...inputValue,
