@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { Site } from "@/entities/site/model/site.types.ts";
+import { ISite } from "@/entities/site/model/site.types.ts";
 import { SiteCard } from "@/entities/site/ui/site-card";
 import cls from "./sites-list.module.scss";
 import { SortType } from "@/features/sort";
 import { sortSites } from "@/widgets/sites-list/lib/sortSites.ts";
 
-const sites: Site[] = [
-  { id: "1", bg: "gray", name: "First", authorId: "1", create: Date.now() - 500 },
-  { id: "2", bg: "darkgreen", name: "Second", authorId: "1", create: Date.now() - 400 },
-  { id: "3", bg: "blueviolet", name: "Site 3", authorId: "2", create: Date.now() - 300 },
-  { id: "4", bg: "tomato", name: "Site 4", authorId: "2", create: Date.now() - 200 },
-  { id: "5", bg: "teal", name: "Site 5", authorId: "3", create: Date.now() - 100 },
-  { id: "6", bg: "forestgreen", name: "Site 6", authorId: "3", create: Date.now() },
+const sites: ISite[] = [
+  { id: "1", bg: "gray", name: "First", authorId: "1", updatedAt: Date.now() - 500 },
+  { id: "2", bg: "darkgreen", name: "Second", authorId: "1", updatedAt: Date.now() - 400 },
+  { id: "3", bg: "blueviolet", name: "Site 3", authorId: "2", updatedAt: Date.now() - 300 },
+  { id: "4", bg: "tomato", name: "Site 4", authorId: "2", updatedAt: Date.now() - 200 },
+  { id: "5", bg: "teal", name: "Site 5", authorId: "3", updatedAt: Date.now() - 100 },
+  { id: "6", bg: "forestgreen", name: "Site 6", authorId: "3", updatedAt: Date.now() },
 ];
 
 interface SitesListProps {
