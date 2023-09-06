@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { TitleQuill } from "@/features/construct-components/construct-title";
 import { ParagraphQuill } from "@/features/construct-components/construct-paragraph";
+import { ConstructImage } from "@/features/construct-components/construct-image";
 import cls from "./site-construct-panel.module.scss";
 import { Divider } from "@/features/construct-components/construct-divider";
 
@@ -28,7 +29,9 @@ export const SiteConstructPanel: FC<SiteConstructPanelProps> = ({ onClick }) => 
           </div>
           <div className={cls.panel_item_feature}></div>
           <div className={cls.panel_item_feature}></div>
-          <div className={cls.panel_item_feature}></div>
+          <div className={cls.panel_item_feature} onClick={() => onClick(<ConstructImage />)}>
+            Изображение
+          </div>
           <div className={cls.panel_item_feature} onClick={() => onClick(<Divider />)}>
             Разделитель
           </div>
