@@ -1,20 +1,15 @@
-:root {
-  --green-color: #2bff00;
-  --green-color-dark: rgb(43 255 0 / 10%);
-}
 .btn {
   border-radius: 10%;
   width: 150px;
   height: 100px;
-  outline: 1px solid white;
-  color: white;
+  outline: 1px solid var(--base-white);
+  color: var(--base-white);
 }
 
 .image {
   position: relative;
   padding: 20px;
   margin-bottom: 1rem;
-  max-width: 250px;
 
   &__button {
     position: relative;

@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef, ChangeEvent } from "react";
 import cls from "./construct-image.module.scss";
 import { GiPencil } from "react-icons/gi";
 
 export const ConstructImage = () => {
   const [url, setUrl] = useState<string>("");
   const [showBnt, setShowBtn] = useState<boolean>(true);
-  const inputFile: React.MutableRefObject<any> = useRef(null);
+  const inputFile = useRef<HTMLInputElement>(null);
 
   const upload = (file: string | Blob): Promise<string> => {
     return new Promise((resolve, reject): void => {
@@ -28,12 +28,11 @@ export const ConstructImage = () => {
   };
 
   const onButtonClick = () => {
-    inputFile.current && inputFile.current?.click();
+    if (inputFile.current) inputFile.current.click();
   };
 
-  const onChangeFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
     event.stopPropagation();
-    event.preventDefault();
     const file = (event.target.files && event.target.files[0]) || "";
     const res = await upload(file);
     setUrl(res);
