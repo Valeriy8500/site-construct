@@ -29,8 +29,12 @@ export const SiteConstructPanel: FC<SiteConstructPanelProps> = ({ onClick }) => 
           <div className={cls.panel_item_feature}></div>
           <div className={cls.panel_item_feature}></div>
           <div className={cls.panel_item_feature}></div>
-          <div className={cls.panel_item_feature}></div>
-          <div className={cls.panel_item_feature}></div>
+          <div className={cls.panel_item_feature} onClick={() => onClick(<TitleQuill />)}>
+            button
+          </div>
+          <div className={cls.panel_item_feature} onClick={() => onClick(<TitleQuill />)}>
+            quote
+          </div>
         </div>
         <div className={cls.panel_item}>
           <h3 className={cls.panel_item_title}>Форма</h3>
