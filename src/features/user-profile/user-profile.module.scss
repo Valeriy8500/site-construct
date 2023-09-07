@@ -76,13 +76,7 @@
     margin-bottom: 20px;
   }
 
-  &__input_container > div > input {
-    width: 100%;
-    color: #000;
-    border-radius: 8px;
-  }
-
-  &__input_container > label {
+  &__input_container_label {
     font-size: small;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { FaRegEdit, FaCheckCircle } from "react-icons/fa";
 import UserProfileIcon from "../../shared/assets/user_profile_icon.png";
 import cls from "./user-profile.module.scss";
@@ -19,7 +19,7 @@ export type IErrorData = {
   };
 };
 
-export const UserProfile = () => {
+export const UserProfile = (): ReactElement => {
   const [update] = useUpdateProfileMutation();
   const idToken = localStorage.getItem("accessToken")!;
 
@@ -49,12 +49,10 @@ export const UserProfile = () => {
     }
   };
 
-  const OnChange = (e: React.ChangeEvent) => {
-    const element = e.target as HTMLInputElement;
-
+  const OnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputsData = {
       ...inputValue,
-      [element.name]: element.value,
+      [e.target.name]: e.target.value,
     };
 
     const validate = useValidateProfile(inputsData);
@@ -62,7 +60,7 @@ export const UserProfile = () => {
 
     setInputValue(prev => ({
       ...prev,
-      [element.name]: element.value,
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -85,7 +83,11 @@ export const UserProfile = () => {
         {onEdit ? (
           <form className={cls[`profile__enable_form_container`]}>
             <div className={cls[`profile__input_container`]}>
-              <Label forValue="form_name" label="Name" />
+              <Label
+                forValue="form_name"
+                label="Name"
+                className={cls[`profile__input_container_label`]}
+              />
               <Input
                 error={error.name && error.name.message}
                 type="text"
@@ -94,10 +96,15 @@ export const UserProfile = () => {
                 onChange={e => OnChange(e)}
                 value={inputValue.name}
                 placeholder="Name"
+                style={{ color: 'black', width: '100%' }}
               />
             </div>
             <div className={cls[`profile__input_container`]}>
-              <Label forValue="form_lastname" label="Lastname" />
+              <Label
+                forValue="form_lastname"
+                label="Lastname"
+                className={cls[`profile__input_container_label`]}
+              />
               <Input
                 error={error.lastname && error.lastname.message}
                 type="text"
@@ -106,10 +113,15 @@ export const UserProfile = () => {
                 onChange={e => OnChange(e)}
                 value={inputValue.lastname}
                 placeholder="Lastname"
+                style={{ color: 'black', width: '100%' }}
               />
             </div>
             <div className={cls[`profile__input_container`]}>
-              <Label forValue="form_email" label="Email" />
+              <Label
+                forValue="form_email"
+                label="Email"
+                className={cls[`profile__input_container_label`]}
+              />
               <Input
                 error={error.email && error.email.message}
                 type="email"
@@ -118,6 +130,7 @@ export const UserProfile = () => {
                 onChange={e => OnChange(e)}
                 value={inputValue.email}
                 placeholder="Email"
+                style={{ color: 'black', width: '100%' }}
               />
             </div>
           </form>
