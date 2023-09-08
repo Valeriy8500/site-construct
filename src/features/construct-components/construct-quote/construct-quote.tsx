@@ -2,10 +2,9 @@ import { ReactElement, useState } from "react";
 import ReactQuill from "react-quill";
 import parse from "html-react-parser";
 import { GiCheckMark } from "react-icons/gi";
-import { Button } from "@/shared/ui/button";
-import cls from "./construct-button.module.scss";
+import cls from "./construct-quote.module.scss";
 
-export const ButtonQuill = (): ReactElement => {
+export const QuoteQuill = (): ReactElement => {
   const [edit, setEdit] = useState<boolean>(true);
   const [value, setValue] = useState<string>("");
 
@@ -22,26 +21,26 @@ export const ButtonQuill = (): ReactElement => {
   };
 
   return (
-    <div className={cls.button}>
+    <div className={cls.quote}>
       {edit ? (
         <>
           <ReactQuill
-            placeholder="Название кнопки"
+            placeholder="Цитата"
             modules={modules}
             theme="snow"
             value={value}
             onChange={setValue}
           />
-          <div className={cls.button__check_btn_container} title="Сохранить">
-            <div className={cls.check_btn} onClick={() => setEdit(false)}>
+          <div className={cls.quote__check_quote_container} title="Сохранить">
+            <div className={cls.check_quote} onClick={() => setEdit(false)}>
               <GiCheckMark />
             </div>
           </div>
         </>
       ) : (
-        <Button onClick={() => setEdit(true)} title="Редактировать">
-          <>{parse(value)}</>
-        </Button>
+        <q className={cls.quote__quote_string} onClick={() => setEdit(true)} title="Редактировать">
+          {parse(value)}
+        </q>
       )}
     </div>
   );

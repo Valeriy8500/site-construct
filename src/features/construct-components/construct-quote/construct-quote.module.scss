@@ -1,18 +1,17 @@
 @import "@/app/styles/variables";
 
-.button {
+.quote {
   position: relative;
   margin-bottom: 1rem;
-  max-width: 50%;
 
-  &__check_btn_container {
+  &__check_quote_container {
     position: absolute;
     top: 8px;
     right: 17px;
     display: flex;
     gap: 1rem;
 
-    .check_btn {
+    .check_quote {
       flex: 0 0 26px;
       height: 26px;
       display: flex;
@@ -30,5 +29,13 @@
         }
       }
     }
+  }
+
+  &__quote_string:hover {
+    cursor: pointer;
+  }
+
+  &__quote_string > p {
+    display: inline;
   }
 }
