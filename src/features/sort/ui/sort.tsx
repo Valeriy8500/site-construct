@@ -3,8 +3,9 @@ import { ChangeEvent, useRef, useState } from "react";
 import cls from "./sort.module.scss";
 import { SortType } from "@/features/sort";
 import { Dropdown } from "@/shared/ui/dropdown";
-import { SortIcon } from "@/shared/icons/sort-icon.tsx";
+
 import { Button } from "@/shared/ui/button";
+import { SortIcon } from "@/shared/icons/sort-icon";
 
 interface SortProps {
   sort: SortType;
