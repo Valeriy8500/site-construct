@@ -1,16 +1,3 @@
-.panel {
-  width: 250px;
-  height: calc(100vh - 56px - 19px);
-  overflow: hidden;
-  background-color: var(--base-light-color);
-}
-
-.panel_wrapper {
-  width: 250px;
-  height: calc(100vh - 56px - 19px);
-  overflow-y: auto;
-}
-
 .panel_item {
   width: 100%;
   margin-bottom: 20px;
@@ -19,6 +6,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 
   &_title {
     flex-basis: 100%;
@@ -29,12 +17,15 @@
   }
 
   &_feature {
+    cursor: pointer;
+    font-size: 12px;
     flex-basis: 48%;
     width: 100%;
     height: 100px;
     margin-bottom: 10px;
-    color: #838383;
+    color: #282828;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -42,8 +33,4 @@
     border: 1px solid var(--base-black);
     border-radius: 20px;
   }
-}
-.icon {
-  height: 70%;
-  width: 70%;
 }
