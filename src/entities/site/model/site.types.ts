@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 export interface ISite {
   id: string;
@@ -9,4 +9,10 @@ export interface ISite {
   bg: CSSProperties["backgroundColor"];
   html: string;
   css: string;
+  content: ISiteContent[];
+}
+
+export interface ISiteContent {
+  Element: ReactNode;
+  id: string;
 }

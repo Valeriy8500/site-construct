@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { SiteConstructPanel } from "@/widgets/site-construct-panel";
 import cls from "./sites-new.module.scss";
+import { SiteViewPanel } from "@/widgets/site-view-panel";
 
-interface ISite {
+interface ISiteElement {
   id: number;
   content: JSX.Element;
 }
 
 export const SitesNew = () => {
-  const [sites, setSites] = useState<ISite[]>([]);
+  const [elements, setElements] = useState<ISiteElement[]>([]);
 
   const handleAddElement = (element: JSX.Element) => {
-    setSites([
-      ...sites,
+    setElements(prev => [
+      ...prev,
       {
         id: Date.now(),
         content: element,
@@ -23,11 +24,7 @@ export const SitesNew = () => {
   return (
     <div className={cls.sites_new}>
       <SiteConstructPanel onClick={handleAddElement} />
-      <ul className={cls.sites_new_list}>
-        {sites.map(item => (
-          <li key={item.id}>{item.content}</li>
-        ))}
-      </ul>
+      <SiteViewPanel sites={elements} />
     </div>
   );
 };
