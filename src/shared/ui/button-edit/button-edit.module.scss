@@ -1,0 +1,26 @@
+@import "@/app/styles/variables";
+
+.button_edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+
+  svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color: #a0a0a0;
+    transition: all 0.2s ease 0s;
+    object-fit: contain;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: $green-color;
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@import "@/app/styles/variables";
+
+.input {
+  position: relative;
+  margin-bottom: 1rem;
+
+  input {
+    width: 100%;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      .button_edit {
+        display: block;
+      }
+    }
+  }
+}
+
+.edit {
+  &__title {
+    color: grey;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2px;
+
+    p {
+      flex: 0 0 6rem;
+      font-size: 0.9rem;
+    }
+
+    input {
+      width: 100%;
+      border: 1px dashed #818181;
+      color: #ccc;
+      padding: 2px;
+    }
+  }
+}
+
+.button_ok {
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+}
+
+.button_edit {
+  display: none;
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+}

@@ -24,7 +24,7 @@ export const ParagraphQuill = () => {
   };
 
   return (
-    <div className={cls.paragraph}>
+    <div className={cls.paragraph} data-testid="construct-paragraph">
       {edit ? (
         <>
           <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />

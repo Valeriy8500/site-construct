@@ -1,0 +1,14 @@
+@import "@/app/styles/variables";
+
+.button_add {
+  font-size: 1.5rem;
+  color: #a1a1a1;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: $green-color;
+    }
+  }
+}

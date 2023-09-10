@@ -1,0 +1,51 @@
+// @import "@/app/styles/variables";
+
+// .button_ok {
+//   flex: 0 0 26px;
+//   height: 26px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   cursor: pointer;
+//   border: 1px solid rgb(43 255 0 / 10%);
+//   border-radius: 50%;
+//   transition: all 0.2s ease 0s;
+
+//   @media (any-hover: hover) {
+//     &:hover {
+//       color: $green-color;
+//       border: 1px solid rgb(43 255 0 / 50%);
+//     }
+//   }
+// }
+
+@import "@/app/styles/variables";
+
+.button_ok {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color: #a0a0a0;
+    border-radius: 50%;
+    border: 1px solid rgb(51 51 51 / 57.5%);
+    transition: all 0.2s ease 0s;
+    object-fit: contain;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: $green-color;
+        border-radius: 50%;
+        border: 1px solid rgb(43 255 0 / 50%);
+      }
+    }
+  }
+}

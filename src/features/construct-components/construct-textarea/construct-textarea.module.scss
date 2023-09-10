@@ -1,0 +1,66 @@
+.textarea {
+  position: relative;
+  margin-bottom: 1rem;
+
+  &__construct {
+    display: flex;
+    flex-direction: column;
+
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      background-color: #3a3a3a;
+      color: rgb(204 204 204);
+
+      &::placeholder {
+        color: rgb(134 134 134);
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      .button_edit {
+        display: block;
+      }
+    }
+  }
+}
+
+.edit {
+  &__title {
+    color: grey;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2px;
+
+    p {
+      flex: 0 0 6rem;
+      font-size: 0.9rem;
+    }
+
+    input {
+      width: 100%;
+      border: 1px dashed #818181;
+      color: #ccc;
+      padding: 2px;
+    }
+  }
+}
+
+.button_ok {
+  position: absolute;
+  top: 2rem;
+  right: 1.2rem;
+}
+
+.button_edit {
+  display: none;
+  position: absolute;
+  top: 2rem;
+  right: 1.2rem;
+}

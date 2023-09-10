@@ -1,0 +1,48 @@
+@import "@/app/styles/variables";
+
+.radio {
+  position: relative;
+  margin-bottom: 5px;
+
+  @media (any-hover: hover) {
+    &:hover {
+      .button_edit {
+        display: block;
+      }
+    }
+  }
+}
+
+.button_ok {
+  position: absolute;
+  top: 3px;
+  right: 8px;
+}
+
+.button_edit {
+  display: none;
+  position: absolute;
+  top: 3px;
+  right: 8px;
+}
+
+.edit_radio {
+  &__title {
+    color: #ccc;
+  }
+
+  &__item {
+    display: flex;
+    gap: 0.5rem;
+    margin: 3px 0;
+  }
+
+  &__input {
+    width: 100%;
+    border: 1px dashed #818181;
+    color: #ccc;
+  }
+
+  &__add_button {
+  }
+}
