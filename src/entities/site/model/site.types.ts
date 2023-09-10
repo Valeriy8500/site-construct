@@ -1,9 +1,12 @@
 import { CSSProperties } from "react";
 
-export interface Site {
+export interface ISite {
   id: string;
+  url: string;
   name: string;
-  bg: CSSProperties["backgroundColor"];
   authorId: string;
-  create: number;
+  updatedAt: number;
+  bg: CSSProperties["backgroundColor"];
+  html: string;
+  css: string;
 }

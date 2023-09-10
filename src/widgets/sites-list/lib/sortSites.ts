@@ -1,7 +1,7 @@
 import { SortType } from "@/features/sort";
-import { Site } from "@/entities/site/model/site.types.ts";
+import { ISite } from "@/entities/site/model/site.types.ts";
 
-export const sortSites = (sort: SortType, sites: Site[]) => {
+export const sortSites = (sort: SortType, sites: ISite[]) => {
   switch (sort) {
     case "NAME.ASK":
       return sites.sort((a, b) => (a.name > b.name ? 1 : -1));
@@ -10,9 +10,9 @@ export const sortSites = (sort: SortType, sites: Site[]) => {
       return sites.sort((a, b) => (a.name > b.name ? -1 : 1));
 
     case "DATE.ASK":
-      return sites.sort((a, b) => b.create - a.create);
+      return sites.sort((a, b) => b.updatedAt - a.updatedAt);
 
     case "DATE.DESC":
-      return sites.sort((a, b) => a.create - b.create);
+      return sites.sort((a, b) => a.updatedAt - b.updatedAt);
   }
 };
