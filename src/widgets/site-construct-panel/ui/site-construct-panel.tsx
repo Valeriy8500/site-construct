@@ -3,6 +3,8 @@ import { TitleQuill } from "@/features/construct-components/construct-title";
 import { ParagraphQuill } from "@/features/construct-components/construct-paragraph";
 import { ConstructImage } from "@/features/construct-components/construct-image";
 import cls from "./site-construct-panel.module.scss";
+import { ButtonQuill } from "@/features/construct-components/construct-button";
+import { QuoteQuill } from "@/features/construct-components/construct-quote";
 import { Divider } from "@/features/construct-components/construct-divider";
 import { SidebarButton } from "@/shared/ui/sidebar-button";
 import { TitleIcon } from "../assets/title-icon";
@@ -43,7 +45,6 @@ export const SiteConstructPanel: FC<SiteConstructPanelProps> = ({ onClick }) => 
             onClick={onClick}
             element={<ParagraphQuill />}
           />
-
           <SidebarButton
             icon={<MarkedListIcon className={cls.icon} />}
             title="Маркированный"
@@ -68,18 +69,17 @@ export const SiteConstructPanel: FC<SiteConstructPanelProps> = ({ onClick }) => 
             onClick={onClick}
             element={<Divider />}
           />
-
           <SidebarButton
             icon={<ButtonIcon className={cls.icon} />}
             title="Кнопка"
             onClick={onClick}
-            element={<></>}
+            element={<ButtonQuill />}
           />
           <SidebarButton
             icon={<QuoteIcon className={cls.icon} />}
             title="Цитата"
             onClick={onClick}
-            element={<></>}
+            element={<QuoteQuill />}
           />
         </div>
         <div className={cls.panel_item}>

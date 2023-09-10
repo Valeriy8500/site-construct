@@ -42,6 +42,12 @@
     border: 1px solid var(--base-black);
     border-radius: 20px;
   }
+
+  &_feature:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.2s ease 0s;
+  }
 }
 .icon {
   height: 70%;
