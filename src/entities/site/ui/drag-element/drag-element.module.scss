@@ -1,0 +1,16 @@
+.drag_element {
+  .drag_item {
+    border: 1px solid var(--base-success);
+  }
+}
+
+.hold {
+  background-color: #8ed7ed;
+  opacity: 0.1;
+  border: 1px solid #8ed7ed;
+  color: #fff;
+}
+
+.hide {
+  display: none;
+}

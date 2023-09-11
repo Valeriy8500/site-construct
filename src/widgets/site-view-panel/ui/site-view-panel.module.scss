@@ -6,13 +6,12 @@
   &_wrapper {
     position: relative;
     width: 100%;
-    height: calc(100vh - 56px - 19px);
+    max-height: calc(100vh - 56px - 19px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
     overflow: auto;
-    padding: 10px;
-  }
-
-  &_list {
-    flex: 1 1 auto;
+    padding-bottom: 20px;
   }
 
   &_buttons_block {
@@ -21,6 +20,7 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    margin-left: 10px;
   }
 
   &_buttons_item {

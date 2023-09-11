@@ -1,0 +1,56 @@
+.construct_block {
+  position: relative;
+  min-width: 200px;
+  min-height: 35px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 5px;
+
+  &_edit {
+    border: 1px solid var(--base-light-color);
+  }
+
+  &_button {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: var(--base-light-color);
+    border-color: var(--base-success);
+    z-index: 5;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--base-success);
+    }
+  }
+}
+
+.delete {
+  top: 0;
+  right: 30px;
+}
+
+.edit {
+  top: 0;
+  right: 0;
+}
+
+.width {
+  right: 0;
+  top: 45%;
+  padding: 10px 3px;
+  border-radius: 10px;
+}
+
+.height {
+  bottom: 0;
+  left: 40%;
+  transform: rotate(90deg);
+  padding: 10px 3px;
+  border-radius: 10px;
+}

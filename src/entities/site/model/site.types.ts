@@ -6,10 +6,18 @@ export interface ISite {
   name: string;
   authorId: string;
   updatedAt: number;
+  elements: SiteElement[];
   bg: CSSProperties["backgroundColor"];
   html: string;
   css: string;
   content: ISiteContent[];
+}
+
+export interface SiteElement {
+  id: string;
+  content: string;
+  width: number;
+  height: number;
 }
 
 export interface ISiteContent {

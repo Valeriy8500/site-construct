@@ -1,1 +1,1 @@
-export { QuoteQuill } from "./construct-quote";
+export { QuoteQuill as default } from "./construct-quote";
