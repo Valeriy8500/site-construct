@@ -41,8 +41,10 @@ export const LoginForm: FC = () => {
     e.preventDefault();
     setError("");
 
-    const email = (e.currentTarget[0] as HTMLInputElement).value || "";
-    const password = (e.currentTarget[1] as HTMLInputElement).value || "";
+    const formData = new FormData(e.currentTarget);
+
+    const email = formData.get("email")?.toString() || "";
+    const password = formData.get("password")?.toString() || "";
 
     if (email === "") {
       setError("EMPTY_EMAIL");
