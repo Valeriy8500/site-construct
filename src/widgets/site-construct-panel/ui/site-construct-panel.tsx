@@ -6,6 +6,8 @@ import cls from "./site-construct-panel.module.scss";
 import { ButtonQuill } from "@/features/construct-components/construct-button";
 import { QuoteQuill } from "@/features/construct-components/construct-quote";
 import { Divider } from "@/features/construct-components/construct-divider";
+import { ListQuill } from "@/features/construct-components/construct-li";
+import { NumberedListQuill } from "@/features/construct-components/construct-ol";
 import { SidebarButton } from "@/shared/ui/sidebar-button";
 import { TitleIcon } from "../assets/title-icon";
 import { ParagraphIcon } from "../assets/paragraph-icon";
@@ -49,13 +51,13 @@ export const SiteConstructPanel: FC<SiteConstructPanelProps> = ({ onClick }) => 
             icon={<MarkedListIcon className={cls.icon} />}
             title="Маркированный"
             onClick={onClick}
-            element={<></>}
+            element={<ListQuill />}
           />
           <SidebarButton
             icon={<OrderedListIcon className={cls.icon} />}
             title="Нумерованный"
             onClick={onClick}
-            element={<></>}
+            element={<NumberedListQuill />}
           />
           <SidebarButton
             icon={<ImageIcon className={cls.icon} />}
