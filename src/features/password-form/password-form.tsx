@@ -1,5 +1,4 @@
 import { Input } from "@/shared/ui/input";
-import { Label } from "@/shared/ui/label";
 import { ReactElement, useState } from "react";
 import cls from "./password-form.module.scss";
 import { useNavigate } from "react-router";
@@ -19,6 +18,7 @@ export type IErrorData = {
 
 export const PasswordForm = (): ReactElement => {
   const [error, setError] = useState<IErrorData>({});
+  const [disabled, setDisabled] = useState<boolean>(true);
   const [inputValue, setInputValue] = useState<IInputValue>({
     password: '',
     confirmPassword: ''
@@ -42,6 +42,7 @@ export const PasswordForm = (): ReactElement => {
 
     const validate = useValidatePassword(inputsData);
     setError(validate);
+    setDisabled(Object.keys(validate).length !== 0 ? true : false)
 
     setInputValue(prev => ({
       ...prev,
@@ -79,6 +80,8 @@ export const PasswordForm = (): ReactElement => {
         </div>
         <Button
           className={cls[`password_change__submit_btn`]}
+          disabled={disabled}
+          style={disabled ? { opacity: "0.2", cursor: "auto" } : undefined}
           type="submit"
         >
           Ок
