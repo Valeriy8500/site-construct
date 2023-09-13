@@ -1,0 +1,44 @@
+.site_view_panel {
+  width: calc(75rem - 280px);
+  height: calc(100vh - 56px - 19px);
+  overflow: hidden;
+
+  &_wrapper {
+    position: relative;
+    width: 100%;
+    max-height: calc(100vh - 56px - 19px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    overflow: auto;
+    padding-bottom: 20px;
+  }
+
+  &_buttons_block {
+    position: fixed;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 10px;
+  }
+
+  &_buttons_item {
+    button {
+      padding: 5px;
+    }
+
+    button:hover {
+      border-color: var(--base-success);
+
+      svg {
+        fill: var(--base-success);
+      }
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

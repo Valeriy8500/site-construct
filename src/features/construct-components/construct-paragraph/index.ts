@@ -1,1 +1,1 @@
-export { ParagraphQuill } from "./construct-paragraph";
+export { ParagraphQuill as default } from "./construct-paragraph";

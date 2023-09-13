@@ -1,0 +1,37 @@
+.checkbox {
+  position: relative;
+  margin-bottom: 1rem;
+
+  @media (any-hover: hover) {
+    &:hover {
+      .button_edit {
+        display: block;
+      }
+    }
+  }
+}
+
+.button_ok {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.8rem;
+}
+
+.button_edit {
+  display: none;
+  position: absolute;
+  top: 0.2rem;
+  right: 0.8rem;
+}
+
+.edit_checkbox {
+  &__title {
+    color: var(--feature-gray);
+  }
+
+  &__item {
+    display: flex;
+    gap: 0.5rem;
+    margin: 3px 0;
+  }
+}

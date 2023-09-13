@@ -1,9 +1,9 @@
+@import "@/shared/styles/mixins";
+
 .sites_new {
+  @include container;
+
   width: 100%;
   display: flex;
-  gap: 1rem;
-
-  &_list {
-    flex: 1 1 auto;
-  }
+  flex: 240px auto;
 }

@@ -1,5 +1,3 @@
-@import "@/app/styles/variables";
-
 .navbar {
   &__list {
     display: flex;
@@ -22,14 +20,14 @@
       left: 50%;
       height: 1px;
       bottom: 0;
-      background-color: $green-color;
+      background-color: var(--green-color);
       transition: all 0.1s linear;
     }
 
     &_active {
-      color: $green-color;
+      color: var(--green-color);
       font-weight: 600;
-      text-shadow: 0 0 8px $green-color;
+      text-shadow: 0 0 8px var(--green-color);
 
       @media (max-width: 30em) {
         font-size: 0.8rem;

@@ -1,16 +1,15 @@
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 import cls from "./sidebar-button.module.scss";
 
 interface SidebarButtonProps {
   icon: React.ReactNode;
   title: string;
-  element: JSX.Element;
-  onClick: (element: JSX.Element) => void;
+  onClick: MouseEventHandler<HTMLDivElement>;
 }
 
-export const SidebarButton: FC<SidebarButtonProps> = ({ icon, title, onClick, element }) => {
+export const SidebarButton: FC<SidebarButtonProps> = ({ icon, title, onClick }) => {
   return (
-    <div className={cls.panel_item_feature} onClick={() => onClick(element)}>
+    <div className={cls.panel_item_feature} onClick={onClick}>
       {icon}
       {title}
     </div>
