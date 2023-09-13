@@ -8,6 +8,7 @@ const Main = lazy(() => import("@/pages/main"));
 const SitesNew = lazy(() => import("@/pages/sites-new"));
 const LoginForm = lazy(() => import("@/pages/login"));
 const RegisterForm = lazy(() => import("@/pages/register"));
+const PasswordForm = lazy(() => import("@/pages/password-form"));
 
 export const RoutesProvider = () => {
   return (
@@ -29,6 +30,7 @@ export const RoutesProvider = () => {
           }
         />
         <Route path="me" element={<>me</>} />
+        <Route path="password" element={<PasswordForm />} />
         <Route path="sites">
           <Route
             path="new"

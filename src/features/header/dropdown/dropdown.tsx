@@ -34,7 +34,7 @@ export const Dropdown: FC<DropdownProps> = ({ isOpen, iconRef, handleClick }) =>
   };
 
   const handleChangePassword = () => {
-    navigate("/me");
+    navigate("/password");
     handleClick();
   };
 
