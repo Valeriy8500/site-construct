@@ -1,0 +1,32 @@
+stages:
+  - install
+  - test
+
+default:
+  image: node:lts
+  before_script:
+    - yarn install
+
+Install:
+  stage: install
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules
+    policy: pull-push
+  script:
+    - yarn install
+
+Test:
+  stage: test
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules
+    policy: pull
+  script:
+    - yarn test

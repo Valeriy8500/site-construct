@@ -1,1 +1,1 @@
-export { ListQuill } from "./construct-li";
+export { ListQuill as default } from "./construct-li";

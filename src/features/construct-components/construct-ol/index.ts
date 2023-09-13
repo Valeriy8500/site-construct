@@ -1,1 +1,1 @@
-export { NumberedListQuill } from "./construct-ol";
+export { NumberedListQuill as default} from "./construct-ol";
