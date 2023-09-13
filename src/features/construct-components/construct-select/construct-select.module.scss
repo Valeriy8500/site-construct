@@ -26,7 +26,7 @@
 
 .select_edit {
   &__title {
-    color: #c9c9c9;
+    color: var(--feature-gray);
     margin-bottom: 0.5rem;
   }
 
@@ -34,12 +34,5 @@
     display: flex;
     gap: 0.5rem;
     margin: 3px 0;
-  }
-
-  &__input {
-    width: 100%;
-    font-size: 1rem;
-    color: #c9c9c9;
-    border: 1px dashed #6b6b6b;
   }
 }

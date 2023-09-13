@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Checkbox } from "@/shared/ui/checkbox";
 import { useConstructCheckbox } from "@/shared/hooks/useConstructCheckbox";
-import { ButtonOk } from "@/shared/ui/button-ok/button-ok";
+import { ButtonOk } from "@/shared/ui/button-ok";
 import { ButtonEdit } from "@/shared/ui/button-edit";
 import { ConstructCheckboxEdit } from "./construct-checkbox-edit";
 import { CHECKBOX_INIT } from "./constants";

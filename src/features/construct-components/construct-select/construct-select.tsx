@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MySelect } from "@/shared/ui/select/select";
-import { ButtonOk } from "@/shared/ui/button-ok/button-ok";
+import { ButtonOk } from "@/shared/ui/button-ok";
 import { ButtonEdit } from "@/shared/ui/button-edit";
 import { SelectEdit } from "./select-edit";
 import { useConstructSelect } from "@/shared/hooks/useConstructSelect";

@@ -1,5 +1,3 @@
-@import "@/app/styles/variables";
-
 .input {
   position: relative;
   margin-bottom: 1rem;
@@ -19,7 +17,7 @@
 
 .edit {
   &__title {
-    color: grey;
+    color: var(--feature-gray);
   }
 
   &__item {
@@ -31,13 +29,6 @@
     p {
       flex: 0 0 6rem;
       font-size: 0.9rem;
-    }
-
-    input {
-      width: 100%;
-      border: 1px dashed #818181;
-      color: #ccc;
-      padding: 2px;
     }
   }
 }

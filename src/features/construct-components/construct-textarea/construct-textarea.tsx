@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 import { Label } from "@/shared/ui/label";
-import { ButtonOk } from "@/shared/ui/button-ok/button-ok";
+import { ButtonOk } from "@/shared/ui/button-ok";
 import { ButtonEdit } from "@/shared/ui/button-edit";
 import { Textarea } from "@/shared/ui/textarea";
 import { useConstructTextarea } from "@/shared/hooks/useConstructTextarea";

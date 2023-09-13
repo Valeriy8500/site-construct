@@ -1,11 +1,11 @@
 .button_delete {
   font-size: 1rem;
-  color: rgb(255 124 124);
+  color: var(--feature-light-red);
   cursor: pointer;
 
   @media (any-hover: hover) {
     &:hover {
-      color: red;
+      color: var(--feature-red);
     }
   }
 }

@@ -9,11 +9,11 @@
     textarea {
       width: 100%;
       padding: 1rem;
-      background-color: #3a3a3a;
-      color: rgb(204 204 204);
+      background-color: var(--feature-dark-gray);
+      color: var(--feature-light-gray);
 
       &::placeholder {
-        color: rgb(134 134 134);
+        color: var(--feature-gray);
       }
     }
   }
@@ -29,7 +29,7 @@
 
 .edit {
   &__title {
-    color: grey;
+    color: var(--feature-gray);
   }
 
   &__item {
@@ -41,13 +41,6 @@
     p {
       flex: 0 0 6rem;
       font-size: 0.9rem;
-    }
-
-    input {
-      width: 100%;
-      border: 1px dashed #818181;
-      color: #ccc;
-      padding: 2px;
     }
   }
 }

@@ -2,6 +2,7 @@ import { FC } from "react";
 import { ConstructCheckboxEditProps } from "./types";
 import { ButtonDelete } from "@/shared/ui/button-delete";
 import { ButtonAdd } from "@/shared/ui/button-add";
+import { InputEdit } from "@/shared/ui/input-edit";
 import cls from "./construct-checkbox.module.scss";
 
 export const ConstructCheckboxEdit: FC<ConstructCheckboxEditProps> = ({
@@ -17,13 +18,7 @@ export const ConstructCheckboxEdit: FC<ConstructCheckboxEditProps> = ({
         {fields.map(field => (
           <div key={field.id} className={cls.edit_checkbox__item}>
             <ButtonDelete onClick={() => onDelete(field.id)} />
-            <input
-              className={cls.edit_checkbox__input}
-              id={field.id}
-              type="text"
-              value={field.label}
-              onChange={e => onChange(e)}
-            />
+            <InputEdit id={field.id} value={field.label} onChange={onChange} />
           </div>
         ))}
       </>

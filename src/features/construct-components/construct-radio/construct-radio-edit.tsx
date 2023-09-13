@@ -3,6 +3,7 @@ import { ButtonDelete } from "@/shared/ui/button-delete";
 import { ConstructRadioEditProps } from "./types";
 import { ButtonAdd } from "@/shared/ui/button-add";
 import cls from "./construct-radio.module.scss";
+import { InputEdit } from "@/shared/ui/input-edit";
 
 export const ConstructRadioEdit: FC<ConstructRadioEditProps> = ({
   fields,
@@ -17,13 +18,7 @@ export const ConstructRadioEdit: FC<ConstructRadioEditProps> = ({
         {fields.map(field => (
           <div key={field.id} className={cls.edit_radio__item}>
             <ButtonDelete onClick={() => onDelete(field.id)} />
-            <input
-              className={cls.edit_radio__input}
-              id={field.id}
-              type="text"
-              value={field.label}
-              onChange={e => onChange(e)}
-            />
+            <InputEdit id={field.id} value={field.label} onChange={onChange} />
           </div>
         ))}
       </>

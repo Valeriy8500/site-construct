@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { ConstructInputEditProps } from "./types";
+import { InputEdit } from "@/shared/ui/input-edit";
 import cls from "./construct-input.module.scss";
 
 export const ConstructInputEdit: FC<ConstructInputEditProps> = ({ value, onEdit }) => {
@@ -8,11 +9,11 @@ export const ConstructInputEdit: FC<ConstructInputEditProps> = ({ value, onEdit 
       <p className={cls.edit__title}>Редактирование полей input</p>
       <div className={cls.edit__item}>
         <p>Label</p>
-        <input name="label" type="text" value={value.label} onChange={e => onEdit(e)} />
+        <InputEdit name="label" value={value.label} onChange={onEdit} />
       </div>
       <div className={cls.edit__item}>
         <p>Placeholder</p>
-        <input name="placeholder" type="text" value={value.placeholder} onChange={e => onEdit(e)} />
+        <InputEdit name="placeholder" value={value.placeholder} onChange={onEdit} />
       </div>
     </div>
   );

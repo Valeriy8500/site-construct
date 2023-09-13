@@ -1,7 +1,7 @@
 import { useId, useState } from "react";
 import { Label } from "@/shared/ui/label";
 import { Input } from "@/shared/ui/input";
-import { ButtonOk } from "@/shared/ui/button-ok/button-ok";
+import { ButtonOk } from "@/shared/ui/button-ok";
 import { ButtonEdit } from "@/shared/ui/button-edit";
 import { ConstructInputEdit } from "./construct-input-edit";
 import { useConstructInput } from "@/shared/hooks/useConstructInput";

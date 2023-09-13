@@ -2,6 +2,7 @@ import { ChangeEvent, FC } from "react";
 import { ISelectOption } from "./types";
 import { ButtonDelete } from "@/shared/ui/button-delete";
 import { ButtonAdd } from "@/shared/ui/button-add";
+import { InputEdit } from "@/shared/ui/input-edit";
 import cls from "./construct-select.module.scss";
 
 interface SelectEditProps {
@@ -24,13 +25,7 @@ export const SelectEdit: FC<SelectEditProps> = ({
         {options.map(option => (
           <div key={option.id} className={cls.select_edit__item}>
             <ButtonDelete onClick={() => onEditDelete(option.id)} />
-            <input
-              className={cls.select_edit__input}
-              id={option.id}
-              type="text"
-              value={option.value}
-              onChange={e => onEditChange(e)}
-            />
+            <InputEdit id={option.id} value={option.value} onChange={e => onEditChange(e)} />
           </div>
         ))}
       </>
