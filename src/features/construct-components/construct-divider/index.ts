@@ -1,1 +1,1 @@
-export { Divider } from "./construct-divider";
+export { Divider as default } from "./construct-divider";

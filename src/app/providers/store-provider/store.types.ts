@@ -1,14 +1,9 @@
-import { ThunkDispatch, AnyAction } from "@reduxjs/toolkit";
-import { useDispatch, TypedUseSelectorHook, useSelector, useStore } from "react-redux";
 import { IUserState } from "@/entities/user";
-import { rootReducer } from "./store.config";
+import { setupStore } from "./store.config";
 
 export interface IStateSchema {
   user: IUserState;
 }
 
-export type RootState = ReturnType<typeof rootReducer>;
-
-export const useAppDispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>;
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-export const useAppStore = useStore<RootState>;
+export type RootState = ReturnType<typeof setupStore.getState>;
+export type AppDispatch = typeof setupStore.dispatch;

@@ -1,1 +1,1 @@
-export { ConstructImage } from "./construct-image";
+export { ConstructImage as default } from "./construct-image";

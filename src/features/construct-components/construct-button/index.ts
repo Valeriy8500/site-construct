@@ -1,1 +1,1 @@
-export { ButtonQuill } from "./construct-button";
+export { ButtonQuill as default } from "./construct-button";

@@ -6,7 +6,7 @@ interface IStoreProviderProps {
   children: React.ReactNode;
 }
 
-const store = setupStore();
+const store = setupStore;
 
 export const StoreProvider = (props: IStoreProviderProps) => {
   const { children } = props;

@@ -1,6 +1,6 @@
 import { useState, useRef, ChangeEvent } from "react";
-import cls from "./construct-image.module.scss";
 import { GiPencil } from "react-icons/gi";
+import cls from "./construct-image.module.scss";
 
 export const ConstructImage = () => {
   const [url, setUrl] = useState<string>("");
