@@ -50,12 +50,12 @@ export const SiteConstructPanel = () => {
           <SidebarButton
             icon={<MarkedListIcon className={cls.icon} />}
             title="Маркированный"
-            onClick={() => handleSetSiteElement("")}
+            onClick={() => handleSetSiteElement("construct-li")}
           />
           <SidebarButton
             icon={<OrderedListIcon className={cls.icon} />}
             title="Нумерованный"
-            onClick={() => handleSetSiteElement("")}
+            onClick={() => handleSetSiteElement("construct-ol")}
           />
           <SidebarButton
             icon={<ImageIcon className={cls.icon} />}

@@ -20,6 +20,12 @@ export const render = (path: string) => {
     case "construct-quote":
       return React.lazy(() => import("@/features/construct-components/construct-quote"));
 
+    case "construct-li":
+      return React.lazy(() => import("@/features/construct-components/construct-li"));
+
+    case "construct-ol":
+      return React.lazy(() => import("@/features/construct-components/construct-ol"));
+
     default:
       return null;
   }
