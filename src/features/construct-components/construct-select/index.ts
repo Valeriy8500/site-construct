@@ -1,1 +1,1 @@
-export { ConstructSelect } from "./construct-select";
+export { ConstructSelect as default } from "./construct-select";

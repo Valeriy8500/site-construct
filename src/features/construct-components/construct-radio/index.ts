@@ -1,1 +1,1 @@
-export { ConstructRadio } from "./construct-radio";
+export { ConstructRadio as default } from "./construct-radio";

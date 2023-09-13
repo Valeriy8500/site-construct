@@ -1,1 +1,1 @@
-export { ConstructTextarea } from "./construct-textarea";
+export { ConstructTextarea as default } from "./construct-textarea";

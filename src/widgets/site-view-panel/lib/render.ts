@@ -26,6 +26,21 @@ export const render = (path: string) => {
     case "construct-ol":
       return React.lazy(() => import("@/features/construct-components/construct-ol"));
 
+    case "construct-input":
+      return React.lazy(() => import("@/features/construct-components/construct-input"));
+
+    case "construct-textarea":
+      return React.lazy(() => import("@/features/construct-components/construct-textarea"));
+
+    case "construct-checkbox":
+      return React.lazy(() => import("@/features/construct-components/construct-checkbox"));
+
+    case "construct-radio":
+      return React.lazy(() => import("@/features/construct-components/construct-radio"));
+
+    case "construct-select":
+      return React.lazy(() => import("@/features/construct-components/construct-select"));
+
     default:
       return null;
   }

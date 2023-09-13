@@ -1,1 +1,1 @@
-export { ConstructInput } from "./construct-input";
+export { ConstructInput as default } from "./construct-input";
