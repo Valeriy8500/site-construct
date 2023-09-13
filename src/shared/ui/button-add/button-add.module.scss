@@ -1,0 +1,12 @@
+.button_add {
+  font-size: 1.5rem;
+  color: var(--feature-light-gray);
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--green-color);
+    }
+  }
+}

@@ -82,22 +82,27 @@ export const SiteConstructPanel = () => {
             <SidebarButton
               icon={<FormItemIcon className={cls.icon} />}
               title="input"
-              onClick={() => handleSetSiteElement("")}
+              onClick={() => handleSetSiteElement("construct-input")}
             />
             <SidebarButton
               icon={<FormItemIcon className={cls.icon} />}
               title="textarea"
-              onClick={() => handleSetSiteElement("")}
+              onClick={() => handleSetSiteElement("construct-textarea")}
             />
             <SidebarButton
               icon={<FormItemIcon className={cls.icon} />}
               title="checkbox"
-              onClick={() => handleSetSiteElement("")}
+              onClick={() => handleSetSiteElement("construct-checkbox")}
             />
             <SidebarButton
               icon={<FormItemIcon className={cls.icon} />}
               title="radio"
-              onClick={() => handleSetSiteElement("")}
+              onClick={() => handleSetSiteElement("construct-radio")}
+            />
+            <SidebarButton
+              icon={<FormItemIcon className={cls.icon} />}
+              title="select"
+              onClick={() => handleSetSiteElement("construct-select")}
             />
           </div>
         </div>
