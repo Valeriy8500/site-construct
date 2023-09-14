@@ -14,7 +14,7 @@ export const ListQuill = () => {
     ["bold", "italic", "underline", "strike"],
     [{ color: [] }, { background: [] }],
     [{ font: [] }],
-    [{ 'list': 'bullet' }],
+    [{ list: "bullet" }],
   ];
 
   const modules = {

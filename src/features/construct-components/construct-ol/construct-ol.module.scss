@@ -37,8 +37,8 @@
       line-height: 1.4;
       counter-increment: list-0;
 
-      &:before {
-        content: counter(list-0, decimal) '. ';
+      &::before {
+        content: counter(list-0, decimal) ". ";
         margin-left: -1.5em;
         margin-right: 0.3em;
       }

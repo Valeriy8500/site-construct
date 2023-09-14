@@ -54,15 +54,21 @@ export const Dropdown: FC<DropdownProps> = ({ isOpen, iconRef, handleClick }) =>
     >
       <ul className={cls.dropdown__list}>
         <li className={cls.dropdown__item} onClick={handleProfile}>
-          <span><PiUserSquareBold /></span>
+          <span>
+            <PiUserSquareBold />
+          </span>
           <span>Профиль</span>
         </li>
         <li className={cls.dropdown__item} onClick={handleChangePassword}>
-          <span><RiLockPasswordLine /></span>
+          <span>
+            <RiLockPasswordLine />
+          </span>
           <span>Сменить пароль</span>
         </li>
         <li className={cls.dropdown__item} onClick={handleLogOut}>
-          <span><MdOutlineLogout /></span>
+          <span>
+            <MdOutlineLogout />
+          </span>
           <span>Выход</span>
         </li>
       </ul>

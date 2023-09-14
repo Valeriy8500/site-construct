@@ -96,7 +96,7 @@ export const UserProfile = (): ReactElement => {
                 onChange={e => OnChange(e)}
                 value={inputValue.name}
                 placeholder="Name"
-                style={{ color: 'black', width: '100%' }}
+                style={{ color: "black", width: "100%" }}
               />
             </div>
             <div className={cls[`profile__input_container`]}>
@@ -113,7 +113,7 @@ export const UserProfile = (): ReactElement => {
                 onChange={e => OnChange(e)}
                 value={inputValue.lastname}
                 placeholder="Lastname"
-                style={{ color: 'black', width: '100%' }}
+                style={{ color: "black", width: "100%" }}
               />
             </div>
             <div className={cls[`profile__input_container`]}>
@@ -130,7 +130,7 @@ export const UserProfile = (): ReactElement => {
                 onChange={e => OnChange(e)}
                 value={inputValue.email}
                 placeholder="Email"
-                style={{ color: 'black', width: '100%' }}
+                style={{ color: "black", width: "100%" }}
               />
             </div>
           </form>

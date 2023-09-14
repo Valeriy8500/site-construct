@@ -3,8 +3,8 @@ import userEvent from "@testing-library/user-event";
 
 import { render, screen } from "@testing-library/react";
 
-import { Providers } from "@/app/providers";
 import { BrowserRouter } from "react-router-dom";
+import { Providers } from "@/app/providers";
 import { RegisterForm } from "..";
 
 describe("Проверка формы регистрации", () => {

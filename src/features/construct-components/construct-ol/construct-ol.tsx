@@ -14,7 +14,7 @@ export const NumberedListQuill = () => {
     ["bold", "italic", "underline", "strike"],
     [{ color: [] }, { background: [] }],
     [{ font: [] }],
-    [{ 'list': 'ordered' }],
+    [{ list: "ordered" }],
   ];
 
   const modules = {

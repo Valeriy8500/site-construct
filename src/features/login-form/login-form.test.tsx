@@ -2,9 +2,9 @@ import { describe, expect, test } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import { LoginForm } from "./login-form";
 import { Providers } from "@/app/providers";
-import { BrowserRouter } from "react-router-dom";
 
 describe("Проверка формы авторизации", () => {
   test("Нажатие на вход без ввода email", async () => {

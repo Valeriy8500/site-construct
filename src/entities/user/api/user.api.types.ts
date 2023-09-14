@@ -45,7 +45,7 @@ export interface IRegisterReq {
   password: string;
   returnSecureToken?: boolean;
 }
-export interface IRegisterRes extends ILoginRes { }
+export interface IRegisterRes extends ILoginRes {}
 
 export interface IUserProfileReq {
   idToken: string;

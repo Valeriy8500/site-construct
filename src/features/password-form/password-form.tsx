@@ -1,7 +1,7 @@
-import { Input } from "@/shared/ui/input";
 import { FormEvent, ReactElement, useState } from "react";
-import cls from "./password-form.module.scss";
 import { useNavigate } from "react-router";
+import { Input } from "@/shared/ui/input";
+import cls from "./password-form.module.scss";
 import { Button } from "@/shared/ui/button";
 import { useValidatePassword } from "./hooks/useValidatePassword";
 import { useUpdateProfileMutation } from "@/entities/user";
@@ -22,8 +22,8 @@ export const PasswordForm = (): ReactElement => {
   const [error, setError] = useState<IErrorData>({});
   const [disabled, setDisabled] = useState<boolean>(true);
   const [inputValue, setInputValue] = useState<IInputValue>({
-    password: '',
-    confirmPassword: ''
+    password: "",
+    confirmPassword: "",
   });
 
   const [update] = useUpdateProfileMutation();
@@ -34,7 +34,7 @@ export const PasswordForm = (): ReactElement => {
     e.preventDefault();
     const password = inputValue.password;
     await update({ password, idToken, returnSecureToken: true });
-    alert('Пароль был успешно изменен');
+    alert("Пароль был успешно изменен");
     navigate("/");
   };
 
@@ -46,7 +46,7 @@ export const PasswordForm = (): ReactElement => {
 
     const validate = useValidatePassword(inputsData);
     setError(validate);
-    setDisabled(Object.keys(validate).length !== 0 ? true : false)
+    setDisabled(Object.keys(validate).length !== 0 ? true : false);
 
     setInputValue(prev => ({
       ...prev,
@@ -67,7 +67,7 @@ export const PasswordForm = (): ReactElement => {
             onChange={e => OnChange(e)}
             value={inputValue.password}
             placeholder="Новый пароль"
-            style={{ color: 'black', width: '100%' }}
+            style={{ color: "black", width: "100%" }}
           />
         </div>
         <div className={cls[`password_change__input_container`]}>
@@ -79,7 +79,7 @@ export const PasswordForm = (): ReactElement => {
             onChange={e => OnChange(e)}
             value={inputValue.confirmPassword}
             placeholder="Подтверждение пароля"
-            style={{ color: 'black', width: '100%' }}
+            style={{ color: "black", width: "100%" }}
           />
         </div>
         <Button
