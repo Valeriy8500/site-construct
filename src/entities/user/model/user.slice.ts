@@ -28,6 +28,8 @@ export const userSlice = createSlice({
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("expiresIn");
+      localStorage.removeItem("fullName");
+      localStorage.removeItem("email");
     },
   },
   extraReducers: builder => {
@@ -43,6 +45,8 @@ export const userSlice = createSlice({
       localStorage.setItem("accessToken", payload.idToken);
       localStorage.setItem("refreshToken", payload.refreshToken);
       localStorage.setItem("expiresIn", payload.expiresIn);
+      localStorage.setItem("fullName", payload.displayName);
+      localStorage.setItem("email", payload.email);
     });
 
     builder.addMatcher<PayloadAction<ErrorType>>(
@@ -52,6 +56,8 @@ export const userSlice = createSlice({
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("expiresIn");
+        localStorage.removeItem("fullName");
+        localStorage.removeItem("email");
       }
     );
     //регистрация
@@ -77,8 +83,19 @@ export const userSlice = createSlice({
         localStorage.setItem("accessToken", payload.idToken);
         localStorage.setItem("refreshToken", payload.refreshToken);
         localStorage.setItem("expiresIn", payload.expiresIn);
+        localStorage.setItem("fullName", payload.displayName);
+        localStorage.setItem("email", payload.email);
       }
     );
+    builder.addMatcher(userApi.endpoints.updateProfile.matchFulfilled, (state, { payload }) => {
+      state.name = payload.displayName;
+      state.registered = true;
+      state.email = payload.email;
+      state.error = null;
+
+      localStorage.setItem("fullName", payload.displayName);
+      localStorage.setItem("email", payload.email);
+    });
   },
 });
 
