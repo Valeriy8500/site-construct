@@ -1,5 +1,3 @@
-@import "@/app/styles/variables";
-
 .dropdown {
   position: absolute;
   top: 160%;
@@ -13,14 +11,14 @@
   &__list {
     padding: 0.5rem 1rem;
     background-color: #000;
-    box-shadow: 2px 2px 4px #3b3b3b;
+    box-shadow: 2px 2px 4px var(--feature-dark-gray);
   }
 
   &__item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #ccc;
+    color: var(--feature-light-gray);
     cursor: pointer;
 
     &:not(:last-child) {
@@ -39,7 +37,7 @@
         color: #fff;
 
         svg {
-          color: $green-color;
+          color: var(--green-color);
         }
       }
     }

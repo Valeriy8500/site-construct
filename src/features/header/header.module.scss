@@ -1,11 +1,13 @@
-@import "@/shared/ui/scss/mixins";
+@import "@/shared/styles/mixins";
 
 .header {
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  background-color: #353535;
+
+  // background-color: #353535;
+  background-color: var(--feature-dark-gray);
   z-index: 50;
 
   &__container {
@@ -28,6 +30,6 @@
   }
 
   &__userIcon {
-    color: #fff;
+    color: white;
   }
 }

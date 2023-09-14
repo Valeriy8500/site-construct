@@ -5,9 +5,10 @@ import { Label } from "@/shared/ui/label";
 import { Input } from "@/shared/ui/input";
 import { errorLoginCodes } from "@/entities/user/lib/errorCodes";
 import { useLoginMutation } from "@/entities/user";
-import { useAppSelector } from "@/app/providers/store-provider/store.types";
+
 import { getUserAuthError } from "@/entities/user/model/user.selectors";
 import styles from "./login-form.module.scss";
+import { useAppSelector } from "@/shared/hooks/redux-hooks";
 
 export const LoginForm: FC = () => {
   const [errorEmail, setErrorEmail] = useState<string>("");
@@ -41,8 +42,10 @@ export const LoginForm: FC = () => {
     e.preventDefault();
     setError("");
 
-    const email = (e.currentTarget[0] as HTMLInputElement).value || "";
-    const password = (e.currentTarget[1] as HTMLInputElement).value || "";
+    const formData = new FormData(e.currentTarget);
+
+    const email = formData.get("email")?.toString() || "";
+    const password = formData.get("password")?.toString() || "";
 
     if (email === "") {
       setError("EMPTY_EMAIL");

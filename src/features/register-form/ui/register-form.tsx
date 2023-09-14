@@ -19,11 +19,12 @@ export const RegisterForm: FC = () => {
   const HandleSubmit = async (e: FormEvent<CustomForm>) => {
     setError({});
     e.preventDefault();
-    const name = (e.currentTarget[0] as HTMLInputElement).value || "";
-    const lastname = (e.currentTarget[1] as HTMLInputElement).value || "";
-    const email = (e.currentTarget[2] as HTMLInputElement).value || "";
-    const password = (e.currentTarget[3] as HTMLInputElement).value || "";
-    const confirmPassword = (e.currentTarget[4] as HTMLInputElement).value || "";
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name")?.toString() || "";
+    const lastname = formData.get("lastname")?.toString() || "";
+    const email = formData.get("email")?.toString() || "";
+    const password = formData.get("password")?.toString() || "";
+    const confirmPassword = formData.get("confirmPassword")?.toString() || "";
     const data = {
       name,
       lastname,

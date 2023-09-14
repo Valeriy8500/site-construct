@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import { ProtectedRoute } from "./protected-route";
 import { StoryBook } from "@/pages/story-book";
 import { Layout } from "@/widgets/layout";
+import { Loader } from "@/shared/ui/loader";
 const Main = lazy(() => import("@/pages/main"));
 const UserProfile = lazy(() => import("@/features/user-profile"));
 const SitesNew = lazy(() => import("@/pages/sites-new"));
@@ -23,7 +24,7 @@ export const RoutesProvider = () => {
         <Route
           index
           element={
-            <Suspense>
+            <Suspense fallback={<Loader />}>
               <Main />
             </Suspense>
           }
@@ -40,7 +41,7 @@ export const RoutesProvider = () => {
           <Route
             path="new"
             element={
-              <Suspense>
+              <Suspense fallback={<Loader />}>
                 <SitesNew />
               </Suspense>
             }

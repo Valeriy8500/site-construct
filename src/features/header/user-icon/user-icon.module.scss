@@ -1,5 +1,3 @@
-@import "@/app/styles/variables";
-
 .user {
   position: relative;
 
@@ -16,7 +14,7 @@
 
       @media (any-hover: hover) {
         &:hover {
-          fill: $green-color;
+          fill: var(--green-color);
         }
       }
 
@@ -31,7 +29,7 @@
 
     &_active {
       svg {
-        fill: $green-color;
+        fill: var(--green-color);
       }
     }
   }

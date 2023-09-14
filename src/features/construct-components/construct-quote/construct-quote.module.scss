@@ -1,0 +1,39 @@
+.quote {
+  position: relative;
+  margin-bottom: 1rem;
+
+  &__check_quote_container {
+    position: absolute;
+    top: 8px;
+    right: 17px;
+    display: flex;
+    gap: 1rem;
+
+    .check_quote {
+      flex: 0 0 26px;
+      height: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border: 1px solid rgb(43 255 0 / 10%);
+      border-radius: 50%;
+      transition: all 0.2s ease 0s;
+
+      @media (any-hover: hover) {
+        &:hover {
+          color: var(--green-color);
+          border: 1px solid rgb(43 255 0 / 50%);
+        }
+      }
+    }
+  }
+
+  &__quote_string:hover {
+    cursor: pointer;
+  }
+
+  &__quote_string > p {
+    display: inline;
+  }
+}

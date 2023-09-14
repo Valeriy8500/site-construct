@@ -1,0 +1,38 @@
+.select {
+  margin: 5px 0;
+  position: relative;
+
+  &__ok_button {
+    position: absolute;
+    top: 0.5rem;
+    right: 3.2rem;
+  }
+
+  &__edit_button {
+    display: none;
+    position: absolute;
+    top: 0.5rem;
+    right: 3.2rem;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      .select__edit_button {
+        display: block;
+      }
+    }
+  }
+}
+
+.select_edit {
+  &__title {
+    color: var(--feature-gray);
+    margin-bottom: 0.5rem;
+  }
+
+  &__item {
+    display: flex;
+    gap: 0.5rem;
+    margin: 3px 0;
+  }
+}

@@ -1,0 +1,27 @@
+.button_ok {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color: var(--feature-gray);
+    border-radius: 50%;
+    transition: all 0.2s ease 0s;
+    object-fit: contain;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--green-color);
+        border-radius: 50%;
+        border: 1px solid var(--green-color);
+      }
+    }
+  }
+}

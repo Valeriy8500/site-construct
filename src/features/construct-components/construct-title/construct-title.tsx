@@ -25,7 +25,7 @@ export const TitleQuill = () => {
   };
 
   return (
-    <div className={cls.title}>
+    <div className={cls.title} data-testid="construct-title">
       {edit ? (
         <>
           <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />

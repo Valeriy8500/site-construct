@@ -1,1 +1,1 @@
-export { TitleQuill } from "./construct-title";
+export { TitleQuill as default } from "./construct-title";

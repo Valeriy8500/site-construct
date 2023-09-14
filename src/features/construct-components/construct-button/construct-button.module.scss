@@ -1,0 +1,32 @@
+.button {
+  position: relative;
+  margin-bottom: 1rem;
+  max-width: 50%;
+
+  &__check_btn_container {
+    position: absolute;
+    top: 8px;
+    right: 17px;
+    display: flex;
+    gap: 1rem;
+
+    .check_btn {
+      flex: 0 0 26px;
+      height: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border: 1px solid rgb(43 255 0 / 10%);
+      border-radius: 50%;
+      transition: all 0.2s ease 0s;
+
+      @media (any-hover: hover) {
+        &:hover {
+          color: var(--green-color);
+          border: 1px solid rgb(43 255 0 / 50%);
+        }
+      }
+    }
+  }
+}

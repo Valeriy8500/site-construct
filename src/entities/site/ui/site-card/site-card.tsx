@@ -1,10 +1,10 @@
-import { Site } from "@/entities/site/model/site.types.ts";
+import { ISite } from "@/entities/site/model/site.types.ts";
 import cls from "./site-card.module.scss";
 import { Button } from "@/shared/ui/button";
 import { TypesButton } from "@/shared/ui/button/button";
 
 interface SiteCardProps {
-  site: Site;
+  site: ISite;
 }
 
 export const SiteCard = ({ site }: SiteCardProps) => {
