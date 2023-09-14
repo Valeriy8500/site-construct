@@ -5,6 +5,7 @@ import { StoryBook } from "@/pages/story-book";
 import { Layout } from "@/widgets/layout";
 import { Loader } from "@/shared/ui/loader";
 const Main = lazy(() => import("@/pages/main"));
+const UserProfile = lazy(() => import("@/features/user-profile"));
 const SitesNew = lazy(() => import("@/pages/sites-new"));
 const LoginForm = lazy(() => import("@/pages/login"));
 const RegisterForm = lazy(() => import("@/pages/register"));
@@ -29,7 +30,14 @@ export const RoutesProvider = () => {
             </Suspense>
           }
         />
-        <Route path="me" element={<>me</>} />
+        <Route
+          path="me"
+          element={
+            <Suspense>
+              <UserProfile />
+            </Suspense>
+          }
+        />
         <Route
           path="password"
           element={

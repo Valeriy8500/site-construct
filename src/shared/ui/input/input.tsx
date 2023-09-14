@@ -15,7 +15,6 @@ export const Input = (props: InputProps) => {
     rightIcon,
     error = false,
     className = "",
-    // defaultValue = "",
     onChange,
     ...other
   } = props;
