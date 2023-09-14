@@ -30,7 +30,14 @@ export const RoutesProvider = () => {
           }
         />
         <Route path="me" element={<>me</>} />
-        <Route path="password" element={<PasswordForm />} />
+        <Route
+          path="password"
+          element={
+            <Suspense>
+              <PasswordForm />
+            </Suspense>
+          }
+        />
         <Route path="sites">
           <Route
             path="new"

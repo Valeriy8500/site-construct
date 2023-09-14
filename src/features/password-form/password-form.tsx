@@ -24,6 +24,7 @@ export const PasswordForm = (): ReactElement => {
     confirmPassword: ''
   });
 
+  // const [update] = useUpdateProfileMutation();
   const navigate = useNavigate();
 
   const onUpdatePassword = async (): Promise<void> => {
