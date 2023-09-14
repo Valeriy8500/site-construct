@@ -4,7 +4,7 @@ import UserProfileIcon from "../../shared/assets/user_profile_icon.png";
 import cls from "./user-profile.module.scss";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
-import { useUpdateProfileMutation } from "@/entities/user/api/user.api";
+import { useUpdateProfileMutation } from "@/entities/user";
 import { useValidateProfile } from "./hooks/useValidateProfile";
 
 export interface IInputValue {
