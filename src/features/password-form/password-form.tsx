@@ -1,9 +1,11 @@
 import { Input } from "@/shared/ui/input";
-import { ReactElement, useState } from "react";
+import { FormEvent, ReactElement, useState } from "react";
 import cls from "./password-form.module.scss";
 import { useNavigate } from "react-router";
 import { Button } from "@/shared/ui/button";
 import { useValidatePassword } from "./hooks/useValidatePassword";
+import { useUpdateProfileMutation } from "@/entities/user";
+import { CustomForm } from "@/entities/user/api/user.api.types";
 
 export interface IInputValue {
   password: string;
@@ -24,15 +26,16 @@ export const PasswordForm = (): ReactElement => {
     confirmPassword: ''
   });
 
-  // const [update] = useUpdateProfileMutation();
+  const [update] = useUpdateProfileMutation();
   const navigate = useNavigate();
+  const idToken = localStorage.getItem("accessToken")!;
 
-  const onUpdatePassword = async (): Promise<void> => {
-    // const email = inputValue.email;
-    // const displayName = `${inputValue.name} ${inputValue.lastname}`;
-
-    // await update({ email, idToken, displayName, returnSecureToken: true });
-    // navigate("/");
+  const onUpdatePassword = async (e: FormEvent<CustomForm>): Promise<void> => {
+    e.preventDefault();
+    const password = inputValue.password;
+    await update({ password, idToken, returnSecureToken: true });
+    alert('Пароль был успешно изменен');
+    navigate("/");
   };
 
   const OnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
