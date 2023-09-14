@@ -12,6 +12,7 @@ import { QuoteIcon } from "../assets/quote-icon";
 import { FormItemIcon } from "../assets/form-item-icon";
 import { setSiteElement } from "@/entities/site/model/site.selectors.ts";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
+import { SiteConstructPanelHead } from "@/widgets/site-construct-panel-head";
 
 export const SiteConstructPanel = () => {
   const dispatch = useAppDispatch();
@@ -29,12 +30,7 @@ export const SiteConstructPanel = () => {
   return (
     <div className={cls.panel}>
       <div className={cls.panel_wrapper}>
-        <div className={cls.panel_item}>
-          <h3 className={cls.panel_item_title}>Название сайта</h3>
-        </div>
-        <div className={cls.panel_item}>
-          <h3 className={cls.panel_item_title}>Цвет страницы</h3>
-        </div>
+        <SiteConstructPanelHead />
         <div className={cls.panel_item}>
           <h3 className={cls.panel_item_title}>Базовый</h3>
           <SidebarButton

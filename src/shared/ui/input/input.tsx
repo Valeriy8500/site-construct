@@ -5,7 +5,7 @@ import cls from "./input.module.scss";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   defaultValue?: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   rightIcon?: React.ReactNode;
 }
 
