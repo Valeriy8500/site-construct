@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { ConstructCheckbox } from ".";
+import { ConstructCheckbox } from "./construct-checkbox";
 
 describe("construct checkbox", () => {
   it("exists", () => {

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { ParagraphQuill } from ".";
+import { ParagraphQuill } from "./construct-paragraph";
 
 describe("construct paragraph", () => {
   it("exists", () => {

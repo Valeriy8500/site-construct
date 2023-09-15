@@ -3,9 +3,9 @@ import userEvent from "@testing-library/user-event";
 
 import { render, screen } from "@testing-library/react";
 
-import { Providers } from "@/app/providers";
 import { BrowserRouter } from "react-router-dom";
-import { RegisterForm } from "..";
+import { Providers } from "@/app/providers";
+import { RegisterForm } from "../ui/register-form";
 
 describe("Проверка формы регистрации", () => {
   test("Пароль и подтверждение должны быть одинаковыми", async () => {
@@ -44,7 +44,6 @@ describe("Проверка формы регистрации", () => {
     await user.type(emailInput, "test@test");
     await user.click(loginButton);
 
-    //@ts-ignore
     expect(screen.getByText("Email не валиден")).toBeInTheDocument();
   });
 });

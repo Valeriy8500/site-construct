@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FC } from "react";
+import { useState, ChangeEvent } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { IRadioField } from "@/features/construct-components/construct-radio/types";
 

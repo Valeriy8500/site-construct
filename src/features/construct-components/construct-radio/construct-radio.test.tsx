@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { ConstructRadio } from ".";
+import { ConstructRadio } from "./construct-radio";
 
 describe("construct-radio", () => {
   it("exists", () => {
