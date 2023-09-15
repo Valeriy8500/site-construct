@@ -1,11 +1,11 @@
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
-import cls from "./site-construct-panel-head.module.scss";
+import cls from "./site-construct-head-panel.module.scss";
 import { useState } from "react";
 import { BsFillPaletteFill } from "react-icons/bs";
 import { ColorPalette } from "@/shared/ui/color-palette";
 
-export const SiteConstructPanelHead = () => {
+export const SiteConstructHeadPanel = () => {
   const [siteName, setSiteName] = useState<string>('');
   const [isOpenPalette, setIsOpenPalette] = useState<boolean>(false);
 
