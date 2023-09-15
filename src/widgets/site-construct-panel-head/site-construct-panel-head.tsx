@@ -2,6 +2,7 @@ import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
 import cls from "./site-construct-panel-head.module.scss";
 import { useState } from "react";
+import { BsFillPaletteFill } from "react-icons/bs";
 
 export const SiteConstructPanelHead = () => {
   const [siteName, setSiteName] = useState<string>('');
@@ -39,6 +40,11 @@ export const SiteConstructPanelHead = () => {
           name="color"
           className={cls.panel_head__input}
         />
+        <div
+          className={cls.panel_head__palette_btn}
+          title="Выбрать цвет">
+          <BsFillPaletteFill />
+        </div>
       </div>
     </div>
   )
