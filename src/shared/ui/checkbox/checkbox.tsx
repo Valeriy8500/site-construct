@@ -1,6 +1,6 @@
 import { FC } from "react";
 import clsx from "clsx";
-import { ICheckbox } from "@/features/construct-components/construct-checkbox/types";
+import { ICheckbox } from "@/features/construct-components/construct-checkbox/model/construct-checkbox.types";
 import cls from "./checkbox.module.scss";
 
 interface CheckboxProps {

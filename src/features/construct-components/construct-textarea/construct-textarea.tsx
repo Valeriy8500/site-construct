@@ -3,7 +3,7 @@ import { Label } from "@/shared/ui/label";
 import { ButtonOk } from "@/shared/ui/button-ok";
 import { ButtonEdit } from "@/shared/ui/button-edit";
 import { Textarea } from "@/shared/ui/textarea";
-import { useConstructTextarea } from "@/shared/hooks/useConstructTextarea";
+import { useConstructTextarea } from "@/shared/hooks/use-construct-textarea";
 import { ConstructTextareaEdit } from "./construct-textarea-edit";
 import { TEXTAREA_INIT } from "./constants";
 import cls from "./construct-textarea.module.scss";

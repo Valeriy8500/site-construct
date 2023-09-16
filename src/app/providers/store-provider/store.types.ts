@@ -1,4 +1,4 @@
-import { IUserState } from "@/entities/user";
+import { IUserState } from "@/entities/user/model/user.types";
 import { setupStore } from "./store.config";
 
 export interface IStateSchema {

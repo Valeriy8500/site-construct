@@ -4,8 +4,8 @@ export interface IUserState {
   name: string;
   accessToken: string;
   refreshToken: string;
-  expires: string;
-  registered: boolean;
+  expiresAccess: number;
+  expiresRefresh: number;
   error?: string | null;
 }
 

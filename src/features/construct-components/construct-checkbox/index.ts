@@ -1,1 +1,1 @@
-export { ConstructCheckbox as default } from "./construct-checkbox";
+export { ConstructCheckbox as default } from "./ui/construct-checkbox";

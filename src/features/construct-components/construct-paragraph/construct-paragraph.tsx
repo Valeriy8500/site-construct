@@ -1,13 +1,25 @@
-import { useState } from "react";
-import { GiCheckMark } from "react-icons/gi";
+import { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import ReactQuill from "react-quill";
 import "quill/dist/quill.snow.css";
 import cls from "./construct-paragraph.module.scss";
+import { changeSiteElementContent } from "@/entities/site/model/site.selectors.ts";
+import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
 
-export const ParagraphQuill = () => {
-  const [edit, setEdit] = useState(true);
-  const [value, setValue] = useState("Параграф");
+interface ParagraphQuillProps {
+  edit: boolean;
+  id: string;
+  content: string;
+}
+export const ParagraphQuill = ({ edit, content, id }: ParagraphQuillProps) => {
+  const dispatch = useAppDispatch();
+  const [value, setValue] = useState(content);
+
+  useEffect(() => {
+    if (!edit) {
+      dispatch(changeSiteElementContent(id, value));
+    }
+  }, [edit]);
 
   const toolbarOptions = [
     [{ header: [3, 4, 5, 6, false] }],
@@ -26,16 +38,9 @@ export const ParagraphQuill = () => {
   return (
     <div className={cls.paragraph} data-testid="construct-paragraph">
       {edit ? (
-        <>
-          <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
-          <div className={cls.paragraph__button}>
-            <div className={cls.paragraph__button_ok} onClick={() => setEdit(false)}>
-              <GiCheckMark />
-            </div>
-          </div>
-        </>
+        <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
       ) : (
-        <div onClick={() => setEdit(true)}>{parse(value)}</div>
+        <div>{parse(value)}</div>
       )}
     </div>
   );
