@@ -22,17 +22,20 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   id?: string;
   style?: object;
+  isLoading: boolean;
 }
 
 export const Button = (props: ButtonProps) => {
-  const { className = "", id, children, theme, color, typeButton, ...other } = props;
+  const { className = "", id, children, theme, color, typeButton, isLoading, ...other } = props;
 
   return (
     <button
       type="button"
       id={id}
+      disabled={isLoading}
       className={clsx(
         cls["button"],
+        { [cls.disabled]: isLoading },
         { [cls.custom]: color },
         cls[`${theme}-theme`],
         cls[`${color}-color`],
@@ -42,7 +45,7 @@ export const Button = (props: ButtonProps) => {
       style={{ backgroundColor: `${color}`, color: "#ffffff", borderColor: `${color}` }}
       {...other}
     >
-      {children}
+      {isLoading ? 'Loading...' : children}
     </button>
   );
 };
