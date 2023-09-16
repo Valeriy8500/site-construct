@@ -38,7 +38,8 @@
     li {
       padding-left: 1.5em;
       line-height: 1.4;
-      &:before {
+
+      &::before {
         content: "\2022";
         margin-left: -1.5em;
         margin-right: 0.3em;

@@ -8,6 +8,7 @@ import { useClickOutside } from "@/shared/hooks/use-click-outside";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks";
 import { userLogout } from "@/entities/user/model/user.selectors";
 import cls from "./dropdown.module.scss";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 const variants = {
   open: { opacity: 1, y: 0 },
@@ -32,6 +33,11 @@ export const Dropdown: FC<DropdownProps> = ({ isOpen, iconRef, handleClick }) =>
     handleClick();
   };
 
+  const handleChangePassword = () => {
+    navigate("/password");
+    handleClick();
+  };
+
   const handleLogOut = () => {
     dispatch(userLogout());
     navigate("/login", { replace: true });
@@ -52,6 +58,12 @@ export const Dropdown: FC<DropdownProps> = ({ isOpen, iconRef, handleClick }) =>
             <PiUserSquareBold />
           </span>
           <span>Профиль</span>
+        </li>
+        <li className={cls.dropdown__item} onClick={handleChangePassword}>
+          <span>
+            <RiLockPasswordLine />
+          </span>
+          <span>Сменить пароль</span>
         </li>
         <li className={cls.dropdown__item} onClick={handleLogOut}>
           <span>
