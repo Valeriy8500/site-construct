@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Checkbox } from "@/shared/ui/checkbox";
-import { useConstructCheckbox } from "@/shared/hooks/useConstructCheckbox";
 import { ButtonOk } from "@/shared/ui/button-ok";
 import { ButtonEdit } from "@/shared/ui/button-edit";
 import { ConstructCheckboxEdit } from "./construct-checkbox-edit";
-import { CHECKBOX_INIT } from "./constants";
+import { CHECKBOX_INIT } from "../model/construct-checkbox.constants";
 import cls from "./construct-checkbox.module.scss";
+import {useConstructCheckbox} from "../model/use-construct-checkbox";
 
 export const ConstructCheckbox = () => {
   const [isEdit, setEdit] = useState(false);

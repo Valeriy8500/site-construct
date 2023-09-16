@@ -4,7 +4,7 @@ import { Input } from "@/shared/ui/input";
 import { ButtonOk } from "@/shared/ui/button-ok";
 import { ButtonEdit } from "@/shared/ui/button-edit";
 import { ConstructInputEdit } from "./construct-input-edit";
-import { useConstructInput } from "@/shared/hooks/useConstructInput";
+import { useConstructInput } from "@/shared/hooks/use-construct-input";
 import { INPUT_INIT } from "./constants";
 import cls from "./construct-input.module.scss";
 

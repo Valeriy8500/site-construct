@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ConstructCheckboxEditProps } from "./types";
+import { ConstructCheckboxEditProps } from "../model/construct-checkbox.types";
 import { ButtonDelete } from "@/shared/ui/button-delete";
 import { ButtonAdd } from "@/shared/ui/button-add";
 import { InputEdit } from "@/shared/ui/input-edit";

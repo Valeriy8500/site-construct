@@ -1,5 +1,5 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { ICheckbox } from "./types";
+import { ICheckbox } from "./construct-checkbox.types";
 
 export const CHECKBOX_INIT: ICheckbox[] = [
   { id: nanoid(), label: "CheckItem 1", isChecked: true },

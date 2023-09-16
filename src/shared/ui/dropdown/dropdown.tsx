@@ -1,7 +1,7 @@
 import { FC, ReactNode, RefObject, useRef } from "react";
 import { motion } from "framer-motion";
 import clsx from "clsx";
-import { useClickOutside } from "@/shared/hooks/useClickOutside";
+import { useClickOutside } from "@/shared/hooks/use-click-outside";
 import cls from "./dropdown.module.scss";
 
 const variants = {

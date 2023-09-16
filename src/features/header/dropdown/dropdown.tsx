@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { PiUserSquareBold } from "react-icons/pi";
 import { MdOutlineLogout } from "react-icons/md";
-import { useClickOutside } from "@/shared/hooks/useClickOutside";
+import { useClickOutside } from "@/shared/hooks/use-click-outside";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks";
 import { userActions } from "@/entities/user";
 import cls from "./dropdown.module.scss";
