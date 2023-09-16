@@ -48,6 +48,7 @@ export interface IRegisterRes extends ILoginRes {}
 export interface IUserProfileReq {
   idToken: string;
   email?: string;
+  password?: string;
   displayName?: string;
   returnSecureToken?: boolean;
 }

@@ -9,6 +9,7 @@ const UserProfile = lazy(() => import("@/features/user-profile"));
 const SitesNew = lazy(() => import("@/pages/sites-new"));
 const LoginForm = lazy(() => import("@/pages/login"));
 const RegisterForm = lazy(() => import("@/pages/register"));
+const PasswordForm = lazy(() => import("@/pages/password-form"));
 
 export const RoutesProvider = () => {
   return (
@@ -34,6 +35,14 @@ export const RoutesProvider = () => {
           element={
             <Suspense>
               <UserProfile />
+            </Suspense>
+          }
+        />
+        <Route
+          path="password"
+          element={
+            <Suspense>
+              <PasswordForm />
             </Suspense>
           }
         />

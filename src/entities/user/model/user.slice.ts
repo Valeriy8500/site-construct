@@ -31,7 +31,7 @@ const initialState: Initial = {
   error: null,
 };
 
-const userSlice = createSlice({
+export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
