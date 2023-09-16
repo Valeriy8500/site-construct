@@ -87,6 +87,7 @@ export const PasswordForm = (): ReactElement => {
           disabled={disabled}
           style={disabled ? { opacity: "0.2", cursor: "auto" } : undefined}
           type="submit"
+          isLoading={false}
         >
           Ок
         </Button>
