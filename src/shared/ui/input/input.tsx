@@ -10,14 +10,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input = (props: InputProps) => {
-  const {
-    id,
-    rightIcon,
-    error = false,
-    className = "",
-    onChange,
-    ...other
-  } = props;
+  const { id, rightIcon, error = false, className = "", onChange, ...other } = props;
 
   return (
     <>
