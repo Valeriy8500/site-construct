@@ -32,6 +32,8 @@ const StoryBook = () => {
       <br />
       <Button theme={Themes.default}>Дефолтная кнопка</Button>
       <br />
+      <Button isLoading theme={Themes.default}>Loading кнопка</Button>
+      <br />
       <Button color="#000">Кастомная кнопка</Button>
       <br />
       <Input type="text" name="field1" defaultValue="" onChange={() => void 0} />
