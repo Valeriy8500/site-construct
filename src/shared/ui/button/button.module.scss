@@ -9,6 +9,13 @@
   &:hover {
     transition: all var(--base-transition-time);
   }
+
+  &.disabled {
+    cursor: auto;
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 
 .custom {
