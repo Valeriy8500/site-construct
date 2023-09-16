@@ -1,8 +1,11 @@
 @import "@/app/styles/variables";
 
 .list {
-  position: relative;
-  margin-bottom: 1rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 
   &__button {
     position: absolute;
@@ -24,7 +27,7 @@
 
       @media (any-hover: hover) {
         &:hover {
-          color: $green-color;
+          color: var(--base-success);
           border: 1px solid rgb(43 255 0 / 50%);
         }
       }

@@ -58,6 +58,7 @@ export const RoutesProvider = () => {
           <Route path=":siteId" element={<>siteId</>} />
         </Route>
         <Route path="story-book" element={<StoryBook />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Route>
       <Route
         path="/login"
@@ -75,8 +76,6 @@ export const RoutesProvider = () => {
           </Suspense>
         }
       />
-
-      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

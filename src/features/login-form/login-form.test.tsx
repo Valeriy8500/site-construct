@@ -18,7 +18,6 @@ describe("Проверка формы авторизации", () => {
     const loginButton: HTMLButtonElement = screen.getByText("Войти");
     await user.click(loginButton);
 
-    //@ts-ignore
     expect(screen.getByText("Поле email не должно быть пустым!")).toBeInTheDocument();
   });
   test("Ввод email без пароля", async () => {
@@ -36,7 +35,6 @@ describe("Проверка формы авторизации", () => {
     await user.type(loginInput, "test@test.ru");
     await user.click(loginButton);
 
-    //@ts-ignore
     expect(screen.getByText("Поле пароля не должно быть пустым!")).toBeInTheDocument();
   });
 });

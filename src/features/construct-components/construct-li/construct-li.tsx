@@ -1,13 +1,28 @@
-import { useState } from "react";
-import { GiCheckMark } from "react-icons/gi";
+import { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import ReactQuill from "react-quill";
 import "quill/dist/quill.snow.css";
 import cls from "./construct-li.module.scss";
+import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
+import { changeSiteElementContent } from "@/entities/site/model/site.selectors.ts";
 
-export const ListQuill = () => {
-  const [edit, setEdit] = useState(true);
-  const [value, setValue] = useState("<ul><li>Маркированный список</li></ul>");
+interface ListQuillProps {
+  edit: boolean;
+  id: string;
+  content: string;
+}
+
+export const ListQuill = ({ edit, id, content }: ListQuillProps) => {
+  const dispatch = useAppDispatch();
+  const [value, setValue] = useState(
+    content.includes("ul") ? content : `<ul><li>${content}</li></ul>`
+  );
+
+  useEffect(() => {
+    if (!edit) {
+      dispatch(changeSiteElementContent(id, value));
+    }
+  }, [edit]);
 
   const toolbarOptions = [
     [{ header: [3, 4, 5, 6, false] }],
@@ -24,16 +39,9 @@ export const ListQuill = () => {
   return (
     <div className={cls.list}>
       {edit ? (
-        <>
-          <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
-          <div className={cls.list__button}>
-            <div className={cls.list__button_ok} onClick={() => setEdit(false)}>
-              <GiCheckMark />
-            </div>
-          </div>
-        </>
+        <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
       ) : (
-        <div onClick={() => setEdit(true)}>{parse(value)}</div>
+        <div>{parse(value)}</div>
       )}
     </div>
   );
