@@ -4,10 +4,13 @@ import cls from "./site-construct-head-panel.module.scss";
 import { useState } from "react";
 import { BsFillPaletteFill } from "react-icons/bs";
 import { ColorPalette } from "@/shared/ui/color-palette";
+import { useAppSelector } from "@/shared/hooks/redux-hooks";
+import { getSiteColor } from "@/entities/site/model/colorPalette.selectors";
 
 export const SiteConstructHeadPanel = () => {
   const [siteName, setSiteName] = useState<string>('');
   const [isOpenPalette, setIsOpenPalette] = useState<boolean>(false);
+  const siteColor = useAppSelector(getSiteColor);
 
   const OnChangeSiteName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSiteName(e.target.value);
@@ -41,6 +44,8 @@ export const SiteConstructHeadPanel = () => {
           id="site_color"
           name="color"
           className={cls.panel_head__input}
+          disabled={true}
+          value={siteColor}
         />
         <div
           className={cls.panel_head__palette_btn}

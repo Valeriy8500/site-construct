@@ -11,12 +11,13 @@ import { getSiteColor } from "@/entities/site/model/colorPalette.selectors.ts";
 
 export const SiteViewPanel = () => {
   const siteColor = useAppSelector(getSiteColor);
-  console.log('siteColor: ', siteColor);
-
   const elements = useAppSelector(getSiteElements);
 
   return (
-    <div className={cls.site_view_panel} style={{ backgroundColor: siteColor }}>
+    <div
+      className={cls.site_view_panel}
+      style={{ backgroundColor: siteColor }}
+    >
       <div className={cls.site_view_panel_wrapper}>
         {Boolean(elements.length) &&
           elements.map(item => {
