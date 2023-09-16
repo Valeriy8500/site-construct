@@ -15,13 +15,18 @@ import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
 
 export const SiteConstructPanel = () => {
   const dispatch = useAppDispatch();
-  const handleSetSiteElement = (content: string) => {
+  const handleSetSiteElement = (path: string) => {
     dispatch(
       setSiteElement({
         id: uuidv4(),
-        content,
+        content: "Text",
         width: 200,
         height: 200,
+        path,
+        position: {
+          top: 20,
+          left: 20,
+        },
       })
     );
   };

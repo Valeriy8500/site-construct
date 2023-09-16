@@ -1,19 +1,21 @@
-import { Navigate } from "react-router-dom";
-import { ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
+import { ReactNode, useEffect } from "react";
 import { getUserIsAuth } from "@/entities/user/model/user.selectors";
 import { useAppSelector } from "@/shared/hooks/redux-hooks.ts";
+// import { localStorageService } from "@/shared/services/localStorage.service.ts";
 
 interface ProtectedRouteProps {
   children: ReactNode;
 }
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  // получить данные из redux, вошел ли пользователь в систему
+  const navigate = useNavigate();
   const isAuth = useAppSelector(getUserIsAuth);
-  const accessToken = localStorage.getItem("accessToken");
 
-  if (!isAuth && !accessToken) {
-    return <Navigate to="/login" />;
-  }
+  useEffect(() => {
+    if (!isAuth) {
+      navigate("/login");
+    }
+  }, [isAuth]);
 
   return <>{children}</>;
 };

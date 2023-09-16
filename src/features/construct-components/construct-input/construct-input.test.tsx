@@ -4,7 +4,7 @@ import { ConstructInput } from "./construct-input";
 
 describe("construct input", () => {
   it("exists", () => {
-    render(<ConstructInput />);
+    render(<ConstructInput edit={false} />);
     expect(screen.getByRole("textbox")).toBeTruthy();
   });
 });

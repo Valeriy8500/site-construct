@@ -6,7 +6,7 @@ import { PiUserSquareBold } from "react-icons/pi";
 import { MdOutlineLogout } from "react-icons/md";
 import { useClickOutside } from "@/shared/hooks/use-click-outside";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks";
-import { userActions } from "@/entities/user";
+import { userLogout } from "@/entities/user/model/user.selectors";
 import cls from "./dropdown.module.scss";
 
 const variants = {
@@ -33,7 +33,7 @@ export const Dropdown: FC<DropdownProps> = ({ isOpen, iconRef, handleClick }) =>
   };
 
   const handleLogOut = () => {
-    dispatch(userActions.logout());
+    dispatch(userLogout());
     navigate("/login", { replace: true });
     handleClick();
   };
