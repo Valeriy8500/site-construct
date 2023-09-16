@@ -3,7 +3,7 @@ import { Radio } from "@/shared/ui/radio/radio";
 import { ButtonEdit } from "@/shared/ui/button-edit";
 import { ButtonOk } from "@/shared/ui/button-ok";
 import { ConstructRadioEdit } from "./construct-radio-edit";
-import { useConstructRadio } from "@/shared/hooks/useConstructRadio";
+import { useConstructRadio } from "@/shared/hooks/use-construct-radio";
 import { RADIO } from "./constants";
 import cls from "./construct-radio.module.scss";
 

@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { PiUserSquareBold } from "react-icons/pi";
 import { MdOutlineLogout } from "react-icons/md";
-import { useClickOutside } from "@/shared/hooks/useClickOutside";
+import { useClickOutside } from "@/shared/hooks/use-click-outside";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks";
-import { userActions } from "@/entities/user";
+import { userLogout } from "@/entities/user/model/user.selectors";
 import cls from "./dropdown.module.scss";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 const variants = {
   open: { opacity: 1, y: 0 },
@@ -32,8 +33,13 @@ export const Dropdown: FC<DropdownProps> = ({ isOpen, iconRef, handleClick }) =>
     handleClick();
   };
 
+  const handleChangePassword = () => {
+    navigate("/password");
+    handleClick();
+  };
+
   const handleLogOut = () => {
-    dispatch(userActions.logout());
+    dispatch(userLogout());
     navigate("/login", { replace: true });
     handleClick();
   };
@@ -52,6 +58,12 @@ export const Dropdown: FC<DropdownProps> = ({ isOpen, iconRef, handleClick }) =>
             <PiUserSquareBold />
           </span>
           <span>Профиль</span>
+        </li>
+        <li className={cls.dropdown__item} onClick={handleChangePassword}>
+          <span>
+            <RiLockPasswordLine />
+          </span>
+          <span>Сменить пароль</span>
         </li>
         <li className={cls.dropdown__item} onClick={handleLogOut}>
           <span>

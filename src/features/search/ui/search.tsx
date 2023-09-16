@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import cls from "./search.module.scss";
-import { useDebounce } from "@/shared/hooks/useDebounce.ts";
+import { useDebounce } from "@/shared/hooks/use-debounce.ts";
 
 import { Input } from "@/shared/ui/input";
 import { SearchIcon } from "@/shared/icons/search-icon";

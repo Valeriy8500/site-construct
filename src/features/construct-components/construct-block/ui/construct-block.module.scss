@@ -1,6 +1,6 @@
 .construct_block {
-  position: relative;
-  min-width: 200px;
+  position: absolute;
+  width: 100%;
   min-height: 35px;
   display: flex;
   align-items: flex-start;
@@ -42,15 +42,10 @@
 
 .width {
   right: 0;
-  top: 45%;
-  padding: 10px 3px;
-  border-radius: 10px;
+  top: calc(50% - 13px);
 }
 
 .height {
   bottom: 0;
-  left: 40%;
-  transform: rotate(90deg);
-  padding: 10px 3px;
-  border-radius: 10px;
+  left: calc(50% - 13px);
 }

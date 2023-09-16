@@ -6,8 +6,8 @@ interface DragElementProps {
 }
 
 export const DragElement = ({ children, dataId }: DragElementProps) => {
-  const dragStart = e => {
-    e.target.classList.add("drag");
+  const dragStart = (e: React.DragEvent<HTMLDivElement>) => {
+    (e.target as HTMLDivElement).classList.add("drag");
     console.log("dataId", dataId);
 
     // setItem(e.target);

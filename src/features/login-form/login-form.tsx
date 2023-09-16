@@ -4,11 +4,10 @@ import { Button } from "@/shared/ui/button";
 import { Label } from "@/shared/ui/label";
 import { Input } from "@/shared/ui/input";
 import { errorLoginCodes } from "@/entities/user/lib/errorCodes";
-import { useLoginMutation } from "@/entities/user";
-
+import { useLoginMutation } from "@/entities/user/api/user.api";
 import { getUserAuthError } from "@/entities/user/model/user.selectors";
 import styles from "./login-form.module.scss";
-import { useAppSelector } from "@/shared/hooks/redux-hooks";
+import { useAppSelector } from "@/shared/hooks/redux-hooks.ts";
 
 export const LoginForm: FC = () => {
   const [errorEmail, setErrorEmail] = useState<string>("");

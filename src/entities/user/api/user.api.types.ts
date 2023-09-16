@@ -32,9 +32,7 @@ export interface ILoginRes {
   displayName: string;
   email: string;
   idToken: string;
-  kind: string;
   localId: string;
-  registered: boolean;
   refreshToken: string;
   expiresIn: string;
 }
@@ -50,6 +48,7 @@ export interface IRegisterRes extends ILoginRes {}
 export interface IUserProfileReq {
   idToken: string;
   email?: string;
+  password?: string;
   displayName?: string;
   returnSecureToken?: boolean;
 }
@@ -70,4 +69,10 @@ export interface IUserProfileRes {
   providerUserInfo: IProviderUserInfo[];
   passwordHash: string;
   emailVerified: boolean;
+}
+export interface RefreshRes {
+  access_token: string;
+  expires_in: "3600";
+  id_token: string;
+  refresh_token: string;
 }

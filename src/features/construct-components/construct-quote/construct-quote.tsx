@@ -1,12 +1,24 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import parse from "html-react-parser";
-import { GiCheckMark } from "react-icons/gi";
 import cls from "./construct-quote.module.scss";
+import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
+import { changeSiteElementContent } from "@/entities/site/model/site.selectors.ts";
 
-export const QuoteQuill = (): ReactElement => {
-  const [edit, setEdit] = useState<boolean>(true);
-  const [value, setValue] = useState<string>("");
+interface QuoteQuillProps {
+  edit: boolean;
+  id: string;
+  content: string;
+}
+export const QuoteQuill = ({ edit, id, content }: QuoteQuillProps): ReactElement => {
+  const dispatch = useAppDispatch();
+  const [value, setValue] = useState<string>(content);
+
+  useEffect(() => {
+    if (!edit) {
+      dispatch(changeSiteElementContent(id, value));
+    }
+  }, [edit]);
 
   const toolbarOptions = [
     [{ header: [3, 4, 5, 6, false] }],
@@ -24,23 +36,10 @@ export const QuoteQuill = (): ReactElement => {
     <div className={cls.quote}>
       {edit ? (
         <>
-          <ReactQuill
-            placeholder="Цитата"
-            modules={modules}
-            theme="snow"
-            value={value}
-            onChange={setValue}
-          />
-          <div className={cls.quote__check_quote_container} title="Сохранить">
-            <div className={cls.check_quote} onClick={() => setEdit(false)}>
-              <GiCheckMark />
-            </div>
-          </div>
+          <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
         </>
       ) : (
-        <q className={cls.quote__quote_string} onClick={() => setEdit(true)} title="Редактировать">
-          {parse(value)}
-        </q>
+        <q className={cls.quote__quote_string}>{parse(value)}</q>
       )}
     </div>
   );
