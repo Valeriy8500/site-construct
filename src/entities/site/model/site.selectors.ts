@@ -2,9 +2,21 @@ import { SiteElement } from "@/entities/site/model/site.types.ts";
 import { AppDispatch, RootState } from "@/app/providers/store-provider/store.types.ts";
 import siteSlice from "@/entities/site/model/site.slice.ts";
 
-const { addElement, deleteElement, changeElementWidth, changeElementHeight } = siteSlice.actions;
+const {
+  addElement,
+  deleteElement,
+  changeElementWidth,
+  changeElementHeight,
+  changeElementContent,
+  changeElementPosition,
+  clearSite,
+} = siteSlice.actions;
 export const setSiteElement = (element: SiteElement) => (dispatch: AppDispatch) => {
   dispatch(addElement(element));
+};
+
+export const clearSiteElements = () => (dispatch: AppDispatch) => {
+  dispatch(clearSite());
 };
 
 export const deleteSiteElement = (id: string) => (dispatch: AppDispatch) => {
@@ -19,4 +31,14 @@ export const changeSiteElementHeight = (id: string, change: number) => (dispatch
   dispatch(changeElementHeight({ id, change }));
 };
 
-export const getSiteElements = (state: RootState) => state.site.elements;
+export const changeSiteElementPosition =
+  (id: string, change: { top: number; left: number }) => (dispatch: AppDispatch) => {
+    dispatch(changeElementPosition({ id, change }));
+  };
+
+export const changeSiteElementContent =
+  (id: string, content: string) => (dispatch: AppDispatch) => {
+    dispatch(changeElementContent({ id, content }));
+  };
+
+export const getSite = (state: RootState) => state.site;

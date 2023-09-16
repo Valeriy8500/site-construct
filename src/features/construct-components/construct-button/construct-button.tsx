@@ -1,18 +1,30 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import parse from "html-react-parser";
-import { GiCheckMark } from "react-icons/gi";
 import { Button } from "@/shared/ui/button";
 import cls from "./construct-button.module.scss";
+import { changeSiteElementContent } from "@/entities/site/model/site.selectors.ts";
+import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
 
-export const ButtonQuill = (): ReactElement => {
-  const [edit, setEdit] = useState<boolean>(true);
-  const [value, setValue] = useState<string>("");
+interface ButtonQuillProps {
+  edit: boolean;
+  id: string;
+  content: string;
+}
+export const ButtonQuill = ({ edit, id, content }: ButtonQuillProps): ReactElement => {
+  const dispatch = useAppDispatch();
+  const [value, setValue] = useState<string>(content);
+
+  useEffect(() => {
+    if (!edit) {
+      dispatch(changeSiteElementContent(id, value));
+    }
+  }, [edit]);
 
   const toolbarOptions = [
     [{ header: [3, 4, 5, 6, false] }],
     ["bold", "italic", "underline"],
-    [{ color: [] }, { background: [] }],
+    [{ color: [] }, { background: [] }, {}],
     [{ font: [] }],
     [{ align: [] }],
   ];
@@ -22,24 +34,17 @@ export const ButtonQuill = (): ReactElement => {
   };
 
   return (
-    <div className={cls.button}>
+    <div>
       {edit ? (
-        <>
-          <ReactQuill
-            placeholder="Название кнопки"
-            modules={modules}
-            theme="snow"
-            value={value}
-            onChange={setValue}
-          />
-          <div className={cls.button__check_btn_container} title="Сохранить">
-            <div className={cls.check_btn} onClick={() => setEdit(false)}>
-              <GiCheckMark />
-            </div>
-          </div>
-        </>
+        <ReactQuill
+          placeholder="Название кнопки"
+          modules={modules}
+          theme="snow"
+          value={value}
+          onChange={setValue}
+        />
       ) : (
-        <Button onClick={() => setEdit(true)} title="Редактировать">
+        <Button className={cls.button}>
           <>{parse(value)}</>
         </Button>
       )}

@@ -4,7 +4,7 @@ import { TitleQuill } from "./construct-title";
 
 describe("construct title", () => {
   it("exists", () => {
-    render(<TitleQuill />);
+    render(<TitleQuill id="123" edit={false} content="test" />);
     expect(screen.getByTestId("construct-title")).toBeTruthy();
   });
 });

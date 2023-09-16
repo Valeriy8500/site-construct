@@ -1,26 +1,23 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties } from "react";
 
 export interface ISite {
-  id: string;
-  url: string;
-  name: string;
   authorId: string;
-  updatedAt: number;
-  elements: SiteElement[];
   bg: CSSProperties["backgroundColor"];
-  html: string;
-  css: string;
-  content: ISiteContent[];
+  elements: SiteElement[];
+  id: string;
+  name: string;
+  updatedAt: number;
 }
 
 export interface SiteElement {
-  id: string;
   content: string;
+  id: string;
+  path: string;
   width: number;
   height: number;
-}
-
-export interface ISiteContent {
-  Element: ReactNode;
-  id: string;
+  url?: string;
+  position: {
+    top: number;
+    left: number;
+  };
 }

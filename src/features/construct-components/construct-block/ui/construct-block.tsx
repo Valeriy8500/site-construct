@@ -1,12 +1,14 @@
-import { CSSProperties, DragEventHandler, ReactNode, useRef, useState } from "react";
+import { CSSProperties, DragEventHandler, ReactNode, useRef } from "react";
 import { BsCheck2 } from "react-icons/bs";
-import { MdOutlineDragIndicator, MdOutlineModeEditOutline } from "react-icons/md";
+import { MdOutlineModeEditOutline } from "react-icons/md";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { FaArrowsAltH, FaArrowsAltV } from "react-icons/fa";
 import cls from "./construct-block.module.scss";
 import { Button } from "@/shared/ui/button";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
 import {
   changeSiteElementHeight,
+  changeSiteElementPosition,
   changeSiteElementWidth,
   deleteSiteElement,
 } from "@/entities/site/model/site.selectors.ts";
@@ -15,16 +17,26 @@ interface ConstructBlockProps {
   children?: ReactNode;
   style?: CSSProperties;
   id: string;
+  current: string;
+  onCurrent: (id: string) => void;
 }
 
-export const ConstructBlock = ({ children, style, id }: ConstructBlockProps) => {
+export const ConstructBlock = ({
+  children,
+  style,
+  id,
+  current,
+  onCurrent,
+}: ConstructBlockProps) => {
   const dispatch = useAppDispatch();
-  const [isEdit, setEdit] = useState<boolean>(true);
   const widthRef = useRef(0);
   const heightRef = useRef(0);
+  const positionRef = useRef({ top: 0, left: 0 });
+
+  const isEdit = current === id;
 
   const handleEdit = () => {
-    setEdit(prev => !prev);
+    onCurrent(current === id ? "" : id);
   };
 
   const handleDelete = () => {
@@ -47,10 +59,27 @@ export const ConstructBlock = ({ children, style, id }: ConstructBlockProps) => 
     dispatch(changeSiteElementHeight(id, e.clientY - heightRef.current));
   };
 
+  const handlePositionDragStart: DragEventHandler<HTMLDivElement> | undefined = e => {
+    positionRef.current.top = e.clientY;
+    positionRef.current.left = e.clientX;
+  };
+
+  const handlePositionDragEnd: DragEventHandler<HTMLDivElement> | undefined = e => {
+    dispatch(
+      changeSiteElementPosition(id, {
+        top: e.clientY - positionRef.current.top,
+        left: e.clientX - positionRef.current.left,
+      })
+    );
+  };
+
   return (
     <div
       className={`${cls.construct_block} ${isEdit ? cls.construct_block_edit : ""}`}
-      style={style}
+      style={{ ...style, zIndex: isEdit ? 10 : 1 }}
+      draggable={isEdit}
+      onDragStart={handlePositionDragStart}
+      onDragEnd={handlePositionDragEnd}
     >
       {children}
       <Button className={`${cls.construct_block_button} ${cls.edit}`} onClick={handleEdit}>
@@ -67,7 +96,7 @@ export const ConstructBlock = ({ children, style, id }: ConstructBlockProps) => 
             onDragStart={handleWidthDragStart}
             onDragEnd={handleWidthDragEnd}
           >
-            <MdOutlineDragIndicator />
+            <FaArrowsAltH />
           </Button>
           <Button
             className={`${cls.construct_block_button} ${cls.height}`}
@@ -75,7 +104,7 @@ export const ConstructBlock = ({ children, style, id }: ConstructBlockProps) => 
             onDragStart={handleHeightDragStart}
             onDragEnd={handleHeightDragEnd}
           >
-            <MdOutlineDragIndicator />
+            <FaArrowsAltV />
           </Button>
         </>
       )}

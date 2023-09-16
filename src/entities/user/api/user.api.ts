@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import {
   ILoginReq,
   ILoginRes,
@@ -6,15 +6,16 @@ import {
   IRegisterRes,
   IUserProfileReq,
   IUserProfileRes,
+  RefreshRes,
 } from "./user.api.types";
 import { ErrorType } from "../model/user.types";
+import { localStorageService } from "@/shared/services/localStorage.service.ts";
+import { authBaseQuery } from "@/shared/config/redux/fetch-base-query.ts";
 
 export const userApi = createApi({
   reducerPath: "userApi",
   tagTypes: ["User"],
-  baseQuery: fetchBaseQuery({
-    baseUrl: "https://identitytoolkit.googleapis.com/v1/",
-  }),
+  baseQuery: authBaseQuery,
   endpoints: build => ({
     login: build.mutation<ILoginRes, ILoginReq>({
       query: obj => ({
@@ -37,6 +38,17 @@ export const userApi = createApi({
         url: `accounts:update?key=${import.meta.env.VITE_FIREBASE_KEY}`,
         method: "POST",
         body: obj,
+      }),
+      invalidatesTags: ["User"],
+    }),
+    refresh: build.mutation<RefreshRes | ErrorType, void>({
+      query: () => ({
+        url: `token?key=${import.meta.env.VITE_FIREBASE_KEY}`,
+        method: "POST",
+        body: {
+          grant_type: "refresh_token",
+          refresh_token: localStorageService.getRefreshToken(),
+        },
       }),
       invalidatesTags: ["User"],
     }),

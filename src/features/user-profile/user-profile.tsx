@@ -4,8 +4,10 @@ import UserProfileIcon from "../../shared/assets/user_profile_icon.png";
 import cls from "./user-profile.module.scss";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
-import { useUpdateProfileMutation } from "@/entities/user";
+import { useUpdateProfileMutation } from "@/entities/user/api";
 import { useValidateProfile } from "./hooks/useValidateProfile";
+import { useAppSelector } from "@/shared/hooks/redux-hooks";
+import { getUser } from "@/entities/user/model/user.selectors";
 
 export interface IInputValue {
   name: string;
@@ -21,12 +23,14 @@ export type IErrorData = {
 
 export const UserProfile = (): ReactElement => {
   const [update] = useUpdateProfileMutation();
-  const idToken = localStorage.getItem("accessToken")!;
+  const user = useAppSelector(getUser);
+
+  const { accessToken: idToken, name: userName, email } = user;
 
   const logProfileData: IInputValue = {
-    name: localStorage.getItem("fullName")!.split(" ")[0],
-    lastname: localStorage.getItem("fullName")!.split(" ")[1],
-    email: localStorage.getItem("email")!,
+    name: userName.split(" ")[0],
+    lastname: userName.split(" ")[1],
+    email,
   };
 
   const [onEdit, setOnEdit] = useState<boolean>(false);
@@ -70,7 +74,7 @@ export const UserProfile = (): ReactElement => {
         <button
           className={cls[`profile__btn_container`]}
           onClick={() => onUpdateProfile()}
-          disabled={Object.keys(error).length !== 0 ? true : false}
+          disabled={Object.keys(error).length !== 0}
           style={Object.keys(error).length !== 0 ? { opacity: "0.2", cursor: "auto" } : undefined}
         >
           {onEdit ? (
@@ -96,7 +100,7 @@ export const UserProfile = (): ReactElement => {
                 onChange={e => OnChange(e)}
                 value={inputValue.name}
                 placeholder="Name"
-                style={{ color: 'black', width: '100%' }}
+                style={{ color: "black", width: "100%" }}
               />
             </div>
             <div className={cls[`profile__input_container`]}>
@@ -113,7 +117,7 @@ export const UserProfile = (): ReactElement => {
                 onChange={e => OnChange(e)}
                 value={inputValue.lastname}
                 placeholder="Lastname"
-                style={{ color: 'black', width: '100%' }}
+                style={{ color: "black", width: "100%" }}
               />
             </div>
             <div className={cls[`profile__input_container`]}>
@@ -130,7 +134,7 @@ export const UserProfile = (): ReactElement => {
                 onChange={e => OnChange(e)}
                 value={inputValue.email}
                 placeholder="Email"
-                style={{ color: 'black', width: '100%' }}
+                style={{ color: "black", width: "100%" }}
               />
             </div>
           </form>

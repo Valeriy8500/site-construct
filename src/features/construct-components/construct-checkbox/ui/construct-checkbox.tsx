@@ -1,15 +1,14 @@
-import { useState } from "react";
 import { Checkbox } from "@/shared/ui/checkbox";
-import { ButtonOk } from "@/shared/ui/button-ok";
-import { ButtonEdit } from "@/shared/ui/button-edit";
 import { ConstructCheckboxEdit } from "./construct-checkbox-edit";
 import { CHECKBOX_INIT } from "../model/construct-checkbox.constants";
 import cls from "./construct-checkbox.module.scss";
-import {useConstructCheckbox} from "../model/use-construct-checkbox";
+import { useConstructCheckbox } from "../model/use-construct-checkbox";
 
-export const ConstructCheckbox = () => {
-  const [isEdit, setEdit] = useState(false);
-
+interface ConstructCheckboxProps {
+  edit: boolean;
+  content: string;
+}
+export const ConstructCheckbox = ({ edit }: ConstructCheckboxProps) => {
   const { checkboxFields, handleEdit, handleDelete, handleAddElement, handleChecked } =
     useConstructCheckbox(CHECKBOX_INIT);
 
@@ -23,23 +22,13 @@ export const ConstructCheckbox = () => {
         ))}
       </ul>
 
-      {isEdit && (
+      {edit && (
         <ConstructCheckboxEdit
           fields={checkboxFields}
           onChange={handleEdit}
           onDelete={handleDelete}
           onAddElement={handleAddElement}
         />
-      )}
-
-      {isEdit ? (
-        <div className={cls.button_ok}>
-          <ButtonOk onClick={() => setEdit(false)} />
-        </div>
-      ) : (
-        <div className={cls.button_edit}>
-          <ButtonEdit onClick={() => setEdit(true)} />
-        </div>
       )}
     </div>
   );
