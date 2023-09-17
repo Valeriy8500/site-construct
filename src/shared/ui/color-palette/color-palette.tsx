@@ -3,7 +3,7 @@ import cls from "./color-palette.module.scss";
 import "react-color-palette/css";
 import { Button } from "@/shared/ui/button";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks";
-import { addColor } from "@/entities/site/model/colorPalette.selectors";
+import { addColor } from "@/entities/site/model/site.selectors";
 
 export const ColorPalette = () => {
   const [color, setColor] = useColor("#561ecb");

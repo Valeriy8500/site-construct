@@ -10,7 +10,10 @@ const {
   changeElementContent,
   changeElementPosition,
   clearSite,
+  addSiteName,
+  addSiteColor
 } = siteSlice.actions;
+
 export const setSiteElement = (element: SiteElement) => (dispatch: AppDispatch) => {
   dispatch(addElement(element));
 };
@@ -41,4 +44,14 @@ export const changeSiteElementContent =
     dispatch(changeElementContent({ id, content }));
   };
 
+export const addName = (siteName: string) => (dispatch: AppDispatch) => {
+  dispatch(addSiteName(siteName));
+};
+
+export const addColor = (color: string) => (dispatch: AppDispatch) => {
+  dispatch(addSiteColor(color));
+};
+
+export const getSiteName = (state: RootState) => state.site.name;
+export const getSiteColor = (state: RootState) => state.site.bg;
 export const getSite = (state: RootState) => state.site;

@@ -10,7 +10,7 @@ import { useAppSelector } from "@/shared/hooks/redux-hooks.ts";
 import { getSite } from "@/entities/site/model/site.selectors.ts";
 import ConstructBlock from "@/features/construct-components/construct-block";
 import { render } from "../lib/render.ts";
-import { getSiteColor } from "@/entities/site/model/colorPalette.selectors.ts";
+import { getSiteColor } from "@/entities/site/model/site.selectors.ts";
 import { getUserId } from "@/entities/user/model/user.selectors.ts";
 import { useSaveSiteMutation } from "@/entities/site/api/site.api.ts";
 

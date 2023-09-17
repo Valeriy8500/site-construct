@@ -5,7 +5,7 @@ import { useState } from "react";
 import { BsFillPaletteFill } from "react-icons/bs";
 import { ColorPalette } from "@/shared/ui/color-palette";
 import { useAppSelector } from "@/shared/hooks/redux-hooks";
-import { getSiteColor } from "@/entities/site/model/colorPalette.selectors";
+import { getSiteColor } from "@/entities/site/model/site.selectors";
 
 export const SiteConstructHeadPanel = () => {
   const [siteName, setSiteName] = useState<string>('');
