@@ -32,7 +32,9 @@ const StoryBook = () => {
       <br />
       <Button theme={Themes.default}>Дефолтная кнопка</Button>
       <br />
-      <Button isLoading theme={Themes.default}>Loading кнопка</Button>
+      <Button isLoading theme={Themes.default}>
+        Loading кнопка
+      </Button>
       <br />
       <Button color="#000">Кастомная кнопка</Button>
       <br />

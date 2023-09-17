@@ -7,10 +7,9 @@ import { toast } from "react-toastify";
 import cls from "./site-view-panel.module.scss";
 import { Button } from "@/shared/ui/button";
 import { useAppSelector } from "@/shared/hooks/redux-hooks.ts";
-import { getSite } from "@/entities/site/model/site.selectors.ts";
+import { getSite , getSiteColor } from "@/entities/site/model/site.selectors.ts";
 import ConstructBlock from "@/features/construct-components/construct-block";
 import { render } from "../lib/render.ts";
-import { getSiteColor } from "@/entities/site/model/site.selectors.ts";
 import { getUserId } from "@/entities/user/model/user.selectors.ts";
 import { useSaveSiteMutation } from "@/entities/site/api/site.api.ts";
 

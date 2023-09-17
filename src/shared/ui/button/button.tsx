@@ -27,7 +27,17 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = (props: ButtonProps) => {
-  const { className = "", id, children, theme, color, typeButton, isLoading, disabled, ...other } = props;
+  const {
+    className = "",
+    id,
+    children,
+    theme,
+    color,
+    typeButton,
+    isLoading,
+    disabled,
+    ...other
+  } = props;
 
   return (
     <button
@@ -46,7 +56,7 @@ export const Button = (props: ButtonProps) => {
       style={{ backgroundColor: `${color}`, color: "#ffffff", borderColor: `${color}` }}
       {...other}
     >
-      {isLoading ? 'Loading...' : children}
+      {isLoading ? "Loading..." : children}
     </button>
   );
 };

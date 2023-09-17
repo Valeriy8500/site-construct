@@ -1,15 +1,14 @@
+import { useState } from "react";
+import { BsFillPaletteFill } from "react-icons/bs";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
 import cls from "./site-construct-head-panel.module.scss";
-import { useState } from "react";
-import { BsFillPaletteFill } from "react-icons/bs";
 import { ColorPalette } from "@/shared/ui/color-palette";
-import { useAppSelector } from "@/shared/hooks/redux-hooks";
+import { useAppSelector , useAppDispatch } from "@/shared/hooks/redux-hooks";
 import { addName, getSiteColor } from "@/entities/site/model/site.selectors";
-import { useAppDispatch } from "@/shared/hooks/redux-hooks";
 
 export const SiteConstructHeadPanel = () => {
-  const [siteName, setSiteName] = useState<string>('');
+  const [siteName, setSiteName] = useState<string>("");
   const [isOpenPalette, setIsOpenPalette] = useState<boolean>(false);
   const siteColor = useAppSelector(getSiteColor);
   const dispatch = useAppDispatch();
@@ -22,11 +21,7 @@ export const SiteConstructHeadPanel = () => {
   return (
     <div className={cls.panel_head}>
       <div className={cls.panel_head__item}>
-        <Label
-          forValue="site_name"
-          label="Название сайта"
-          className={cls.panel_head__label}
-        />
+        <Label forValue="site_name" label="Название сайта" className={cls.panel_head__label} />
         <Input
           type="text"
           id="site_name"
@@ -37,11 +32,7 @@ export const SiteConstructHeadPanel = () => {
         />
       </div>
       <div className={cls.panel_head__item}>
-        <Label
-          forValue="site_color"
-          label="Цвет страницы"
-          className={cls.panel_head__label}
-        />
+        <Label forValue="site_color" label="Цвет страницы" className={cls.panel_head__label} />
         <Input
           type="text"
           id="site_color"
@@ -60,5 +51,5 @@ export const SiteConstructHeadPanel = () => {
       </div>
       {isOpenPalette ? <ColorPalette closePalette={() => setIsOpenPalette(false)} /> : null}
     </div>
-  )
+  );
 };

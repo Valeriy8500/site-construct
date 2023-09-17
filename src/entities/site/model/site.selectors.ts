@@ -11,7 +11,7 @@ const {
   changeElementPosition,
   clearSite,
   addSiteName,
-  addSiteColor
+  addSiteColor,
 } = siteSlice.actions;
 
 export const setSiteElement = (element: SiteElement) => (dispatch: AppDispatch) => {

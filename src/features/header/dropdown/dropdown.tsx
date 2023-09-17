@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { PiUserSquareBold } from "react-icons/pi";
 import { MdOutlineLogout } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { useClickOutside } from "@/shared/hooks/use-click-outside";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks";
 import { userLogout } from "@/entities/user/model/user.selectors";
 import cls from "./dropdown.module.scss";
-import { RiLockPasswordLine } from "react-icons/ri";
 
 const variants = {
   open: { opacity: 1, y: 0 },

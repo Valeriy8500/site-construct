@@ -8,7 +8,7 @@ export const rootReducer = combineReducers({
   [userSlice.name]: userSlice.reducer,
   [userApi.reducerPath]: userApi.reducer,
   [siteSlice.name]: siteSlice.reducer,
-  [siteApi.reducerPath]: siteApi.reducer
+  [siteApi.reducerPath]: siteApi.reducer,
 });
 
 export const setupStore = configureStore({

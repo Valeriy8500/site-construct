@@ -36,18 +36,18 @@ export const siteSlice = createSlice({
       state.elements = state.elements.map(item =>
         item.id === action.payload.id
           ? {
-            ...item,
-            position: {
-              top:
-                item.position.top + action.payload.change.top < 0
-                  ? 0
-                  : item.position.top + action.payload.change.top,
-              left:
-                item.position.left + action.payload.change.left < 0
-                  ? 0
-                  : item.position.left + action.payload.change.left,
-            },
-          }
+              ...item,
+              position: {
+                top:
+                  item.position.top + action.payload.change.top < 0
+                    ? 0
+                    : item.position.top + action.payload.change.top,
+                left:
+                  item.position.left + action.payload.change.left < 0
+                    ? 0
+                    : item.position.left + action.payload.change.left,
+              },
+            }
           : item
       );
     },
@@ -55,10 +55,10 @@ export const siteSlice = createSlice({
       state.elements = state.elements.map(item =>
         item.id === action.payload.id
           ? {
-            ...item,
-            width:
-              item.width + action.payload.change < 0 ? 20 : item.width + action.payload.change,
-          }
+              ...item,
+              width:
+                item.width + action.payload.change < 0 ? 20 : item.width + action.payload.change,
+            }
           : item
       );
     },
@@ -66,10 +66,10 @@ export const siteSlice = createSlice({
       state.elements = state.elements.map(item =>
         item.id === action.payload.id
           ? {
-            ...item,
-            height:
-              item.height + action.payload.change < 0 ? 20 : item.height + action.payload.change,
-          }
+              ...item,
+              height:
+                item.height + action.payload.change < 0 ? 20 : item.height + action.payload.change,
+            }
           : item
       );
     },

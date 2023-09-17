@@ -1,1 +1,1 @@
-export { ColorPalette } from './color-palette';
+export { ColorPalette } from "./color-palette";
