@@ -55,7 +55,7 @@ export const SiteConstructHeadPanel = () => {
           <BsFillPaletteFill />
         </div>
       </div>
-      {isOpenPalette ? <ColorPalette /> : null}
+      {isOpenPalette ? <ColorPalette closePalette={() => setIsOpenPalette(false)} /> : null}
     </div>
   )
 };
