@@ -16,12 +16,14 @@ import { useSaveSiteMutation } from "@/entities/site/api/site.api.ts";
 import { ModalCode } from "@/shared/ui/modal-code";
 import { HtmlCode } from "@/features/html-code";
 import { CssCode } from "@/features/css-code";
+import { Modal } from "@/shared/ui/modal/modal.tsx";
 
 export const SiteViewPanel = () => {
   const site = useAppSelector(getSite);
   const [current, setCurrent] = useState<string>("");
   const userId = useAppSelector(getUserId);
   const [saveSite, { isSuccess }] = useSaveSiteMutation();
+  const [showSite, setShowSite] = useState<boolean>(false);
   const navigate = useNavigate();
   const siteRef = useRef<HTMLDivElement>(null);
   const [isShowCode, setIsShowCode] = useState<boolean>(false);
@@ -45,6 +47,27 @@ export const SiteViewPanel = () => {
       toast.error("Невозможно сохранить пустой сайт!");
     }
   };
+
+  if (showSite) {
+    return (
+      <Modal title="Modal" isOpen={true}>
+        {Boolean(site.elements.length) &&
+          site.elements.map(item => {
+            const Component = render(item.path);
+
+            return (
+              <>
+                {Component && (
+                  <Suspense>
+                    <Component edit={current === item.id} {...item} />
+                  </Suspense>
+                )}
+              </>
+            );
+          })}
+      </Modal>
+    )
+  }
 
   return (
     <div className={cls.site_view_panel}>
@@ -76,17 +99,20 @@ export const SiteViewPanel = () => {
 
         <div className={cls.site_view_panel_buttons_block}>
           <div className={cls.site_view_panel_buttons_item}>
-            <Button>
+            <Button
+              title="Показать сайт"
+              onClick={() => setShowSite(true)}
+            >
               <MdPreview />
             </Button>
           </div>
           <div className={cls.site_view_panel_buttons_item}>
-            <Button onClick={handleSaveSite}>
+            <Button onClick={handleSaveSite} title="Сохранить сайт">
               <TfiSaveAlt />
             </Button>
           </div>
           <div className={cls.site_view_panel_buttons_item}>
-            <Button>
+            <Button title="Сохранить код страницы">
               <AiOutlineDownload />
             </Button>
           </div>
