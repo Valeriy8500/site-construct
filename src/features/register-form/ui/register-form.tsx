@@ -1,5 +1,5 @@
-import { FC, FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { FC, FormEvent, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/shared/ui/button";
 import { Label } from "@/shared/ui/label";
 import { Input } from "@/shared/ui/input";
@@ -13,8 +13,50 @@ import { errorRegisterCodes } from "@/entities/user/lib/errorCodes";
 
 export const RegisterForm: FC = () => {
   const [error, setError] = useState<ErrorData>({});
-  const [register] = useRegisterMutation();
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [canRegister, setCanRegister] = useState<boolean>(true);
+  const [register, { isLoading }] = useRegisterMutation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    for (const key in error) {
+      error[key].message !== "" ? setCanRegister(false) : setCanRegister(true);
+    }
+  }, [error]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let newError = { ...error, [e.target.name]: { message: "" } };
+
+    if (e.target.name === "password") {
+      setPassword(e.target.value);
+
+      if (e.target.value !== confirmPassword) {
+        newError = {
+          ...error,
+          password: { message: "Пароли не совпадают" },
+          confirmPassword: { message: "Пароли не совпадают" },
+        };
+      } else {
+        newError = { ...error, password: { message: "" }, confirmPassword: { message: "" } };
+      }
+    }
+    if (e.target.name === "confirmPassword") {
+      setConfirmPassword(e.target.value);
+
+      if (e.target.value !== password) {
+        newError = {
+          ...error,
+          password: { message: "Пароли не совпадают" },
+          confirmPassword: { message: "Пароли не совпадают" },
+        };
+      } else {
+        newError = { ...error, password: { message: "" }, confirmPassword: { message: "" } };
+      }
+    }
+
+    setError(newError);
+  };
 
   const HandleSubmit = async (e: FormEvent<CustomForm>) => {
     setError({});
@@ -25,6 +67,7 @@ export const RegisterForm: FC = () => {
     const email = formData.get("email")?.toString() || "";
     const password = formData.get("password")?.toString() || "";
     const confirmPassword = formData.get("confirmPassword")?.toString() || "";
+
     const data = {
       name,
       lastname,
@@ -32,6 +75,7 @@ export const RegisterForm: FC = () => {
       password,
       confirmPassword,
     };
+
     const validate = useValidateSignUp(data);
     setError(validate);
 
@@ -47,6 +91,7 @@ export const RegisterForm: FC = () => {
 
       //если вышла ошибка
       if ("error" in singUpResult) {
+        setCanRegister(false);
         const err = singUpResult.error as ErrorType;
         const errData = err.data.error.message.split(" ")[0];
         if (errData.match(/EMAIL/g)) {
@@ -62,6 +107,7 @@ export const RegisterForm: FC = () => {
       }
     }
   };
+
   return (
     <>
       <div className={styles.container}>
@@ -69,66 +115,86 @@ export const RegisterForm: FC = () => {
         <form onSubmit={HandleSubmit} className={styles.form}>
           <div className={styles.block}>
             <Label forValue="form_name" label="Имя" />
-            <Input
-              error={error.name && error.name.message}
-              type="text"
-              id="form_name"
-              name="name"
-              defaultValue=""
-              onChange={() => void 0}
-            />
+            <div>
+              <Input
+                error={error.name && error.name.message}
+                type="text"
+                id="form_name"
+                name="name"
+                defaultValue=""
+                onChange={handleChange}
+              />
+            </div>
           </div>
           <div className={styles.block}>
             <Label forValue="form_lastname" label="Фамилия" />
-            <Input
-              error={error.lastname && error.lastname.message}
-              type="text"
-              id="form_lastname"
-              name="lastname"
-              defaultValue=""
-              onChange={() => void 0}
-            />
+            <div>
+              <Input
+                error={error.lastname && error.lastname.message}
+                type="text"
+                id="form_lastname"
+                name="lastname"
+                defaultValue=""
+                onChange={handleChange}
+              />
+            </div>
           </div>
           <div className={styles.block}>
             <Label forValue="form_email" label="Email" />
-            <Input
-              error={error.email && error.email.message}
-              type="email"
-              id="form_email"
-              name="email"
-              defaultValue=""
-              onChange={() => void 0}
-            />
+            <div>
+              <Input
+                error={error.email && error.email.message}
+                type="email"
+                id="form_email"
+                name="email"
+                defaultValue=""
+                onChange={handleChange}
+              />
+            </div>
           </div>
           <div className={styles.block}>
             <Label forValue="form_password" label="Пароль" />
-            <Input
-              error={error.password && error.password.message}
-              id="form_password"
-              type="password"
-              name="password"
-              defaultValue=""
-              onChange={() => void 0}
-            />
+            <div>
+              <Input
+                error={error.password && error.password.message}
+                id="form_password"
+                type="password"
+                name="password"
+                defaultValue=""
+                onChange={handleChange}
+              />
+            </div>
           </div>
           <div className={styles.block}>
             <Label forValue="form_confirm_password" label="Подтверждение пароля" />
-            <Input
-              error={error.confirmPassword && error.confirmPassword.message}
-              id="form_confirm_password"
-              type="password"
-              name="confirmPassword"
-              defaultValue=""
-              onChange={() => void 0}
-            />
+            <div>
+              <Input
+                error={error.confirmPassword && error.confirmPassword.message}
+                id="form_confirm_password"
+                type="password"
+                name="confirmPassword"
+                defaultValue=""
+                onChange={handleChange}
+              />
+            </div>
           </div>
 
-          <Button type="submit">Регистрация</Button>
-          <br />
-          <p>Есть аккаунт?</p>
-          <Button onClick={() => navigate("/login")} type="button">
-            Войти
+          <Button
+            className={canRegister ? styles.btn_normal : styles.btn_error}
+            disabled={!canRegister}
+            type="submit"
+            isLoading={isLoading}
+          >
+            Регистрация
           </Button>
+          <br />
+
+          <div className={styles.login}>
+            <p>Есть аккаунт?</p>
+            <Link className={styles.login_link} to="/login">
+              Войти
+            </Link>
+          </div>
         </form>
       </div>
     </>

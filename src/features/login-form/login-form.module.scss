@@ -25,6 +25,20 @@
     display: flex;
     margin-bottom: 20px;
     justify-content: space-between;
-    align-items: end;
+    align-items: center;
+  }
+}
+.register {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+
+  &_link {
+    color: var(--base-white);
+    font-size: large;
+  }
+  &_link:hover {
+    text-decoration: underline;
   }
 }
