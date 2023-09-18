@@ -1,5 +1,5 @@
 import { FC, FormEvent, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/shared/ui/button";
 import { Label } from "@/shared/ui/label";
 import { Input } from "@/shared/ui/input";
@@ -68,33 +68,39 @@ export const LoginForm: FC = () => {
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.block}>
             <Label forValue="form_email" label="Email" />
-            <Input
-              error={errorEmail}
-              type="email"
-              id="form_email"
-              name="email"
-              defaultValue=""
-              onChange={() => void 0}
-            />
+            <div>
+              <Input
+                error={errorEmail}
+                type="email"
+                id="form_email"
+                name="email"
+                defaultValue=""
+                onChange={() => void 0}
+              />
+            </div>
           </div>
           <div className={styles.block}>
             <Label forValue="form_password" label="Пароль" />
-            <Input
-              error={errorPassword}
-              id="form_password"
-              type="password"
-              name="password"
-              defaultValue=""
-              onChange={() => void 0}
-            />
+            <div>
+              <Input
+                error={errorPassword}
+                id="form_password"
+                type="password"
+                name="password"
+                defaultValue=""
+                onChange={() => void 0}
+              />
+            </div>
           </div>
 
           <Button type="submit">Войти</Button>
           <br />
-          <p>Нет аккаунта?</p>
-          <Button onClick={() => navigate("/register")} type="button">
-            Зарегистрироваться
-          </Button>
+          <div className={styles.register}>
+            <p>Нет аккаунта?</p>
+            <Link className={styles.register_link} to="/register">
+              Зарегистрироваться
+            </Link>
+          </div>
         </form>
       </div>
     </>

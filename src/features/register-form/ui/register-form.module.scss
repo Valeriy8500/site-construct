@@ -15,7 +15,7 @@
   margin: 20px;
   padding: 20px;
   outline: 1px solid white;
-  width: 450px;
+  width: 500px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -26,5 +26,30 @@
     margin-bottom: 20px;
     justify-content: space-between;
     align-items: end;
+
+    input {
+      width: 250px;
+    }
+  }
+  .btn_normal {
+    outline: 1px solid var(--base-white);
+  }
+  .btn_error {
+    border: 1px solid var(--base-failed);
+    background-color: var(--base-failed);
+  }
+}
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+
+  &_link {
+    color: var(--base-white);
+    font-size: large;
+  }
+  &_link:hover {
+    text-decoration: underline;
   }
 }
