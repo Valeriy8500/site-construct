@@ -1,6 +1,6 @@
 import { SiteElement } from "@/entities/site/model/site.types.ts";
 import { AppDispatch, RootState } from "@/app/providers/store-provider/store.types.ts";
-import siteSlice from "@/entities/site/model/site.slice.ts";
+import { siteSlice } from "./site.slice.ts";
 
 const {
   addElement,

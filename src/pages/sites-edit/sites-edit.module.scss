@@ -1,0 +1,9 @@
+@import "@/shared/styles/mixins.scss";
+
+.sites_edit {
+  @include container;
+
+  width: 100%;
+  display: flex;
+  flex: 240px auto;
+}

@@ -10,6 +10,7 @@ const SitesNew = lazy(() => import("@/pages/sites-new"));
 const LoginForm = lazy(() => import("@/pages/login"));
 const RegisterForm = lazy(() => import("@/pages/register"));
 const PasswordForm = lazy(() => import("@/pages/password-form"));
+const SitesEdit = lazy(() => import("@/pages/sites-edit"));
 
 export const RoutesProvider = () => {
   return (
@@ -55,7 +56,14 @@ export const RoutesProvider = () => {
               </Suspense>
             }
           />
-          <Route path=":siteId" element={<>siteId</>} />
+          <Route
+            path=":siteId"
+            element={
+              <Suspense fallback={<Loader />}>
+                <SitesEdit />
+              </Suspense>
+            }
+          />
         </Route>
         <Route path="story-book" element={<StoryBook />} />
         <Route path="*" element={<Navigate to="/" />} />

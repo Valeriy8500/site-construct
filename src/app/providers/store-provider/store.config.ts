@@ -1,14 +1,14 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userApi from "@/entities/user/api";
 import userSlice from "@/entities/user/model";
-import siteSlice from "@/entities/site/model";
 import siteApi from "@/entities/site/api";
+import siteSlice from "@/entities/site/model";
 
 export const rootReducer = combineReducers({
-  [userSlice.name]: userSlice.reducer,
   [userApi.reducerPath]: userApi.reducer,
-  [siteSlice.name]: siteSlice.reducer,
+  [userSlice.name]: userSlice.reducer,
   [siteApi.reducerPath]: siteApi.reducer,
+  [siteSlice.name]: siteSlice.reducer,
 });
 
 export const setupStore = configureStore({
