@@ -73,6 +73,12 @@ export const siteSlice = createSlice({
           : item
       );
     },
+    addSiteName(state, action: PayloadAction<string>) {
+      state.name = action.payload;
+    },
+    addSiteColor(state, action: PayloadAction<string>) {
+      state.bg = action.payload;
+    },
   },
 });
 

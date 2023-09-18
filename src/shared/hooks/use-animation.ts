@@ -1,10 +1,4 @@
-import {
-  MutableRefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { MutableRefObject, useCallback, useEffect, useRef, useState } from "react";
 
 interface IUseAnimationProps {
   onExit?: () => void;
@@ -13,7 +7,7 @@ interface IUseAnimationProps {
 }
 
 export const useAnimations = (props: IUseAnimationProps) => {
-  const { delay, isEnter, onExit } = props
+  const { delay, isEnter, onExit } = props;
   const [isExiting, setIsExiting] = useState(false);
   const [isEntering, setIsEntering] = useState(false);
   const timerRef = useRef<NodeJS.Timeout>();
@@ -50,4 +44,4 @@ export const useAnimations = (props: IUseAnimationProps) => {
     exited: !isEnter || isEntering,
     exit,
   };
-}
+};

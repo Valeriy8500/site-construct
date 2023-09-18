@@ -1,0 +1,39 @@
+.panel_head {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+
+  &__item {
+    position: relative;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
+  }
+
+  &__label {
+    color: var(--feature-gray);
+    font-size: small;
+  }
+
+  &__input {
+    border-bottom: 1px solid var(--base-black);
+    color: var(--base-black);
+    padding: 6px 0 6px 2px;
+    border-radius: 0;
+    font-size: large;
+    font-weight: 500;
+    width: 100%;
+  }
+
+  &__palette_btn {
+    position: absolute;
+    top: 30px;
+    right: 8px;
+    color: var(--base-black);
+  }
+
+  &__palette_btn:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+}

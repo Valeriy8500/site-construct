@@ -11,5 +11,5 @@ export const Portal = (props: PortalProps) => {
   const { id, children } = props;
   const target = usePortal(id);
   if (target) return createPortal(children, target, id);
-  return <></>
+  return <></>;
 };

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import cls from "./site-view-panel.module.scss";
 import { Button } from "@/shared/ui/button";
 import { useAppSelector } from "@/shared/hooks/redux-hooks.ts";
-import { getSite } from "@/entities/site/model/site.selectors.ts";
+import { getSite , getSiteColor } from "@/entities/site/model/site.selectors.ts";
 import ConstructBlock from "@/features/construct-components/construct-block";
 import { render } from "../lib/render.ts";
 import { getUserId } from "@/entities/user/model/user.selectors.ts";
@@ -19,6 +19,8 @@ export const SiteViewPanel = () => {
   const userId = useAppSelector(getUserId);
   const [saveSite, { isSuccess }] = useSaveSiteMutation();
   const navigate = useNavigate();
+
+  const siteColor = useAppSelector(getSiteColor);
 
   useEffect(() => {
     if (isSuccess) {
@@ -40,7 +42,7 @@ export const SiteViewPanel = () => {
 
   return (
     <div className={cls.site_view_panel}>
-      <div className={cls.site_view_panel_wrapper} style={{ backgroundColor: site.bg }}>
+      <div className={cls.site_view_panel_wrapper} style={{ backgroundColor: siteColor }}>
         {Boolean(site.elements.length) &&
           site.elements.map(item => {
             const Component = render(item.path);
