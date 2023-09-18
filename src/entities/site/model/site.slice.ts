@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import { ISite, SiteElement } from "@/entities/site/model/site.types.ts";
+import { siteApi } from "../api/site.api";
 
 const initialState: ISite = {
   id: uuidv4(),
@@ -80,6 +81,14 @@ export const siteSlice = createSlice({
       state.bg = action.payload;
     },
   },
+  extraReducers: builder => {
+    builder.addMatcher(siteApi.endpoints.getSiteById.matchFulfilled, (state, { payload }) => {
+      state.id = payload.id;
+      state.elements = payload.elements;
+      state.bg = payload.bg;
+      state.name = payload.name;
+      state.authorId = payload.authorId;
+      state.updatedAt = payload.updatedAt;
+    });
+  },
 });
-
-export default siteSlice;

@@ -2,13 +2,13 @@ import { createApi } from "@reduxjs/toolkit/dist/query/react";
 import { toast } from "react-toastify";
 import { baseQueryWithResult } from "@/shared/config/redux/fetch-base-query";
 import { localStorageService } from "@/shared/services/localStorage.service";
-import { GetSitesData, GetSitesRes } from "./site.api.types";
+import { GetSitesData, GetSitesRes, SiteFirebase } from "./site.api.types";
 import { ISite } from "../model/site.types";
 import { clearSiteElements } from "@/entities/site/model/site.selectors";
 
 export const siteApi = createApi({
   reducerPath: "siteApi",
-  tagTypes: ["getSites"],
+  tagTypes: ["getSites", "getSiteById"],
   baseQuery: baseQueryWithResult,
   endpoints: build => ({
     getSites: build.query<GetSitesData, void>({
@@ -26,6 +26,23 @@ export const siteApi = createApi({
         }));
       },
       providesTags: ["getSites"],
+    }),
+    getSiteById: build.query<ISite, string>({
+      query: id => ({
+        url: `sites/${id}.json`,
+        params: {
+          key: import.meta.env.VITE_FIREBASE_KEY,
+          auth: localStorageService.getAccessToken(),
+        },
+        cache: "no-cache",
+      }),
+      transformResponse(res: SiteFirebase): ISite {
+        return {
+          ...res,
+          elements: Object.keys(res.elements).map(elKey => res.elements[elKey]),
+        };
+      },
+      providesTags: ["getSiteById"],
     }),
     saveSite: build.mutation<{ id: string }, ISite>({
       query: body => ({
@@ -46,9 +63,27 @@ export const siteApi = createApi({
           api.dispatch(clearSiteElements());
         });
       },
-      invalidatesTags: ["getSites"],
+      invalidatesTags: ["getSites", "getSiteById"],
+    }),
+    deleteSite: build.mutation<{ id: string }, string>({
+      query: id => ({
+        url: `sites/${id}.json`,
+        params: {
+          key: import.meta.env.VITE_FIREBASE_KEY,
+          auth: localStorageService.getAccessToken(),
+        },
+        method: "DELETE",
+      }),
+      onQueryStarted(_, api): Promise<void> | void {
+        api.queryFulfilled.then(() => {
+          toast.success(`Сайт успешно удален!`);
+          api.dispatch(clearSiteElements());
+        });
+      },
+      invalidatesTags: ["getSites", "getSiteById"],
     }),
   }),
 });
 
-export const { useGetSitesQuery, useSaveSiteMutation } = siteApi;
+export const { useGetSitesQuery, useSaveSiteMutation, useGetSiteByIdQuery, useDeleteSiteMutation } =
+  siteApi;

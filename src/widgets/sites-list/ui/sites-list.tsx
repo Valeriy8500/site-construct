@@ -3,13 +3,18 @@ import cls from "./sites-list.module.scss";
 import { SortType } from "@/features/sort";
 import { useGetSitesQuery } from "@/entities/site/api/site.api.ts";
 import { Loader } from "@/shared/ui/loader";
+import { sortSites } from "../lib/sortSites.ts";
 
 interface SitesListProps {
   search: string;
   sort: SortType;
 }
-export const SitesList = ({}: SitesListProps) => {
+export const SitesList = ({ search, sort }: SitesListProps) => {
   const { data, isLoading } = useGetSitesQuery();
+  const searched =
+    data?.filter(item => item.name.toLowerCase().includes(search.toLowerCase())) || [];
+
+  const sorted = sortSites(sort, searched);
 
   return (
     <div className={cls.sites_list}>
@@ -21,8 +26,8 @@ export const SitesList = ({}: SitesListProps) => {
         )}
 
         {data &&
-          Boolean(data.length) &&
-          data.map(site => (
+          Boolean(sorted.length) &&
+          sorted.map(site => (
             <div key={site.id} className={cls.sites_list_item}>
               <SiteCard site={site} />
             </div>
