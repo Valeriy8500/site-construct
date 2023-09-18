@@ -22,12 +22,22 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   id?: string;
   style?: object;
-  isLoading: boolean;
-  disabled: boolean;
+  isLoading?: boolean;
+  disabled?: boolean;
 }
 
 export const Button = (props: ButtonProps) => {
-  const { className = "", id, children, theme, color, typeButton, isLoading, disabled, ...other } = props;
+  const {
+    className = "",
+    id,
+    children,
+    theme,
+    color,
+    typeButton,
+    isLoading,
+    disabled,
+    ...other
+  } = props;
 
   return (
     <button
@@ -46,7 +56,7 @@ export const Button = (props: ButtonProps) => {
       style={{ backgroundColor: `${color}`, color: "#ffffff", borderColor: `${color}` }}
       {...other}
     >
-      {isLoading ? 'Loading...' : children}
+      {isLoading ? "Loading..." : children}
     </button>
   );
 };

@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { nanoid } from "@reduxjs/toolkit";
-import {ICheckbox} from "./construct-checkbox.types";
+import { ICheckbox } from "./construct-checkbox.types";
 
 export const useConstructCheckbox = (initFields: ICheckbox[]) => {
   const [checkboxFields, setCheckboxFields] = useState<ICheckbox[]>(initFields);

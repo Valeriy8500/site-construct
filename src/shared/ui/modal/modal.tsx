@@ -44,7 +44,7 @@ export const Modal = (props: ModalProps) => {
         <div className={cls.header}>
           {title ? <h1>{title}</h1> : <span />}
           <Button theme={Themes.clear} onClick={exit}>
-            <MdClose color={'white'} size={'30px'} />
+            <MdClose color={"white"} size={"30px"} />
           </Button>
         </div>
         <div className={cls.content}>{children}</div>

@@ -5,7 +5,7 @@ const createRootElement = (id: string) => {
   const rootContainer = document.createElement("div");
   rootContainer.setAttribute("id", id);
   return rootContainer;
-}
+};
 
 function addRootElement(rootElem: Element) {
   document.body.insertBefore(rootElem, document.body.lastElementChild.nextElementSibling);
@@ -34,7 +34,7 @@ export const usePortal = (id: string) => {
       rootElemRef.current = document.createElement("div");
     }
     return rootElemRef.current;
-  }
+  };
 
   return getRootElem();
-}
+};
