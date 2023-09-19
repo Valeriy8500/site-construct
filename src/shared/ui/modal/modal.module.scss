@@ -74,3 +74,9 @@
   align-items: center;
   text-transform: capitalize;
 }
+
+.show_site_modal {
+  &__header {
+    display: none;
+  }
+}

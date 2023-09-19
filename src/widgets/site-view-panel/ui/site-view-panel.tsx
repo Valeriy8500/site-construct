@@ -48,9 +48,24 @@ export const SiteViewPanel = () => {
     }
   };
 
+  const handleEscClose = (e: KeyboardEvent) => {
+    if (e.key !== 'Escape') {
+      return;
+    }
+    setShowSite(false);
+    document.removeEventListener('keydown', handleEscClose);
+  };
+
   if (showSite) {
+    document.addEventListener('keydown', handleEscClose);
+
     return (
-      <Modal title="Modal" isOpen={true}>
+      <Modal
+        isOpen={true}
+        style={{ backgroundColor: siteColor }}
+        className={cls.show_site_modal}
+        showSite={showSite}
+      >
         {Boolean(site.elements.length) &&
           site.elements.map(item => {
             const Component = render(item.path);
