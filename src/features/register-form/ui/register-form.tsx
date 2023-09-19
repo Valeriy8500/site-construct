@@ -190,7 +190,6 @@ export const RegisterForm: FC = () => {
           <br />
 
           <div className={styles.login}>
-            <p>Есть аккаунт?</p>
             <Link className={styles.login_link} to="/login">
               Войти
             </Link>
