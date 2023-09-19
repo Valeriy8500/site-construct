@@ -18,12 +18,20 @@ import { HtmlCode } from "@/features/html-code";
 import { CssCode } from "@/features/css-code";
 import { Modal } from "@/shared/ui/modal/modal.tsx";
 
+export interface IShowSite {
+  openSiteModal: boolean;
+  openModalHint: boolean;
+}
+
 export const SiteViewPanel = () => {
   const site = useAppSelector(getSite);
   const [current, setCurrent] = useState<string>("");
   const userId = useAppSelector(getUserId);
   const [saveSite, { isSuccess }] = useSaveSiteMutation();
-  const [showSite, setShowSite] = useState<boolean>(false);
+  const [showSite, setShowSite] = useState<IShowSite>({
+    openSiteModal: false,
+    openModalHint: false
+  });
   const navigate = useNavigate();
   const siteRef = useRef<HTMLDivElement>(null);
   const [isShowCode, setIsShowCode] = useState<boolean>(false);
@@ -52,11 +60,14 @@ export const SiteViewPanel = () => {
     if (e.key !== 'Escape') {
       return;
     }
-    setShowSite(false);
+    setShowSite({
+      openSiteModal: false,
+      openModalHint: false
+    });
     document.removeEventListener('keydown', handleEscClose);
   };
 
-  if (showSite) {
+  if (showSite.openSiteModal) {
     document.addEventListener('keydown', handleEscClose);
 
     return (
@@ -65,6 +76,7 @@ export const SiteViewPanel = () => {
         style={{ backgroundColor: siteColor }}
         className={cls.show_site_modal}
         showSite={showSite}
+        setShowSite={setShowSite}
       >
         {Boolean(site.elements.length) &&
           site.elements.map(item => {
@@ -116,7 +128,7 @@ export const SiteViewPanel = () => {
           <div className={cls.site_view_panel_buttons_item}>
             <Button
               title="Показать сайт"
-              onClick={() => setShowSite(true)}
+              onClick={() => setShowSite({ openSiteModal: true, openModalHint: true })}
             >
               <MdPreview />
             </Button>
