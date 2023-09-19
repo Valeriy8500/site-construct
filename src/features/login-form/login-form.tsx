@@ -111,7 +111,6 @@ export const LoginForm: FC = () => {
           </Button>
           <br />
           <div className={styles.register}>
-            <p>Нет аккаунта?</p>
             <Link className={styles.register_link} to="/register">
               Зарегистрироваться
             </Link>
