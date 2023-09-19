@@ -18,7 +18,7 @@ describe("Проверка формы авторизации", () => {
     const loginButton: HTMLButtonElement = screen.getByText("Войти");
     await user.click(loginButton);
 
-    expect(screen.getByText("Поле email не должно быть пустым!")).toBeInTheDocument();
+    expect(screen.getByText("Email не валиден!")).toBeInTheDocument();
   });
   test("Ввод email без пароля", async () => {
     render(

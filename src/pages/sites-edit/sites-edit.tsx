@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { SiteConstructPanel } from "@/widgets/site-construct-panel";
 import cls from "./sites-edit.module.scss";
 import { SiteViewPanel } from "@/widgets/site-view-panel";
 import { useGetSiteByIdQuery } from "@/entities/site/api";
 import { Loader } from "@/shared/ui/loader";
-import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/redux-hooks.ts";
 import { getUserId } from "@/entities/user/model/user.selectors.ts";
 import { clearSiteElements } from "@/entities/site/model/site.selectors.ts";
