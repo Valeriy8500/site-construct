@@ -42,3 +42,15 @@
     }
   }
 }
+
+.modal_body {
+  @media (min-width: 48em) {
+    display: flex;
+    gap: 1rem;
+
+    > * {
+      flex: 0 0 50%;
+      overflow: auto;
+    }
+  }
+}

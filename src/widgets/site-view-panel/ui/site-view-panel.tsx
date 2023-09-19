@@ -1,17 +1,21 @@
 import { MdPreview } from "react-icons/md";
 import { AiOutlineDownload } from "react-icons/ai";
-import { Suspense, useEffect, useState } from "react";
+import { VscCode } from "react-icons/vsc";
+import { Suspense, useEffect, useState, useRef } from "react";
 import { TfiSaveAlt } from "react-icons/tfi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import cls from "./site-view-panel.module.scss";
 import { Button } from "@/shared/ui/button";
 import { useAppSelector } from "@/shared/hooks/redux-hooks.ts";
-import { getSite , getSiteColor } from "@/entities/site/model/site.selectors.ts";
+import { getSite, getSiteColor } from "@/entities/site/model/site.selectors.ts";
 import ConstructBlock from "@/features/construct-components/construct-block";
 import { render } from "../lib/render.ts";
 import { getUserId } from "@/entities/user/model/user.selectors.ts";
 import { useSaveSiteMutation } from "@/entities/site/api/site.api.ts";
+import { ModalCode } from "@/shared/ui/modal-code";
+import { HtmlCode } from "@/features/html-code";
+import { CssCode } from "@/features/css-code";
 
 export const SiteViewPanel = () => {
   const site = useAppSelector(getSite);
@@ -19,6 +23,8 @@ export const SiteViewPanel = () => {
   const userId = useAppSelector(getUserId);
   const [saveSite, { isSuccess }] = useSaveSiteMutation();
   const navigate = useNavigate();
+  const siteRef = useRef<HTMLDivElement>(null);
+  const [isShowCode, setIsShowCode] = useState<boolean>(false);
 
   const siteColor = useAppSelector(getSiteColor);
 
@@ -42,7 +48,11 @@ export const SiteViewPanel = () => {
 
   return (
     <div className={cls.site_view_panel}>
-      <div className={cls.site_view_panel_wrapper} style={{ backgroundColor: siteColor }}>
+      <div
+        className={cls.site_view_panel_wrapper}
+        style={{ backgroundColor: siteColor }}
+        ref={siteRef}
+      >
         {Boolean(site.elements.length) &&
           site.elements.map(item => {
             const Component = render(item.path);
@@ -80,8 +90,21 @@ export const SiteViewPanel = () => {
               <AiOutlineDownload />
             </Button>
           </div>
+          <div className={cls.site_view_panel_buttons_item} onClick={() => setIsShowCode(true)}>
+            <Button>
+              <VscCode />
+            </Button>
+          </div>
         </div>
       </div>
+      {isShowCode && (
+        <ModalCode onClose={() => setIsShowCode(false)}>
+          <div className={cls.modal_body}>
+            <HtmlCode htmlCode={siteRef.current} />
+            <CssCode node={siteRef.current} />
+          </div>
+        </ModalCode>
+      )}
     </div>
   );
 };

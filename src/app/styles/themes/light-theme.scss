@@ -20,8 +20,11 @@ html {
 
   //features
   --feature-gray: #8b8b8b;
+  --feature-gray-transparent: rgb(255 255 255 / 50%);
   --feature-light-gray: #ccc;
   --feature-dark-gray: #3a3a3a;
   --feature-red: red;
   --feature-light-red: #ff7c7c;
+  --feature-red-transparent: rgb(255 202 202 / 50%);
+  --feature-shadow: rgb(0 0 0 / 40%);
 }

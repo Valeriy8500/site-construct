@@ -17,7 +17,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.9.5",
+    "@types/css": "0.0.34",
     "clsx": "1.2.1",
+    "css": "3.0.0",
     "framer-motion": "10.16.1",
     "html-react-parser": "4.2.1",
     "react": "18.2.0",
