@@ -1,7 +1,7 @@
 import { RefObject, useEffect } from "react";
 
 export const useClickOutside = (
-  iconRef: RefObject<HTMLButtonElement>,
+  iconRef: RefObject<HTMLElement>,
   navRef: RefObject<HTMLElement>,
   calback: () => void
 ) => {

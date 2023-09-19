@@ -1,0 +1,15 @@
+.button_close {
+  cursor: pointer;
+  color: var(--feature-dark-gray);
+  background-color: var(--feature-gray-transparent);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  transition: all 0.3s ease 0s;
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--feature-red);
+      background-color: var(--feature-red-transparent);
+    }
+  }
+}
