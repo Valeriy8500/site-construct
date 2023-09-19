@@ -1,63 +1,71 @@
-import { FC, FormEvent, useState, useEffect } from "react";
+import { FC, FormEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/shared/ui/button";
 import { Label } from "@/shared/ui/label";
 import { Input } from "@/shared/ui/input";
-import { errorLoginCodes } from "@/entities/user/lib/errorCodes";
-import { useLoginMutation } from "@/entities/user/api/user.api";
-import { getUserAuthError } from "@/entities/user/model/user.selectors";
+import { CustomForm, ErrorData, ErrorType } from "@/entities/user";
+import { useLoginMutation } from "@/entities/user/api";
+import { useValidateSignIn } from "./hooks/useValidateSignIn";
+import { errorLoginCodes } from "@/entities/user";
 import styles from "./login-form.module.scss";
-import { useAppSelector } from "@/shared/hooks/redux-hooks.ts";
 
 export const LoginForm: FC = () => {
-  const [errorEmail, setErrorEmail] = useState<string>("");
-  const [errorPassword, setErrorPassword] = useState<string>("");
+  const [error, setError] = useState<ErrorData>({});
+
+  const [canLogin, setCanLogin] = useState<boolean>(true);
 
   const navigate = useNavigate();
-  const [login] = useLoginMutation();
-  const loginError = useAppSelector(getUserAuthError);
-
-  const setError = (err: string) => {
-    if (err.match(/EMAIL/g)) {
-      setErrorEmail(errorLoginCodes[err]);
-    } else if (err.match(/PASSWORD/g)) {
-      setErrorPassword(errorLoginCodes[err]);
-    } else if (err.match(/TRY_LATER/g)) {
-      alert(errorLoginCodes[err]);
-    }
-    if (err === "") {
-      setErrorEmail("");
-      setErrorPassword("");
-    }
-  };
+  const [login, { isLoading }] = useLoginMutation();
 
   useEffect(() => {
-    if (loginError) {
-      setError(loginError.split(" ")[0]);
+    for (const key in error) {
+      error[key].message !== "" ? setCanLogin(false) : setCanLogin(true);
     }
-  }, [loginError]);
+  }, [error]);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError({ ...error, [e.target.name]: { message: "" } });
+  };
+
+  const HandleSubmit = async (e: FormEvent<CustomForm>) => {
     e.preventDefault();
-    setError("");
+    setError({});
 
     const formData = new FormData(e.currentTarget);
 
     const email = formData.get("email")?.toString() || "";
     const password = formData.get("password")?.toString() || "";
 
-    if (email === "") {
-      setError("EMPTY_EMAIL");
-      return;
-    } else if (password === "") {
-      setError("EMPTY_PASSWORD");
-      return;
-    }
+    const data = {
+      email,
+      password,
+    };
 
-    const data = await login({ email, password, returnSecureToken: true });
-    if (!Reflect.has(data, "error")) {
-      setError("");
-      navigate("/");
+    const validate = useValidateSignIn(data);
+    setError(validate);
+
+    //если ошибок ввода нет
+    if (Object.keys(validate).length === 0) {
+      //отправляем запрос на сервер
+      const loginData = await login({ email, password, returnSecureToken: true });
+
+      //если вышла ошибка
+      if ("error" in loginData) {
+        setCanLogin(false);
+        const err = loginData.error as ErrorType;
+        const errData = err.data.error.message.split(" ")[0];
+
+        if (errData.match(/EMAIL/g)) {
+          setError({ email: { message: errorLoginCodes[errData] } });
+        } else if (errData.match(/PASSWORD/g)) {
+          setError({ password: { message: errorLoginCodes[errData] } });
+        } else if (errData.match(/TRY_LATER/g)) {
+          alert(errorLoginCodes[errData]);
+        }
+      } else {
+        setError({});
+        navigate("/");
+      }
     }
   };
 
@@ -65,17 +73,17 @@ export const LoginForm: FC = () => {
     <>
       <div className={styles.container}>
         <h1>Вход</h1>
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form onSubmit={HandleSubmit} className={styles.form}>
           <div className={styles.block}>
             <Label forValue="form_email" label="Email" />
             <div>
               <Input
-                error={errorEmail}
+                error={error.email && error.email.message}
                 type="email"
                 id="form_email"
                 name="email"
                 defaultValue=""
-                onChange={() => void 0}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -83,17 +91,24 @@ export const LoginForm: FC = () => {
             <Label forValue="form_password" label="Пароль" />
             <div>
               <Input
-                error={errorPassword}
+                error={error.password && error.password.message}
                 id="form_password"
                 type="password"
                 name="password"
                 defaultValue=""
-                onChange={() => void 0}
+                onChange={handleChange}
               />
             </div>
           </div>
 
-          <Button type="submit">Войти</Button>
+          <Button
+            isLoading={isLoading}
+            type="submit"
+            className={canLogin ? styles.btn_normal : styles.btn_error}
+            disabled={!canLogin}
+          >
+            Войти
+          </Button>
           <br />
           <div className={styles.register}>
             <p>Нет аккаунта?</p>

@@ -1,8 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { ISite } from "@/entities/site/model/site.types.ts";
 import cls from "./site-card.module.scss";
 import { Button } from "@/shared/ui/button";
 import { TypesButton } from "@/shared/ui/button/button";
-import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "@/shared/hooks/redux-hooks.ts";
 import { getUserId } from "@/entities/user/model/user.selectors.ts";
 import { useDeleteSiteMutation } from "@/entities/site/api";

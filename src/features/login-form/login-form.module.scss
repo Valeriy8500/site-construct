@@ -27,6 +27,13 @@
     justify-content: space-between;
     align-items: center;
   }
+  .btn_normal {
+    outline: 1px solid var(--base-white);
+  }
+  .btn_error {
+    border: 1px solid var(--base-failed);
+    background-color: var(--base-failed);
+  }
 }
 .register {
   display: flex;
