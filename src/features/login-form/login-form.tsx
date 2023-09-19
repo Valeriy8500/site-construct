@@ -8,6 +8,7 @@ import { useLoginMutation } from "@/entities/user/api";
 import { useValidateSignIn } from "./hooks/useValidateSignIn";
 import { errorLoginCodes } from "@/entities/user";
 import styles from "./login-form.module.scss";
+import { toast } from "react-toastify";
 
 export const LoginForm: FC = () => {
   const [error, setError] = useState<ErrorData>({});
@@ -60,7 +61,7 @@ export const LoginForm: FC = () => {
         } else if (errData.match(/PASSWORD/g)) {
           setError({ password: { message: errorLoginCodes[errData] } });
         } else if (errData.match(/TRY_LATER/g)) {
-          alert(errorLoginCodes[errData]);
+          toast.error(errorLoginCodes[errData]);
         }
       } else {
         setError({});
