@@ -1,15 +1,36 @@
-.btn {
-  border-radius: 10%;
-  width: 150px;
-  height: 100px;
-  outline: 1px solid var(--base-white);
-  color: var(--base-white);
+.image_block {
+  position: absolute;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
+}
+
+.upload_button {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 5;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    fill: var(--base-light-color);
+  }
+
+  &:hover {
+    border-color: var(--base-success);
+    color: var(--base-success);
+
+    svg {
+      fill: var(--base-success);
+    }
+  }
 }
 
 .image {
   position: relative;
-  padding: 20px;
-  margin-bottom: 1rem;
 
   &__button {
     position: relative;

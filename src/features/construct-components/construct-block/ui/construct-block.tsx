@@ -44,27 +44,33 @@ export const ConstructBlock = ({
   };
 
   const handleWidthDragStart: DragEventHandler<HTMLButtonElement> | undefined = e => {
+    e.stopPropagation();
     widthRef.current = e.clientX;
   };
 
   const handleWidthDragEnd: DragEventHandler<HTMLButtonElement> | undefined = e => {
+    e.stopPropagation();
     dispatch(changeSiteElementWidth(id, e.clientX - widthRef.current));
   };
 
   const handleHeightDragStart: DragEventHandler<HTMLButtonElement> | undefined = e => {
+    e.stopPropagation();
     heightRef.current = e.clientY;
   };
 
   const handleHeightDragEnd: DragEventHandler<HTMLButtonElement> | undefined = e => {
+    e.stopPropagation();
     dispatch(changeSiteElementHeight(id, e.clientY - heightRef.current));
   };
 
   const handlePositionDragStart: DragEventHandler<HTMLDivElement> | undefined = e => {
+    e.stopPropagation();
     positionRef.current.top = e.clientY;
     positionRef.current.left = e.clientX;
   };
 
   const handlePositionDragEnd: DragEventHandler<HTMLDivElement> | undefined = e => {
+    e.stopPropagation();
     dispatch(
       changeSiteElementPosition(id, {
         top: e.clientY - positionRef.current.top,

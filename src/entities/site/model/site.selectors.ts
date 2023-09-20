@@ -12,6 +12,7 @@ const {
   clearSite,
   addSiteName,
   addSiteColor,
+  changeElementUrl,
 } = siteSlice.actions;
 
 export const setSiteElement = (element: SiteElement) => (dispatch: AppDispatch) => {
@@ -43,6 +44,10 @@ export const changeSiteElementContent =
   (id: string, content: string) => (dispatch: AppDispatch) => {
     dispatch(changeElementContent({ id, content }));
   };
+
+export const changeSiteElementUrl = (id: string, url: string) => (dispatch: AppDispatch) => {
+  dispatch(changeElementUrl({ id, url }));
+};
 
 export const addName = (siteName: string) => (dispatch: AppDispatch) => {
   dispatch(addSiteName(siteName));

@@ -1,13 +1,27 @@
-import { useState } from "react";
-import { GiCheckMark } from "react-icons/gi";
+import { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import ReactQuill from "react-quill";
 import "quill/dist/quill.snow.css";
 import cls from "./construct-ol.module.scss";
+import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
+import { changeSiteElementContent } from "@/entities/site/model/site.selectors.ts";
 
-export const NumberedListQuill = () => {
-  const [edit, setEdit] = useState(true);
-  const [value, setValue] = useState("<ol><li>Нумерованный список</li></ol>");
+interface NumberedListQuillProps {
+  edit: boolean;
+  id: string;
+  content: string;
+}
+export const NumberedListQuill = ({ edit, id, content }: NumberedListQuillProps) => {
+  const dispatch = useAppDispatch();
+  const [value, setValue] = useState(
+    content.includes("ol") ? content : `<ol><li>${content}</li></ol>`
+  );
+
+  useEffect(() => {
+    if (!edit) {
+      dispatch(changeSiteElementContent(id, value));
+    }
+  }, [edit]);
 
   const toolbarOptions = [
     [{ header: [3, 4, 5, 6, false] }],
@@ -24,16 +38,9 @@ export const NumberedListQuill = () => {
   return (
     <div className={cls.list}>
       {edit ? (
-        <>
-          <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
-          <div className={cls.list__button}>
-            <div className={cls.list__button_ok} onClick={() => setEdit(false)}>
-              <GiCheckMark />
-            </div>
-          </div>
-        </>
+        <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
       ) : (
-        <div onClick={() => setEdit(true)}>{parse(value)}</div>
+        <div>{parse(value)}</div>
       )}
     </div>
   );
