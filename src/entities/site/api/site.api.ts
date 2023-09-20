@@ -2,7 +2,7 @@ import { createApi } from "@reduxjs/toolkit/dist/query/react";
 import { toast } from "react-toastify";
 import { baseQueryWithResult } from "@/shared/config/redux/fetch-base-query";
 import { localStorageService } from "@/shared/services/localStorage.service";
-import { GetSitesData, GetSitesRes, SiteFirebase } from "./site.api.types";
+import { GetSitesData, GetSitesRes, SiteFirebase, GetSitesReq } from "./site.api.types";
 import { ISite } from "../model/site.types";
 import { clearSiteElements } from "@/entities/site/model/site.selectors";
 
@@ -11,12 +11,15 @@ export const siteApi = createApi({
   tagTypes: ["getSites", "getSiteById"],
   baseQuery: baseQueryWithResult,
   endpoints: build => ({
-    getSites: build.query<GetSitesData, void>({
-      query: () => ({
+    getSites: build.query<GetSitesData, GetSitesReq>({
+      query: ({ startAt, limitToFirst }) => ({
         url: `sites.json`,
         params: {
           key: import.meta.env.VITE_FIREBASE_KEY,
           auth: localStorageService.getAccessToken(),
+          orderBy: '"id"',
+          limitToFirst,
+          startAt: `"${startAt}"`,
         },
       }),
       transformResponse(res: GetSitesRes): GetSitesData {

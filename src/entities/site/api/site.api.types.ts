@@ -3,6 +3,11 @@ import { ISite } from "@/entities/site/model/site.types.ts";
 
 export type GetSitesData = ISite[];
 
+export interface GetSitesReq {
+  orderBy?: string,
+  limitToFirst?: number,
+  startAt?: string,
+}
 export interface GetSitesRes {
   [key: string]: SiteFirebase;
 }

@@ -1,16 +1,19 @@
 import { SiteCard } from "@/entities/site/ui/site-card";
 import cls from "./sites-list.module.scss";
 import { SortType } from "@/features/sort";
-import { useGetSitesQuery } from "@/entities/site/api/site.api.ts";
+// import { useGetSitesQuery } from "@/entities/site/api/site.api.ts";
 import { Loader } from "@/shared/ui/loader";
 import { sortSites } from "../lib/sortSites.ts";
+import { useScrollList } from "@/shared/hooks/use-scroll-list.ts";
 
 interface SitesListProps {
   search: string;
   sort: SortType;
 }
 export const SitesList = ({ search, sort }: SitesListProps) => {
-  const { data, isLoading } = useGetSitesQuery();
+  // const { data, isLoading } = useGetSitesQuery();
+  const { data, lastNodeRef, isLoading } = useScrollList();
+
   const searched =
     data?.filter(item => item.name.toLowerCase().includes(search.toLowerCase())) || [];
 
@@ -27,11 +30,19 @@ export const SitesList = ({ search, sort }: SitesListProps) => {
 
         {data &&
           Boolean(sorted.length) &&
-          sorted.map(site => (
+          sorted.map((site, index) => { 
+          if (sorted.length === index + 1) {
+            return (
+              <div ref={lastNodeRef} key={site.id} className={cls.sites_list_item}>
+                <SiteCard site={site} />
+              </div>
+            )
+          }
+          return (
             <div key={site.id} className={cls.sites_list_item}>
               <SiteCard site={site} />
             </div>
-          ))}
+          )})}
       </div>
     </div>
   );
