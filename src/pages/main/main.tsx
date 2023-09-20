@@ -6,7 +6,7 @@ import { Sort, SortType } from "@/features/sort";
 
 export const Main = () => {
   const [search, setSearch] = useState<string>("");
-  const [sort, setSort] = useState<SortType>("NAME.ASK");
+  const [sort, setSort] = useState<SortType>("DATE.ASK");
 
   return (
     <div className={cls.main}>

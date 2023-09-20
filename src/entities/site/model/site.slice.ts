@@ -30,6 +30,11 @@ export const siteSlice = createSlice({
         item.id !== action.payload.id ? item : { ...item, content: action.payload.content }
       );
     },
+    changeElementUrl(state, action: PayloadAction<{ id: string; url: string }>) {
+      state.elements = state.elements.map(item =>
+        item.id !== action.payload.id ? item : { ...item, url: action.payload.url }
+      );
+    },
     changeElementPosition(
       state,
       action: PayloadAction<{ id: string; change: { top: number; left: number } }>

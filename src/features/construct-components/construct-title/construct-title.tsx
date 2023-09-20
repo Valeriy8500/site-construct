@@ -23,10 +23,12 @@ export const TitleQuill = ({ edit, id, content }: TitleQuillProps) => {
   }, [edit]);
 
   const toolbarOptions = [
-    [{ header: 1 }, { header: 2 }],
+    [{ header: [1, 2, 3, 4, 5, 6] }],
     ["bold", "italic", "underline", "strike"],
     [{ color: [] }, { background: [] }],
+    [{ font: [] }],
     [{ align: [] }],
+    [{ size: ["small", false, "large", "huge"] }],
   ];
 
   const modules = {

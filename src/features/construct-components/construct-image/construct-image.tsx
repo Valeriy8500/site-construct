@@ -1,10 +1,20 @@
-import { useState, useRef, ChangeEvent } from "react";
-import { GiPencil } from "react-icons/gi";
+import { useRef, ChangeEvent } from "react";
+import { ImUpload } from "react-icons/im";
 import cls from "./construct-image.module.scss";
+import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
+import { changeSiteElementUrl } from "@/entities/site/model/site.selectors.ts";
+import { Button } from "@/shared/ui/button";
+import { toast } from "react-toastify";
+interface ConstructImageProps {
+  edit: boolean;
+  id: string;
+  url?: string;
+  width: number;
+  height: number;
+}
 
-export const ConstructImage = () => {
-  const [url, setUrl] = useState<string>("");
-  const [showBnt, setShowBtn] = useState<boolean>(true);
+export const ConstructImage = ({ id, edit, url, width, height }: ConstructImageProps) => {
+  const dispatch = useAppDispatch();
   const inputFile = useRef<HTMLInputElement>(null);
 
   const upload = (file: string | Blob): Promise<string> => {
@@ -18,11 +28,12 @@ export const ConstructImage = () => {
       })
         .then(response => response.json())
         .then(result => {
+          dispatch(changeSiteElementUrl(id, result.data.url));
           resolve(result.data.url);
         })
-        .catch(error => {
+        .catch(_ => {
+          toast.error("Ошибка загрузки файла!");
           reject("Upload failed");
-          console.error("Error:", error);
         });
     });
   };
@@ -34,13 +45,11 @@ export const ConstructImage = () => {
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
     event.stopPropagation();
     const file = (event.target.files && event.target.files[0]) || "";
-    const res = await upload(file);
-    setUrl(res);
-    setShowBtn(false);
+    await upload(file);
   };
 
   return (
-    <div className={cls.image}>
+    <>
       <input
         type="file"
         id="file"
@@ -48,24 +57,15 @@ export const ConstructImage = () => {
         ref={inputFile}
         style={{ display: "none" }}
       />
-      {showBnt && (
-        <button className={cls.btn} onClick={onButtonClick}>
-          Открыть картинку
-        </button>
+      {edit && (
+        <Button className={cls.upload_button} onClick={onButtonClick}>
+          <ImUpload />
+        </Button>
       )}
 
-      <div className={cls.image__button}>
-        <img src={url} />
-        <div
-          title="Заменить картинку"
-          className={cls.image__button_ok}
-          onClick={() => {
-            inputFile.current?.click();
-          }}
-        >
-          <GiPencil />
-        </div>
+      <div className={cls.image_block} style={{ backgroundImage: `url(${url})`, width, height }}>
+        {!url && "Изображение"}
       </div>
-    </div>
+    </>
   );
 };
