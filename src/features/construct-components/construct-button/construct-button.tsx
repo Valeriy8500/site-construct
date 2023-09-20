@@ -4,7 +4,6 @@ import parse from "html-react-parser";
 import cls from "./construct-button.module.scss";
 import { changeSiteElementContent } from "@/entities/site/model/site.selectors.ts";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
-
 interface ButtonQuillProps {
   edit: boolean;
   id: string;

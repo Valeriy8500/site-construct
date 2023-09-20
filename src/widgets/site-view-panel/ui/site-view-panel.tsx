@@ -83,13 +83,13 @@ export const SiteViewPanel = () => {
             const Component = render(item.path);
 
             return (
-              <>
+              <div key={item.id}>
                 {Component && (
                   <Suspense>
                     <Component edit={current === item.id} {...item} />
                   </Suspense>
                 )}
-              </>
+              </div>
             );
           })}
       </Modal>
