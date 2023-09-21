@@ -41,6 +41,9 @@ export const render = (path: string) => {
     case "construct-select":
       return React.lazy(() => import("@/features/construct-components/construct-select"));
 
+    case "construct-form-button":
+      return React.lazy(() => import("@/features/construct-components/construct-form-button"));
+
     default:
       return null;
   }

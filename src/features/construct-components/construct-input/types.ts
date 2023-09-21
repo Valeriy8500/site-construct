@@ -2,6 +2,7 @@ import { ChangeEvent } from "react";
 
 export interface IInput {
   label: string;
+  input: string;
   placeholder: string;
 }
 

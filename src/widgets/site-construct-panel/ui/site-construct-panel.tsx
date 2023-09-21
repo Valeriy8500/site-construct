@@ -105,6 +105,11 @@ export const SiteConstructPanel = () => {
               title="select"
               onClick={() => handleSetSiteElement("construct-select")}
             />
+            <SidebarButton
+              icon={<FormItemIcon className={cls.icon} />}
+              title="form-button"
+              onClick={() => handleSetSiteElement("construct-form-button")}
+            />
           </div>
         </div>
       </div>

@@ -1,9 +1,22 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { IRadioField } from "@/features/construct-components/construct-radio/types";
+import { useAppDispatch } from "./redux-hooks";
+import { updateFormData } from "@/entities/construct-form";
 
-export const useConstructRadio = (initFields: IRadioField[]) => {
+export const useConstructRadio = (initFields: IRadioField[], id: string) => {
+  const dispatch = useAppDispatch();
   const [radioFields, setRadioFields] = useState<IRadioField[]>(initFields);
+
+  useEffect(() => {
+    dispatch(
+      updateFormData({
+        id: id,
+        label: "Radio",
+        value: radioFields.filter(item => item.isChecked)[0].label,
+      })
+    );
+  }, [radioFields]);
 
   const handleChecked = (e: ChangeEvent<HTMLInputElement>) => {
     setRadioFields(prev =>

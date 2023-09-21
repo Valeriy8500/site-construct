@@ -1,9 +1,25 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { ICheckbox } from "./construct-checkbox.types";
+import { useAppDispatch } from "@/shared/hooks/redux-hooks";
+import { updateFormData } from "@/entities/construct-form";
 
-export const useConstructCheckbox = (initFields: ICheckbox[]) => {
+export const useConstructCheckbox = (initFields: ICheckbox[], id: string) => {
+  const dispatch = useAppDispatch();
   const [checkboxFields, setCheckboxFields] = useState<ICheckbox[]>(initFields);
+
+  useEffect(() => {
+    dispatch(
+      updateFormData({
+        id: id,
+        label: "Checked",
+        value: checkboxFields
+          .filter(item => item.isChecked)
+          .reduce((acc, item) => acc + item.label + ", ", "")
+          .slice(0, -2),
+      })
+    );
+  }, [checkboxFields]);
 
   const handleChecked = (id: string) => {
     setCheckboxFields(prev =>
