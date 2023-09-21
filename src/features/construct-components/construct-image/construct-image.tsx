@@ -5,15 +5,17 @@ import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
 import { changeSiteElementUrl } from "@/entities/site/model/site.selectors.ts";
 import { Button } from "@/shared/ui/button";
 import { toast } from "react-toastify";
+import { SiteElement } from "@/entities/site/model/site.types";
 interface ConstructImageProps {
   edit: boolean;
   id: string;
   url?: string;
   width: number;
   height: number;
+  position?: SiteElement["position"];
 }
 
-export const ConstructImage = ({ id, edit, url, width, height }: ConstructImageProps) => {
+export const ConstructImage = ({ id, edit, url, width, height, position }: ConstructImageProps) => {
   const dispatch = useAppDispatch();
   const inputFile = useRef<HTMLInputElement>(null);
 
@@ -63,7 +65,10 @@ export const ConstructImage = ({ id, edit, url, width, height }: ConstructImageP
         </Button>
       )}
 
-      <div className={cls.image_block} style={{ backgroundImage: `url(${url})`, width, height }}>
+      <div
+        className={cls.image_block}
+        style={{ backgroundImage: `url(${url})`, width, height, top: position?.top, left: position?.left }}
+      >
         {!url && "Изображение"}
       </div>
     </>

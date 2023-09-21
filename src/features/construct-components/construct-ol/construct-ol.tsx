@@ -5,13 +5,16 @@ import "quill/dist/quill.snow.css";
 import cls from "./construct-ol.module.scss";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
 import { changeSiteElementContent } from "@/entities/site/model/site.selectors.ts";
+import { SiteElement } from "@/entities/site/model/site.types";
 
 interface NumberedListQuillProps {
   edit: boolean;
   id: string;
   content: string;
+  position?: SiteElement["position"];
 }
-export const NumberedListQuill = ({ edit, id, content }: NumberedListQuillProps) => {
+
+export const NumberedListQuill = ({ edit, id, content, position }: NumberedListQuillProps) => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState(
     content.includes("ol") ? content : `<ol><li>${content}</li></ol>`
@@ -36,7 +39,10 @@ export const NumberedListQuill = ({ edit, id, content }: NumberedListQuillProps)
   };
 
   return (
-    <div className={cls.list}>
+    <div
+      className={cls.list}
+      style={{ top: position?.top, left: position?.left }}
+    >
       {edit ? (
         <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
       ) : (

@@ -117,7 +117,7 @@ export const SiteViewPanel = () => {
               >
                 {Component && (
                   <Suspense>
-                    <Component edit={current === item.id} {...item} />
+                    <Component edit={current === item.id} {...{ ...item, position: undefined }} />
                   </Suspense>
                 )}
               </ConstructBlock>
@@ -144,7 +144,7 @@ export const SiteViewPanel = () => {
             </Button>
           </div>
           <div className={cls.site_view_panel_buttons_item} onClick={() => setIsShowCode(true)}>
-            <Button>
+            <Button title="Показать код страницы">
               <VscCode />
             </Button>
           </div>

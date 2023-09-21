@@ -5,16 +5,27 @@ import { ButtonOk } from "@/shared/ui/button-ok";
 import { ConstructRadioEdit } from "./construct-radio-edit";
 import { useConstructRadio } from "@/shared/hooks/use-construct-radio";
 import { RADIO } from "./constants";
+import { SiteElement } from "@/entities/site/model/site.types";
 import cls from "./construct-radio.module.scss";
 
-export const ConstructRadio = () => {
+interface ConstructRadio {
+  width?: number;
+  height?: number;
+  position?: SiteElement["position"];
+}
+
+export const ConstructRadio = ({ position, height, width }: ConstructRadio) => {
   const [edit, setEdit] = useState(false);
 
   const { radioFields, handleChecked, handleEdit, handleDelete, handleAddElement } =
     useConstructRadio(RADIO);
 
   return (
-    <div className={cls.radio} data-testid="construct-radio">
+    <div
+      className={cls.radio}
+      style={{ top: position?.top, left: position?.left, width, height }}
+      data-testid="construct-radio"
+    >
       <ul>
         {radioFields.map(radio => (
           <li key={radio.id}>
