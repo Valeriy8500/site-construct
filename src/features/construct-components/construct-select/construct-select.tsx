@@ -6,15 +6,26 @@ import { SelectEdit } from "./select-edit";
 import { useConstructSelect } from "@/shared/hooks/use-construct-select";
 import { SELECT_INIT_OPTIONS } from "./constants";
 import cls from "./construct-select.module.scss";
+import { SiteElement } from "@/entities/site/model/site.types";
 
-export const ConstructSelect = () => {
+interface ConstructSelect {
+  width?: number;
+  height?: number;
+  position?: SiteElement["position"];
+}
+
+export const ConstructSelect = ({ position, height, width }: ConstructSelect) => {
   const [isEdit, setEdit] = useState(false);
 
   const { optionsFields, handleChange, handleAddElement, handleDelete } =
     useConstructSelect(SELECT_INIT_OPTIONS);
 
   return (
-    <div className={cls.select} data-testid="construct-select">
+    <div
+      className={cls.select}
+      style={{ top: position?.top, left: position?.left, width, height }}
+      data-testid="construct-select"
+    >
       <MySelect options={optionsFields} />
 
       {isEdit && (

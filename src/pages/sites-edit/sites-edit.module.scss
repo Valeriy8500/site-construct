@@ -2,6 +2,7 @@
 
 .sites_edit {
   @include container;
+  position: relative;
 
   width: 100%;
   display: flex;

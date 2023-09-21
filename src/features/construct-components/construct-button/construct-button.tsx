@@ -4,13 +4,14 @@ import parse from "html-react-parser";
 import cls from "./construct-button.module.scss";
 import { changeSiteElementContent } from "@/entities/site/model/site.selectors.ts";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
-
+import { SiteElement } from "@/entities/site/model/site.types";
 interface ButtonQuillProps {
   edit: boolean;
   id: string;
   content: string;
   width: number;
   height: number;
+  position?: SiteElement["position"];
 }
 export const ButtonQuill = ({
   edit,
@@ -18,6 +19,7 @@ export const ButtonQuill = ({
   content,
   width,
   height,
+  position
 }: ButtonQuillProps): ReactElement => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState<string>(content);
@@ -62,7 +64,11 @@ export const ButtonQuill = ({
           onChange={setValue}
         />
       ) : (
-        <button className={cls.button} style={{ width, height: height / 2 }} ref={buttonRef}>
+        <button
+          className={cls.button}
+          style={{ width, height: height / 2, top: position?.top, left: position?.left }}
+          ref={buttonRef}
+        >
           <>{parse(value)}</>
         </button>
       )}
