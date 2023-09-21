@@ -5,14 +5,16 @@ import "quill/dist/quill.snow.css";
 import cls from "./construct-title.module.scss";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
 import { changeSiteElementContent } from "@/entities/site/model/site.selectors.ts";
+import { SiteElement } from "@/entities/site/model/site.types";
 
 interface TitleQuillProps {
   edit: boolean;
   id: string;
   content: string;
+  position?: SiteElement["position"];
 }
 
-export const TitleQuill = ({ edit, id, content }: TitleQuillProps) => {
+export const TitleQuill = ({ edit, id, content, position }: TitleQuillProps) => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState(content);
 
@@ -36,7 +38,11 @@ export const TitleQuill = ({ edit, id, content }: TitleQuillProps) => {
   };
 
   return (
-    <div className={cls.title} data-testid="construct-title">
+    <div
+      className={cls.title}
+      style={{ top: position?.top, left: position?.left }}
+      data-testid="construct-title"
+    >
       {edit ? (
         <>
           <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />

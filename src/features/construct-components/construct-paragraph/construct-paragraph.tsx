@@ -5,13 +5,15 @@ import "quill/dist/quill.snow.css";
 import cls from "./construct-paragraph.module.scss";
 import { changeSiteElementContent } from "@/entities/site/model/site.selectors.ts";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
+import { SiteElement } from "@/entities/site/model/site.types";
 
 interface ParagraphQuillProps {
   edit: boolean;
   id: string;
   content: string;
+  position?: SiteElement["position"];
 }
-export const ParagraphQuill = ({ edit, content, id }: ParagraphQuillProps) => {
+export const ParagraphQuill = ({ edit, content, id, position }: ParagraphQuillProps) => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState(content);
 
@@ -36,7 +38,11 @@ export const ParagraphQuill = ({ edit, content, id }: ParagraphQuillProps) => {
   };
 
   return (
-    <div className={cls.paragraph} data-testid="construct-paragraph">
+    <div
+      className={cls.paragraph}
+      style={{ top: position?.top, left: position?.left }}
+      data-testid="construct-paragraph"
+    >
       {edit ? (
         <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
       ) : (

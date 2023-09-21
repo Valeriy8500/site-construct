@@ -7,15 +7,25 @@ import { useConstructTextarea } from "@/shared/hooks/use-construct-textarea";
 import { ConstructTextareaEdit } from "./construct-textarea-edit";
 import { TEXTAREA_INIT } from "./constants";
 import cls from "./construct-textarea.module.scss";
+import { SiteElement } from "@/entities/site/model/site.types";
 
-export const ConstructTextarea = () => {
+interface ConstructTextarea {
+  width?: number;
+  height?: number;
+  position?: SiteElement["position"];
+}
+
+export const ConstructTextarea = ({ position, width, height }: ConstructTextarea) => {
   const inputId = useId();
 
   const [isEdit, setEdit] = useState(false);
   const { value, handleEdit } = useConstructTextarea(TEXTAREA_INIT);
 
   return (
-    <div className={cls.textarea}>
+    <div
+      className={cls.textarea}
+      style={{ top: position?.top, left: position?.left, width, height }}
+    >
       <div className={cls.textarea__construct}>
         <Label forValue={inputId} label={value.label} />
         <Textarea id={inputId} placeholder={value.placeholder} rows={+value.rows || 5} />

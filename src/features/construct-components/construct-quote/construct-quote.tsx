@@ -4,13 +4,16 @@ import parse from "html-react-parser";
 import cls from "./construct-quote.module.scss";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
 import { changeSiteElementContent } from "@/entities/site/model/site.selectors.ts";
+import { SiteElement } from "@/entities/site/model/site.types";
 
 interface QuoteQuillProps {
   edit: boolean;
   id: string;
   content: string;
+  position?: SiteElement["position"];
 }
-export const QuoteQuill = ({ edit, id, content }: QuoteQuillProps): ReactElement => {
+
+export const QuoteQuill = ({ edit, id, content, position }: QuoteQuillProps): ReactElement => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState<string>(content);
 
@@ -33,7 +36,10 @@ export const QuoteQuill = ({ edit, id, content }: QuoteQuillProps): ReactElement
   };
 
   return (
-    <div className={cls.quote}>
+    <div
+      className={cls.quote}
+      style={{ top: position?.top, left: position?.left }}
+    >
       {edit ? (
         <>
           <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
