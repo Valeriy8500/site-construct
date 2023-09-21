@@ -1,21 +1,27 @@
+import { FC } from "react";
 import { Checkbox } from "@/shared/ui/checkbox";
 import { ConstructCheckboxEdit } from "./construct-checkbox-edit";
 import { CHECKBOX_INIT } from "../model/construct-checkbox.constants";
-import cls from "./construct-checkbox.module.scss";
 import { useConstructCheckbox } from "../model/use-construct-checkbox";
 import { SiteElement } from "@/entities/site/model/site.types";
+import cls from "./construct-checkbox.module.scss";
 
 interface ConstructCheckboxProps {
   edit: boolean;
-  content: string;
+  id: string;
   width?: number;
   height?: number;
   position?: SiteElement["position"];
 }
-
-export const ConstructCheckbox = ({ edit, position, width, height }: ConstructCheckboxProps) => {
+export const ConstructCheckbox: FC<ConstructCheckboxProps> = ({
+  edit,
+  id,
+  position,
+  width,
+  height,
+}) => {
   const { checkboxFields, handleEdit, handleDelete, handleAddElement, handleChecked } =
-    useConstructCheckbox(CHECKBOX_INIT);
+    useConstructCheckbox(CHECKBOX_INIT, id);
 
   return (
     <div

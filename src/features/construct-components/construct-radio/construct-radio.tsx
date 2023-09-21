@@ -1,24 +1,22 @@
-import { useState } from "react";
+import { FC } from "react";
 import { Radio } from "@/shared/ui/radio/radio";
-import { ButtonEdit } from "@/shared/ui/button-edit";
-import { ButtonOk } from "@/shared/ui/button-ok";
 import { ConstructRadioEdit } from "./construct-radio-edit";
 import { useConstructRadio } from "@/shared/hooks/use-construct-radio";
 import { RADIO } from "./constants";
 import { SiteElement } from "@/entities/site/model/site.types";
 import cls from "./construct-radio.module.scss";
 
-interface ConstructRadio {
+interface ConstructRadioProps {
+  edit: boolean;
+  id: string;
   width?: number;
   height?: number;
   position?: SiteElement["position"];
 }
 
-export const ConstructRadio = ({ position, height, width }: ConstructRadio) => {
-  const [edit, setEdit] = useState(false);
-
+export const ConstructRadio: FC<ConstructRadioProps> = ({ edit, id, position, height, width }) => {
   const { radioFields, handleChecked, handleEdit, handleDelete, handleAddElement } =
-    useConstructRadio(RADIO);
+    useConstructRadio(RADIO, id);
 
   return (
     <div
@@ -41,16 +39,6 @@ export const ConstructRadio = ({ position, height, width }: ConstructRadio) => {
           onDelete={handleDelete}
           onAddElement={handleAddElement}
         />
-      )}
-
-      {edit ? (
-        <div className={cls.button_ok}>
-          <ButtonOk onClick={() => setEdit(false)} />
-        </div>
-      ) : (
-        <div className={cls.button_edit}>
-          <ButtonEdit onClick={() => setEdit(true)} />
-        </div>
       )}
     </div>
   );

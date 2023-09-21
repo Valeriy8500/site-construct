@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { ConstructCheckbox } from "./construct-checkbox";
+import ConstructFormButton from "../";
 
 const mockDispatch = vi.fn();
 vi.mock("react-redux", () => ({
@@ -9,9 +9,9 @@ vi.mock("react-redux", () => ({
   useStore: vi.fn(),
 }));
 
-describe("construct checkbox", () => {
+describe("construct form button", () => {
   it("exists", () => {
-    render(<ConstructCheckbox edit={false} id="1" />);
-    expect(screen.getByTestId("construct-checkbox")).toBeTruthy();
+    render(<ConstructFormButton />);
+    expect(screen.getByRole("button")).toBeTruthy();
   });
 });

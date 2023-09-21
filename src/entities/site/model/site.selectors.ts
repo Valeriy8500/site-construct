@@ -1,6 +1,7 @@
 import { SiteElement } from "@/entities/site/model/site.types.ts";
 import { AppDispatch, RootState } from "@/app/providers/store-provider/store.types.ts";
 import { siteSlice } from "./site.slice.ts";
+import { addFormData, deleteFormData } from "@/entities/construct-form";
 
 const {
   addElement,
@@ -17,6 +18,7 @@ const {
 
 export const setSiteElement = (element: SiteElement) => (dispatch: AppDispatch) => {
   dispatch(addElement(element));
+  dispatch(addFormData(element));
 };
 
 export const clearSiteElements = () => (dispatch: AppDispatch) => {
@@ -25,6 +27,7 @@ export const clearSiteElements = () => (dispatch: AppDispatch) => {
 
 export const deleteSiteElement = (id: string) => (dispatch: AppDispatch) => {
   dispatch(deleteElement(id));
+  dispatch(deleteFormData(id));
 };
 
 export const changeSiteElementWidth = (id: string, change: number) => (dispatch: AppDispatch) => {
