@@ -7,6 +7,12 @@
   padding: 15px;
   border-radius: var(--base-border-radius);
 
+  &_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &_title {
     margin-bottom: 10px;
   }
@@ -15,5 +21,11 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+  }
+
+  &_fork_count {
+    display: flex;
+    align-items: center;
+    gap: 3px;
   }
 }

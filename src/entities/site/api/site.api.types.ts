@@ -4,9 +4,9 @@ import { ISite } from "@/entities/site/model/site.types.ts";
 export type GetSitesData = ISite[];
 
 export interface GetSitesReq {
-  orderBy?: string,
-  limitToFirst?: number,
-  startAt?: string,
+  orderBy?: string;
+  limitToFirst?: number;
+  startAt?: string;
 }
 export interface GetSitesRes {
   [key: string]: SiteFirebase;
@@ -31,4 +31,5 @@ export interface SiteFirebase {
   id: string;
   name: string;
   updatedAt: number;
+  forkCount: number;
 }

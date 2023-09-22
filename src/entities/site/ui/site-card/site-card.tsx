@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { PiGitFork } from "react-icons/pi";
 import { ISite } from "@/entities/site/model/site.types.ts";
 import cls from "./site-card.module.scss";
 import { Button } from "@/shared/ui/button";
@@ -26,7 +27,12 @@ export const SiteCard = ({ site }: SiteCardProps) => {
 
   return (
     <div className={cls.site_card} style={{ backgroundColor: site.bg }} data-testid={site.id}>
-      <h3 className={cls.site_card_title}>{site.name}</h3>
+      <div className={cls.site_card_head}>
+        <h3 className={cls.site_card_title}>{site.name}</h3>
+        <div className={cls.site_card_fork_count}>
+          <PiGitFork /> {site?.forkCount?.toString()}
+        </div>
+      </div>
       {site.authorId === userId && (
         <div className={cls.site_card_buttons}>
           <Button onClick={() => handleEdit(site.id)} typeButton={TypesButton.primary}>

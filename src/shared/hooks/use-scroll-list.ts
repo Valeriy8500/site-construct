@@ -7,8 +7,11 @@ export const useScrollList = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [isFirstRequest, setIsFirstRequest] = useState(true);
-  const [lastIdSite, setLastId] = useState('');
-  const { data, isLoading } = useGetSitesQuery({ startAt: lastIdSite, limitToFirst: 9 });
+  const [lastIdSite, setLastId] = useState("");
+  const { data, isLoading } = useGetSitesQuery(
+    { startAt: lastIdSite, limitToFirst: 10 },
+    { refetchOnMountOrArgChange: true }
+  );
 
   useEffect(() => {
     if (data) {
@@ -24,6 +27,15 @@ export const useScrollList = () => {
     }
   }, [data]);
 
+  useEffect(() => {
+    return () => {
+      setDataList([]);
+      setPageNumber(1);
+      setHasMore(false);
+      setIsFirstRequest(true);
+      setLastId("");
+    };
+  }, []);
 
   useEffect(() => {
     if (hasMore) {
@@ -34,24 +46,25 @@ export const useScrollList = () => {
     }
   }, [pageNumber]);
 
-
   const observer = useRef<IntersectionObserver | null>(null);
-  const lastNodeRef = useCallback((node: HTMLDivElement) => {
-
-    if (isLoading) return;
-    if (observer.current) {
-      observer.current.disconnect();
-    }
-    observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && hasMore) {
-        setPageNumber(__prevState => __prevState + 1);
+  const lastNodeRef = useCallback(
+    (node: HTMLDivElement) => {
+      if (isLoading) return;
+      if (observer.current) {
+        observer.current.disconnect();
       }
-    })
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNumber(__prevState => __prevState + 1);
+        }
+      });
 
-    if (node) {
-      observer.current.observe(node);
-    }
-  }, [isLoading, hasMore]);
+      if (node) {
+        observer.current.observe(node);
+      }
+    },
+    [isLoading, hasMore]
+  );
 
-  return { data: dataList, lastNodeRef, isLoading }
+  return { data: dataList, lastNodeRef, isLoading };
 };
