@@ -1,22 +1,22 @@
+import { useSearchParams } from "react-router-dom";
 import { SiteCard } from "@/entities/site/ui/site-card";
 import cls from "./sites-list.module.scss";
-import { SortType } from "@/features/sort";
 import { Loader } from "@/shared/ui/loader";
 import { sortSites } from "../lib/sortSites.ts";
 import { SiteShow } from "@/features/site-show";
-import { useScrollList } from "@/shared/hooks/use-scroll-list.ts";
+import { useScrollList } from "@/shared/hooks/use-scroll-list";
+import { SortType } from "@/features/sort";
 
-interface SitesListProps {
-  search: string;
-  sort: SortType;
-}
-export const SitesList = ({ search, sort }: SitesListProps) => {
+export const SitesList = () => {
   const { data, lastNodeRef, isLoading } = useScrollList();
+  const [searchParams] = useSearchParams();
+  const sort = searchParams.get("sort") || "DATE.ASK";
+  const search = searchParams.get("search") || "";
 
   const searched =
     data?.filter(item => item.name.toLowerCase().includes(search.toLowerCase())) || [];
 
-  const sorted = sortSites(sort, searched);
+  const sorted = sortSites(sort as SortType, searched);
 
   return (
     <div className={cls.sites_list}>
@@ -29,20 +29,21 @@ export const SitesList = ({ search, sort }: SitesListProps) => {
 
         {data &&
           Boolean(sorted.length) &&
-          sorted.map((site, index) => { 
-          if (sorted.length === index + 1) {
+          sorted.map((site, index) => {
+            if (sorted.length === index + 1) {
+              return (
+                <div ref={lastNodeRef} key={site.id} className={cls.sites_list_item}>
+                  <SiteCard site={site} />
+                </div>
+              );
+            }
             return (
-              <div ref={lastNodeRef} key={site.id} className={cls.sites_list_item}>
+              <div key={site.id} className={cls.sites_list_item}>
                 <SiteCard site={site} />
+                <SiteShow site={site} className={cls.show_site_button} />
               </div>
-            )
-          }
-          return (
-            <div key={site.id} className={cls.sites_list_item}>
-              <SiteCard site={site} />
-              <SiteShow site={site} className={cls.show_site_button} />
-            </div>
-          )})}
+            );
+          })}
       </div>
     </div>
   );
