@@ -98,7 +98,6 @@ export const RegisterForm: FC = () => {
           setError({ email: { message: errorRegisterCodes[errData] } });
         } else if (errData.match(/PASSWORD/g)) {
           setError({ password: { message: errorRegisterCodes[errData] } });
-
           return;
         }
       } else {
