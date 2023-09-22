@@ -1,0 +1,13 @@
+.site_fork {
+  position: absolute;
+  top: 100px;
+  right: 15px;
+
+  &:hover {
+    border-color: var(--base-success);
+
+    svg {
+      fill: var(--base-success);
+    }
+  }
+}
