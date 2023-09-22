@@ -8,6 +8,8 @@ import { useUpdateProfileMutation } from "@/entities/user/api";
 import { useValidateProfile } from "./hooks/useValidateProfile";
 import { useAppSelector } from "@/shared/hooks/redux-hooks";
 import { getUser } from "@/entities/user/model/user.selectors";
+import { toast } from "react-toastify";
+import { ErrorType } from "@/entities/user";
 
 export interface IInputValue {
   name: string;
@@ -49,7 +51,12 @@ export const UserProfile = (): ReactElement => {
       const email = inputValue.email;
       const displayName = `${inputValue.name} ${inputValue.lastname}`;
 
-      await update({ email, idToken, displayName, returnSecureToken: true });
+      const updateProfile = await update({ email, idToken, displayName, returnSecureToken: true });
+
+      if ("error" in updateProfile) {
+        const err = updateProfile.error as ErrorType;
+        toast.error(`Ошибка! code: ${err.data.error.code}, message: ${err.data.error.message}`);
+      }
     }
   };
 
