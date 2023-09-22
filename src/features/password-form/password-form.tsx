@@ -6,6 +6,10 @@ import { Button } from "@/shared/ui/button";
 import { useValidatePassword } from "./hooks/useValidatePassword";
 import { useUpdateProfileMutation } from "@/entities/user";
 import { CustomForm } from "@/entities/user/api/user.api.types";
+import { getUser } from "@/entities/user/model/user.selectors";
+import { useAppSelector } from "@/shared/hooks/redux-hooks";
+import { toast } from "react-toastify";
+import { ErrorType } from "@/entities/user";
 
 export interface IInputValue {
   password: string;
@@ -28,14 +32,21 @@ export const PasswordForm = (): ReactElement => {
 
   const [update] = useUpdateProfileMutation();
   const navigate = useNavigate();
-  const idToken = localStorage.getItem("accessToken")!;
+  const user = useAppSelector(getUser);
+  const { accessToken: idToken } = user;
 
   const onUpdatePassword = async (e: FormEvent<CustomForm>): Promise<void> => {
     e.preventDefault();
     const password = inputValue.password;
-    await update({ password, idToken, returnSecureToken: true });
-    alert("Пароль был успешно изменен");
-    navigate("/");
+    const updatePassword = await update({ password, idToken, returnSecureToken: true });
+
+    if ("error" in updatePassword) {
+      const err = updatePassword.error as ErrorType;
+      toast.error(`Ошибка! code: ${err.data.error.code}, message: ${err.data.error.message}`);
+    } else {
+      toast.success("Пароль успешно изменён");
+      navigate("/");
+    }
   };
 
   const OnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
