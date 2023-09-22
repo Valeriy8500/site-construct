@@ -7,6 +7,7 @@ export interface ISite {
   id: string;
   name: string;
   updatedAt: number;
+  forkCount: number;
 }
 
 export interface SiteElement {

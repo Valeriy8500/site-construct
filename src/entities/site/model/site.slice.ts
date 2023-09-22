@@ -9,6 +9,7 @@ const initialState: ISite = {
   bg: "blueviolet",
   updatedAt: 0,
   authorId: "",
+  forkCount: 0,
   elements: [],
 };
 
@@ -94,6 +95,7 @@ export const siteSlice = createSlice({
       state.name = payload.name;
       state.authorId = payload.authorId;
       state.updatedAt = payload.updatedAt;
+      state.forkCount = payload.forkCount;
     });
   },
 });

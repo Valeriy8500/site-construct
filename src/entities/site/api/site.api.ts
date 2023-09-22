@@ -85,8 +85,25 @@ export const siteApi = createApi({
       },
       invalidatesTags: ["getSites", "getSiteById"],
     }),
+    incrementFork: build.mutation<{ id: string }, { id: string; forkCount: number }>({
+      query: body => ({
+        url: `sites/${body.id}/forkCount.json`,
+        params: {
+          key: import.meta.env.VITE_FIREBASE_KEY,
+          auth: localStorageService.getAccessToken(),
+        },
+        method: "PUT",
+        body: body.forkCount,
+      }),
+      invalidatesTags: ["getSites", "getSiteById"],
+    }),
   }),
 });
 
-export const { useGetSitesQuery, useSaveSiteMutation, useGetSiteByIdQuery, useDeleteSiteMutation } =
-  siteApi;
+export const {
+  useGetSitesQuery,
+  useSaveSiteMutation,
+  useGetSiteByIdQuery,
+  useDeleteSiteMutation,
+  useIncrementForkMutation,
+} = siteApi;
