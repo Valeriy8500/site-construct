@@ -21,7 +21,7 @@
     flex-direction: column;
     gap: 5px;
     margin-left: 10px;
-    z-index: 100;
+    z-index: 50;
   }
 
   &_buttons_item {
@@ -49,7 +49,7 @@
     display: flex;
     gap: 1rem;
 
-    >* {
+    > * {
       flex: 0 0 50%;
       overflow: auto;
     }

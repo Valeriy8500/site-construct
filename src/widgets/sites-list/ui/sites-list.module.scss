@@ -9,6 +9,7 @@
   }
 
   &_item {
+    position: relative;
     flex-basis: 32%;
   }
 
@@ -16,5 +17,19 @@
     width: 100%;
     text-align: center;
     margin-top: 20px;
+  }
+}
+
+.show_site_button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  &:hover {
+    border-color: var(--base-success);
+
+    svg {
+      fill: var(--base-success);
+    }
   }
 }

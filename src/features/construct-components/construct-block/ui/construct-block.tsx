@@ -86,6 +86,7 @@ export const ConstructBlock = ({
       draggable={isEdit}
       onDragStart={handlePositionDragStart}
       onDragEnd={handlePositionDragEnd}
+      data-testid={id}
     >
       {children}
       <Button className={`${cls.construct_block_button} ${cls.edit}`} onClick={handleEdit}>

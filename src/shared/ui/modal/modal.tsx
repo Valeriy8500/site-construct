@@ -21,16 +21,7 @@ interface ModalProps {
 const ANIMATION_DELAY = 150;
 
 export const Modal = (props: ModalProps) => {
-  const {
-    className = "",
-    children,
-    isOpen,
-    onClose,
-    title,
-    style,
-    showSite,
-    setShowSite
-  } = props;
+  const { className = "", children, isOpen, onClose, title, style, showSite, setShowSite } = props;
 
   const { entering, exit, exited, exiting, entered } = useAnimations({
     delay: ANIMATION_DELAY,
@@ -55,14 +46,14 @@ export const Modal = (props: ModalProps) => {
         )}
         style={style}
       >
-        <div className={showSite!.openSiteModal ? cls.show_site_modal__header : cls.header} >
+        <div className={showSite?.openSiteModal ? cls.show_site_modal__header : cls.header}>
           {title ? <h1>{title}</h1> : <span />}
           <Button theme={Themes.clear} onClick={exit}>
             <MdClose color={"white"} size={"30px"} />
           </Button>
         </div>
         <div className={cls.content}>{children}</div>
-        {showSite!.openModalHint ? (
+        {showSite?.openModalHint ? (
           <div className={cls.hint_container}>
             <div className={cls.hint}>
               <span>Для выхода из полноэкранного режима нажмите Esc</span>
@@ -70,12 +61,14 @@ export const Modal = (props: ModalProps) => {
             <Button
               theme={Themes.clear}
               className={cls.hint_btn}
-              onClick={() => setShowSite!((prev: IShowSite) => {
-                return {
-                  ...prev,
-                  openModalHint: false
-                }
-              })}
+              onClick={() =>
+                setShowSite!((prev: IShowSite) => {
+                  return {
+                    ...prev,
+                    openModalHint: false,
+                  };
+                })
+              }
             >
               <MdClose color={"white"} size={"13px"} />
             </Button>
