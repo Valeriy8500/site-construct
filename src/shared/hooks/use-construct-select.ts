@@ -10,8 +10,6 @@ export const useConstructSelect = (initFields: ISelectOption[], id: string) => {
   const [optionsFields, setOptionsFields] = useState<ISelectOption[]>(initFields);
   const [selectedValue, setSelectedValue] = useState<SingleValue<ISelectOption>>(null);
 
-  console.log("optionsFields", optionsFields);
-
   useEffect(() => {
     if (selectedValue) {
       dispatch(updateFormData({ id: id, label: "Select", value: selectedValue.value }));
@@ -37,8 +35,6 @@ export const useConstructSelect = (initFields: ISelectOption[], id: string) => {
   };
 
   const handleSelect = (value: SingleValue<ISelectOption>) => {
-    console.log(value);
-
     setSelectedValue(value);
   };
   return { optionsFields, handleChange, handleAddElement, handleDelete, handleSelect };
