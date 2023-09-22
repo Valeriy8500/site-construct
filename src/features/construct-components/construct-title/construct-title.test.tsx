@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { TitleQuill } from "./construct-title";
+import { MockStoreProvider } from "@/shared/lib/mock-store-provider.tsx";
 
 const mockDispatch = vi.fn();
 vi.mock("react-redux", () => ({
@@ -11,7 +12,11 @@ vi.mock("react-redux", () => ({
 
 describe("construct title", () => {
   it("exists", () => {
-    render(<TitleQuill id="123" edit={false} content="test" />);
+    render(
+      <MockStoreProvider>
+        <TitleQuill id="123" edit={false} content="test" />
+      </MockStoreProvider>
+    );
     expect(screen.getByTestId("construct-title")).toBeTruthy();
   });
 });

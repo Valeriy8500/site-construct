@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { ParagraphQuill } from "./construct-paragraph";
+import { MockStoreProvider } from "@/shared/lib/mock-store-provider";
 
 const mockDispatch = vi.fn();
 vi.mock("react-redux", () => ({
@@ -11,7 +12,11 @@ vi.mock("react-redux", () => ({
 
 describe("construct paragraph", () => {
   it("exists", () => {
-    render(<ParagraphQuill id="123" edit={false} content="test" />);
+    render(
+      <MockStoreProvider>
+        <ParagraphQuill id="123" edit={false} content="test" />
+      </MockStoreProvider>
+    );
     expect(screen.getByTestId("construct-paragraph")).toBeTruthy();
   });
 });

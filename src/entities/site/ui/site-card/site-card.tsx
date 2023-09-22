@@ -25,7 +25,7 @@ export const SiteCard = ({ site }: SiteCardProps) => {
   };
 
   return (
-    <div className={cls.site_card} style={{ backgroundColor: site.bg }}>
+    <div className={cls.site_card} style={{ backgroundColor: site.bg }} data-testid={site.id}>
       <h3 className={cls.site_card_title}>{site.name}</h3>
       {site.authorId === userId && (
         <div className={cls.site_card_buttons}>

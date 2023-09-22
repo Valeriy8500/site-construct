@@ -1,4 +1,3 @@
-import { MdPreview } from "react-icons/md";
 import { AiOutlineDownload } from "react-icons/ai";
 import { VscCode } from "react-icons/vsc";
 import { Suspense, useEffect, useState, useRef } from "react";
@@ -16,7 +15,7 @@ import { useSaveSiteMutation } from "@/entities/site/api/site.api.ts";
 import { ModalCode } from "@/shared/ui/modal-code";
 import { HtmlCode } from "@/features/html-code";
 import { CssCode } from "@/features/css-code";
-import { Modal } from "@/shared/ui/modal/modal.tsx";
+import { SiteShow } from "@/features/site-show";
 
 export interface IShowSite {
   openSiteModal: boolean;
@@ -28,10 +27,6 @@ export const SiteViewPanel = () => {
   const [current, setCurrent] = useState<string>("");
   const userId = useAppSelector(getUserId);
   const [saveSite, { isSuccess }] = useSaveSiteMutation();
-  const [showSite, setShowSite] = useState<IShowSite>({
-    openSiteModal: false,
-    openModalHint: false
-  });
   const navigate = useNavigate();
   const siteRef = useRef<HTMLDivElement>(null);
   const [isShowCode, setIsShowCode] = useState<boolean>(false);
@@ -55,46 +50,6 @@ export const SiteViewPanel = () => {
       toast.error("Невозможно сохранить пустой сайт!");
     }
   };
-
-  const handleEscClose = (e: KeyboardEvent) => {
-    if (e.key !== 'Escape') {
-      return;
-    }
-    setShowSite({
-      openSiteModal: false,
-      openModalHint: false
-    });
-    document.removeEventListener('keydown', handleEscClose);
-  };
-
-  if (showSite.openSiteModal) {
-    document.addEventListener('keydown', handleEscClose);
-
-    return (
-      <Modal
-        isOpen={true}
-        style={{ backgroundColor: siteColor }}
-        className={cls.show_site_modal}
-        showSite={showSite}
-        setShowSite={setShowSite}
-      >
-        {Boolean(site.elements.length) &&
-          site.elements.map(item => {
-            const Component = render(item.path);
-
-            return (
-              <div key={item.id}>
-                {Component && (
-                  <Suspense>
-                    <Component edit={current === item.id} {...item} />
-                  </Suspense>
-                )}
-              </div>
-            );
-          })}
-      </Modal>
-    )
-  }
 
   return (
     <div className={cls.site_view_panel}>
@@ -126,12 +81,7 @@ export const SiteViewPanel = () => {
 
         <div className={cls.site_view_panel_buttons_block}>
           <div className={cls.site_view_panel_buttons_item}>
-            <Button
-              title="Показать сайт"
-              onClick={() => setShowSite({ openSiteModal: true, openModalHint: true })}
-            >
-              <MdPreview />
-            </Button>
+            <SiteShow site={site} />
           </div>
           <div className={cls.site_view_panel_buttons_item}>
             <Button onClick={handleSaveSite} title="Сохранить сайт">
@@ -150,14 +100,12 @@ export const SiteViewPanel = () => {
           </div>
         </div>
       </div>
-      {isShowCode && (
-        <ModalCode onClose={() => setIsShowCode(false)}>
-          <div className={cls.modal_body}>
-            <HtmlCode htmlCode={siteRef.current} />
-            <CssCode node={siteRef.current} />
-          </div>
-        </ModalCode>
-      )}
+      <ModalCode open={isShowCode} onClose={() => setIsShowCode(false)}>
+        <div className={cls.modal_body}>
+          <HtmlCode htmlCode={siteRef.current} />
+          <CssCode node={siteRef.current} />
+        </div>
+      </ModalCode>
     </div>
   );
 };

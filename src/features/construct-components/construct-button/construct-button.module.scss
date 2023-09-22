@@ -8,6 +8,7 @@
   color: var(--base-light-color);
   cursor: pointer;
   border-radius: 10px;
+  z-index: 5;
 
   &:hover {
     opacity: 0.8;
