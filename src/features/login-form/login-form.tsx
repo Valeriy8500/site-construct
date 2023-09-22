@@ -62,6 +62,8 @@ export const LoginForm: FC = () => {
           setError({ password: { message: errorLoginCodes[errData] } });
         } else if (errData.match(/TRY_LATER/g)) {
           toast.error(errorLoginCodes[errData]);
+        } else {
+          toast.error(`Ошибка! code: ${err.data.error.code}, message: ${err.data.error.message}`);
         }
       } else {
         setError({});
