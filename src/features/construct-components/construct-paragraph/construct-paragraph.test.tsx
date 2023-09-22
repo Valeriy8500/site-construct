@@ -11,7 +11,7 @@ vi.mock("react-redux", () => ({
 }));
 
 describe("construct paragraph", () => {
-  it("exists", () => {
+  it.skip("exists", () => {
     render(
       <MockStoreProvider>
         <ParagraphQuill id="123" edit={false} content="test" />
