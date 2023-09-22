@@ -1,22 +1,21 @@
 import clsx from "clsx";
 import { ChangeEvent, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import cls from "./sort.module.scss";
-import { SortType } from "@/features/sort";
 import { Dropdown } from "@/shared/ui/dropdown";
 
 import { Button } from "@/shared/ui/button";
 import { SortIcon } from "@/shared/icons/sort-icon";
 
-interface SortProps {
-  sort: SortType;
-  onSetSort: (value: SortType) => void;
-}
-export const Sort = ({ sort, onSetSort }: SortProps) => {
+export const Sort = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sort = searchParams.get("sort") || "DATE.ASK";
   const [isOpen, setOpen] = useState(false);
   const iconRef = useRef<HTMLButtonElement>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onSetSort(e.target.value as SortType);
+    searchParams.set("sort", e.target.value);
+    setSearchParams(searchParams);
     setTimeout(() => setOpen(false), 500);
   };
 
