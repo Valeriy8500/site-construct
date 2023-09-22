@@ -37,6 +37,8 @@ export const userSlice = createSlice({
   reducers: {
     logout(state) {
       localStorageService.removeUser();
+      localStorage.removeItem("fullName");
+      localStorage.removeItem("email");
       state.user = userInitial;
       state.error = initialState.error;
     },
@@ -60,6 +62,8 @@ export const userSlice = createSlice({
       state.user = user;
       state.error = null;
       localStorageService.setUser(user);
+      localStorage.setItem("fullName", payload.displayName);
+      localStorage.setItem("email", payload.email);
     });
 
     builder.addMatcher<PayloadAction<ErrorType>>(
@@ -67,6 +71,8 @@ export const userSlice = createSlice({
       (state, { payload }) => {
         state.error = payload?.data?.error?.message;
         localStorageService.removeUser();
+        localStorage.removeItem("fullName");
+        localStorage.removeItem("email");
         state.user = initialState.user;
       }
     );
@@ -76,6 +82,8 @@ export const userSlice = createSlice({
       (state, { payload }) => {
         state.error = payload?.data?.error?.message;
         localStorageService.removeUser();
+        localStorage.removeItem("fullName");
+        localStorage.removeItem("email");
         state.user = initialState.user;
       }
     );
@@ -86,6 +94,8 @@ export const userSlice = createSlice({
         state.user = user;
         state.error = null;
         localStorageService.setUser(user);
+        localStorage.setItem("fullName", payload.displayName);
+        localStorage.setItem("email", payload.email);
       }
     );
     builder.addMatcher<PayloadAction<IRegisterRes>>(
@@ -95,6 +105,8 @@ export const userSlice = createSlice({
         state.user = user;
         state.error = null;
         localStorageService.setUser(user);
+        localStorage.setItem("fullName", payload.displayName);
+        localStorage.setItem("email", payload.email);
       }
     );
     builder.addMatcher<PayloadAction<ErrorType>>(
@@ -103,6 +115,8 @@ export const userSlice = createSlice({
         state.error = payload?.data?.error?.message;
         localStorageService.removeUser();
         state.user = initialState.user;
+        localStorage.removeItem("fullName");
+        localStorage.removeItem("email");
       }
     );
     builder.addMatcher(userApi.endpoints.updateProfile.matchFulfilled, (state, { payload }) => {

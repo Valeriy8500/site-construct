@@ -7,8 +7,8 @@ import { SiteElement } from "@/entities/site/model/site.types";
 
 interface ConstructFormButtonProps {
   position?: SiteElement["position"];
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
 }
 
 export const ConstructFormButton: FC<ConstructFormButtonProps> = ({ position, width, height }) => {

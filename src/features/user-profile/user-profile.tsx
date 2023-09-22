@@ -8,6 +8,8 @@ import { useUpdateProfileMutation } from "@/entities/user/api";
 import { useValidateProfile } from "./hooks/useValidateProfile";
 import { useAppSelector } from "@/shared/hooks/redux-hooks";
 import { getUser } from "@/entities/user/model/user.selectors";
+import { toast } from "react-toastify";
+import { ErrorType } from "@/entities/user";
 
 export interface IInputValue {
   name: string;
@@ -25,12 +27,15 @@ export const UserProfile = (): ReactElement => {
   const [update] = useUpdateProfileMutation();
   const user = useAppSelector(getUser);
 
-  const { accessToken: idToken, name: userName, email } = user;
+  const { accessToken: idToken } = user;
+
+  const userName = localStorage.getItem("fullName");
+  const email = localStorage.getItem("email");
 
   const logProfileData: IInputValue = {
-    name: userName.split(" ")[0],
-    lastname: userName.split(" ")[1],
-    email,
+    name: userName!.split(" ")[0],
+    lastname: userName!.split(" ")[1],
+    email: email!,
   };
 
   const [onEdit, setOnEdit] = useState<boolean>(false);
@@ -49,7 +54,12 @@ export const UserProfile = (): ReactElement => {
       const email = inputValue.email;
       const displayName = `${inputValue.name} ${inputValue.lastname}`;
 
-      await update({ email, idToken, displayName, returnSecureToken: true });
+      const updateProfile = await update({ email, idToken, displayName, returnSecureToken: true });
+
+      if ("error" in updateProfile) {
+        const err = updateProfile.error as ErrorType;
+        toast.error(`Ошибка! code: ${err.data.error.code}, message: ${err.data.error.message}`);
+      }
     }
   };
 

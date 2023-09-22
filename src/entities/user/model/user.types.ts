@@ -10,5 +10,5 @@ export interface IUserState {
 }
 
 export type ErrorType = {
-  data: { error: { message: string } };
+  data: { error: { message: string, code: number } };
 };
