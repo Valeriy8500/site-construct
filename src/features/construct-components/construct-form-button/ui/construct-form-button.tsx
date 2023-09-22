@@ -1,8 +1,8 @@
 import { FC, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { useAppSelector } from "@/shared/hooks/redux-hooks";
 import { getFormList } from "@/entities/construct-form";
 import { ButtonSubmit } from "@/shared/ui/button-submit";
-import { SubmitShow } from "@/shared/ui/submit-show";
 import { SiteElement } from "@/entities/site/model/site.types";
 
 interface ConstructFormButtonProps {
@@ -16,9 +16,14 @@ export const ConstructFormButton: FC<ConstructFormButtonProps> = ({ position, wi
   const [isSubmit, setIsSubmit] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsSubmit(false);
-    }, 50);
+    let timeout: NodeJS.Timeout;
+    if (isSubmit) {
+      timeout = setTimeout(() => {
+        setIsSubmit(false);
+      }, 50);
+      form.forEach(item => toast.info(`${item.label}: ${item.value}`, { toastId: item.id }));
+    }
+
     return () => clearTimeout(timeout);
   }, [isSubmit]);
 
@@ -29,7 +34,6 @@ export const ConstructFormButton: FC<ConstructFormButtonProps> = ({ position, wi
   return (
     <div style={{ width, height, top: position?.top, left: position?.left, position: "absolute" }}>
       <ButtonSubmit onSubmit={handleSubmit} />
-      {isSubmit && <SubmitShow form={form} />}
     </div>
   );
 };
