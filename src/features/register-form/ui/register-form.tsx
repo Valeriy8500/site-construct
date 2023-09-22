@@ -10,6 +10,7 @@ import styles from "./register-form.module.scss";
 
 import { ErrorType } from "@/entities/user/model/user.types";
 import { errorRegisterCodes } from "@/entities/user/lib/errorCodes";
+import { toast } from "react-toastify";
 
 export const RegisterForm: FC = () => {
   const [error, setError] = useState<ErrorData>({});
@@ -94,11 +95,14 @@ export const RegisterForm: FC = () => {
         setCanRegister(false);
         const err = singUpResult.error as ErrorType;
         const errData = err.data.error.message.split(" ")[0];
+        toast.error(`Ошибка! code: ${err.data.error.code}, message: ${err.data.error.message}`);
         if (errData.match(/EMAIL/g)) {
           setError({ email: { message: errorRegisterCodes[errData] } });
         } else if (errData.match(/PASSWORD/g)) {
           setError({ password: { message: errorRegisterCodes[errData] } });
           return;
+        } else {
+          toast.error(`Ошибка! code: ${err.data.error.code}, message: ${err.data.error.message}`);
         }
       } else {
         setError({});
