@@ -27,12 +27,15 @@ export const UserProfile = (): ReactElement => {
   const [update] = useUpdateProfileMutation();
   const user = useAppSelector(getUser);
 
-  const { accessToken: idToken, name: userName, email } = user;
+  const { accessToken: idToken } = user;
+
+  const userName = localStorage.getItem("fullName");
+  const email = localStorage.getItem("email");
 
   const logProfileData: IInputValue = {
-    name: userName.split(" ")[0],
-    lastname: userName.split(" ")[1],
-    email,
+    name: userName!.split(" ")[0],
+    lastname: userName!.split(" ")[1],
+    email: email!,
   };
 
   const [onEdit, setOnEdit] = useState<boolean>(false);
