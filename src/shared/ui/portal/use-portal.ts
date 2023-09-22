@@ -8,7 +8,8 @@ const createRootElement = (id: string) => {
 };
 
 function addRootElement(rootElem: Element) {
-  document.body.insertBefore(rootElem, document.body.lastElementChild.nextElementSibling);
+  document.body.lastElementChild &&
+    document.body.insertBefore(rootElem, document.body.lastElementChild.nextElementSibling);
 }
 
 export const usePortal = (id: string) => {
