@@ -1,14 +1,13 @@
 import { FC, FormEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Button } from "@/shared/ui/button";
 import { Label } from "@/shared/ui/label";
 import { Input } from "@/shared/ui/input";
-import { CustomForm, ErrorData, ErrorType } from "@/entities/user";
+import { CustomForm, ErrorData, ErrorType , errorLoginCodes } from "@/entities/user";
 import { useLoginMutation } from "@/entities/user/api";
 import { useValidateSignIn } from "./hooks/useValidateSignIn";
-import { errorLoginCodes } from "@/entities/user";
 import styles from "./login-form.module.scss";
-import { toast } from "react-toastify";
 
 export const LoginForm: FC = () => {
   const [error, setError] = useState<ErrorData>({});

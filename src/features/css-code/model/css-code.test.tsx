@@ -4,8 +4,8 @@ import { CssCode } from "../ui/css-code";
 
 describe("css code", () => {
   it("exists", () => {
-    const node = document.createElement('div')
-    render(<CssCode node={node}/>)
-    expect(screen.getByTestId("css-code")).toBeTruthy()
-  })
-})
+    const node = document.createElement("div");
+    render(<CssCode node={node} />);
+    expect(screen.getByTestId("css-code")).toBeTruthy();
+  });
+});

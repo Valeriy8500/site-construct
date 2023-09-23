@@ -19,7 +19,7 @@ export const ButtonQuill = ({
   content,
   width,
   height,
-  position
+  position,
 }: ButtonQuillProps): ReactElement => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState<string>(content);

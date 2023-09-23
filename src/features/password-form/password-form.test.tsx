@@ -17,7 +17,8 @@ describe("Проверка формы смены пароля", () => {
 
     const userEvent = ue.setup();
     const passwordInput: HTMLInputElement = screen.getByPlaceholderText("Новый пароль");
-    const confirmPasswordInput: HTMLInputElement = screen.getByPlaceholderText("Подтверждение пароля");
+    const confirmPasswordInput: HTMLInputElement =
+      screen.getByPlaceholderText("Подтверждение пароля");
     const okBtn: HTMLElement = screen.getAllByRole("button")[0] as HTMLButtonElement;
 
     await userEvent.type(passwordInput, "123456");

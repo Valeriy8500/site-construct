@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import { FaRegEdit, FaCheckCircle } from "react-icons/fa";
+import { toast } from "react-toastify";
 import UserProfileIcon from "../../shared/assets/user_profile_icon.png";
 import cls from "./user-profile.module.scss";
 import { Input } from "@/shared/ui/input";
@@ -8,7 +9,6 @@ import { useUpdateProfileMutation } from "@/entities/user/api";
 import { useValidateProfile } from "./hooks/useValidateProfile";
 import { useAppSelector } from "@/shared/hooks/redux-hooks";
 import { getUser } from "@/entities/user/model/user.selectors";
-import { toast } from "react-toastify";
 import { ErrorType } from "@/entities/user";
 
 export interface IInputValue {
@@ -33,9 +33,9 @@ export const UserProfile = (): ReactElement => {
   const email = localStorage.getItem("email");
 
   const logProfileData: IInputValue = {
-    name: userName ? userName.split(" ")[0] : '',
-    lastname: userName ? userName.split(" ")[1] : '',
-    email: email ? email : '',
+    name: userName ? userName.split(" ")[0] : "",
+    lastname: userName ? userName.split(" ")[1] : "",
+    email: email ? email : "",
   };
 
   const [onEdit, setOnEdit] = useState<boolean>(false);
