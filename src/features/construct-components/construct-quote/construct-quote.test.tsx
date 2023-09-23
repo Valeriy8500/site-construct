@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { ButtonQuill } from "./construct-button";
+import { QuoteQuill } from "./construct-quote";
 
 const mockDispatch = vi.fn();
 
@@ -10,9 +10,9 @@ vi.mock("react-redux", () => ({
   useStore: vi.fn(),
 }));
 
-describe("construct-button", () => {
+describe("construct-quote", () => {
   it("exists", () => {
-    render(<ButtonQuill edit={false} id="1" content="Button" />);
-    expect(screen.getByTestId("construct-button")).toBeTruthy();
+    render(<QuoteQuill edit={false} id="1" content="Quote" />);
+    expect(screen.getByTestId("construct-quote")).toBeTruthy();
   });
 });
