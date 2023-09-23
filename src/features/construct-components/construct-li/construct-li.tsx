@@ -39,10 +39,7 @@ export const ListQuill = ({ edit, id, content, position }: ListQuillProps) => {
   };
 
   return (
-    <div
-      className={cls.list}
-      style={{ top: position?.top, left: position?.left }}
-    >
+    <div className={cls.list} style={{ top: position?.top, left: position?.left }}>
       {edit ? (
         <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
       ) : (

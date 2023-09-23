@@ -6,7 +6,7 @@ import { sortSites } from "../lib/sortSites.ts";
 import { SiteShow } from "@/features/site-show";
 import { useScrollList } from "@/shared/hooks/use-scroll-list.ts";
 import { SiteFork } from "@/features/site-fork";
-import {SortType} from "@/features/sort";
+import { SortType } from "@/features/sort";
 
 export const SitesList = () => {
   const { data, lastNodeRef, isLoading, refreshSiteList } = useScrollList();

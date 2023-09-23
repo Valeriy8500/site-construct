@@ -25,8 +25,8 @@ export const SiteFork = ({ site, onSuccess }: SiteForkProps) => {
   }, [isSuccess]);
 
   const handleClick = () => {
-    const dateFork = new Date;
-    const siteName = String(dateFork).split(' ').slice(1, 5).join(' ');
+    const dateFork = new Date();
+    const siteName = String(dateFork).split(" ").slice(1, 5).join(" ");
 
     saveSite({
       ...site,

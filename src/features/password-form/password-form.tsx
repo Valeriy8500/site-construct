@@ -1,14 +1,14 @@
 import { FormEvent, ReactElement, useState } from "react";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import { Input } from "@/shared/ui/input";
 import cls from "./password-form.module.scss";
 import { Button } from "@/shared/ui/button";
 import { useValidatePassword } from "./hooks/useValidatePassword";
-import { useUpdateProfileMutation } from "@/entities/user";
+import { useUpdateProfileMutation } from "@/entities/user/api/user.api";
 import { CustomForm } from "@/entities/user/api/user.api.types";
 import { getUser } from "@/entities/user/model/user.selectors";
 import { useAppSelector } from "@/shared/hooks/redux-hooks";
-import { toast } from "react-toastify";
 import { ErrorType } from "@/entities/user";
 
 export interface IInputValue {

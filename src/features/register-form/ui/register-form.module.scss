@@ -31,14 +31,17 @@
       width: 250px;
     }
   }
+
   .btn_normal {
     outline: 1px solid var(--base-white);
   }
+
   .btn_error {
     border: 1px solid var(--base-failed);
     background-color: var(--base-failed);
   }
 }
+
 .login {
   display: flex;
   flex-direction: column;
@@ -50,6 +53,7 @@
     font-size: large;
     text-decoration: underline;
   }
+
   &_link:hover {
     text-decoration: underline;
   }

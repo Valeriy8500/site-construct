@@ -9,7 +9,7 @@ interface ButtonQuillProps {
   edit: boolean;
   id: string;
   content: string;
-  width: number;
+  width?: number;
   height: number;
   position?: SiteElement["position"];
 }
@@ -19,7 +19,7 @@ export const ButtonQuill = ({
   content,
   width,
   height,
-  position
+  position,
 }: ButtonQuillProps): ReactElement => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState<string>(content);
@@ -54,7 +54,7 @@ export const ButtonQuill = ({
   };
 
   return (
-    <div>
+    <div data-testid="construct-button">
       {edit ? (
         <ReactQuill
           placeholder="Название кнопки"

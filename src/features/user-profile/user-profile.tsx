@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import { FaRegEdit, FaCheckCircle } from "react-icons/fa";
+import { toast } from "react-toastify";
 import UserProfileIcon from "../../shared/assets/user_profile_icon.png";
 import cls from "./user-profile.module.scss";
 import { Input } from "@/shared/ui/input";
@@ -8,7 +9,6 @@ import { useUpdateProfileMutation } from "@/entities/user/api";
 import { useValidateProfile } from "./hooks/useValidateProfile";
 import { useAppSelector } from "@/shared/hooks/redux-hooks";
 import { getUser } from "@/entities/user/model/user.selectors";
-import { toast } from "react-toastify";
 import { ErrorType } from "@/entities/user";
 
 export interface IInputValue {
@@ -33,9 +33,9 @@ export const UserProfile = (): ReactElement => {
   const email = localStorage.getItem("email");
 
   const logProfileData: IInputValue = {
-    name: userName!.split(" ")[0],
-    lastname: userName!.split(" ")[1],
-    email: email!,
+    name: userName ? userName.split(" ")[0] : "",
+    lastname: userName ? userName.split(" ")[1] : "",
+    email: email ? email : "",
   };
 
   const [onEdit, setOnEdit] = useState<boolean>(false);
@@ -86,6 +86,7 @@ export const UserProfile = (): ReactElement => {
           onClick={() => onUpdateProfile()}
           disabled={Object.keys(error).length !== 0}
           style={Object.keys(error).length !== 0 ? { opacity: "0.2", cursor: "auto" } : undefined}
+          data-testid="user-profile-main-btn"
         >
           {onEdit ? (
             <FaCheckCircle title="Отправить" className={cls[`profile__check_btn`]} />
@@ -99,7 +100,7 @@ export const UserProfile = (): ReactElement => {
             <div className={cls[`profile__input_container`]}>
               <Label
                 forValue="form_name"
-                label="Name"
+                label="Имя"
                 className={cls[`profile__input_container_label`]}
               />
               <Input
@@ -109,14 +110,14 @@ export const UserProfile = (): ReactElement => {
                 name="name"
                 onChange={e => OnChange(e)}
                 value={inputValue.name}
-                placeholder="Name"
+                placeholder="Имя"
                 style={{ color: "black", width: "100%" }}
               />
             </div>
             <div className={cls[`profile__input_container`]}>
               <Label
                 forValue="form_lastname"
-                label="Lastname"
+                label="Фамилия"
                 className={cls[`profile__input_container_label`]}
               />
               <Input
@@ -126,7 +127,7 @@ export const UserProfile = (): ReactElement => {
                 name="lastname"
                 onChange={e => OnChange(e)}
                 value={inputValue.lastname}
-                placeholder="Lastname"
+                placeholder="Фамилия"
                 style={{ color: "black", width: "100%" }}
               />
             </div>
