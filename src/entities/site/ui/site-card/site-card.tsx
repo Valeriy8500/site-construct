@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { PiGitFork } from "react-icons/pi";
+import { useEffect, useState } from "react";
 import { ISite } from "@/entities/site/model/site.types.ts";
 import cls from "./site-card.module.scss";
 import { Button } from "@/shared/ui/button";
@@ -10,19 +11,31 @@ import { useDeleteSiteMutation } from "@/entities/site/api";
 
 interface SiteCardProps {
   site: ISite;
+  onDeleteSite: () => void;
 }
 
-export const SiteCard = ({ site }: SiteCardProps) => {
+export const SiteCard = ({ site, onDeleteSite }: SiteCardProps) => {
   const navigate = useNavigate();
   const userId = useAppSelector(getUserId);
   const [deleteSite, { isLoading }] = useDeleteSiteMutation();
+  const [isFirstRefresh, setIsFirstRefresh] = useState(true);
 
+  
   const handleEdit = (id: string) => {
     navigate(`/sites/${id}`);
   };
+  
+  useEffect(() => {
+    if (!isLoading && !isFirstRefresh) {
+      onDeleteSite();
+    }
+  }, [isLoading]);
 
   const handleDelete = () => {
     deleteSite(site.id);
+    if (isFirstRefresh) {
+      setIsFirstRefresh(false)
+    }
   };
 
   return (
