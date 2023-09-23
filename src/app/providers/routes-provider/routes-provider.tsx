@@ -10,6 +10,7 @@ const SitesNew = lazy(() => import("@/pages/sites-new"));
 const LoginForm = lazy(() => import("@/pages/login"));
 const RegisterForm = lazy(() => import("@/pages/register"));
 const PasswordForm = lazy(() => import("@/pages/password-form"));
+const ForgotPassword = lazy(() => import("@/pages/forgot-password"));
 const SitesEdit = lazy(() => import("@/pages/sites-edit"));
 
 export const RoutesProvider = () => {
@@ -81,6 +82,14 @@ export const RoutesProvider = () => {
         element={
           <Suspense>
             <RegisterForm />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/forgot-password"
+        element={
+          <Suspense>
+            <ForgotPassword />
           </Suspense>
         }
       />

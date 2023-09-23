@@ -10,8 +10,9 @@ import { useIncrementForkMutation, useSaveSiteMutation } from "@/entities/site/a
 
 interface SiteForkProps {
   site: ISite;
+  onSuccess: () => void;
 }
-export const SiteFork = ({ site }: SiteForkProps) => {
+export const SiteFork = ({ site, onSuccess }: SiteForkProps) => {
   const [saveSite, { isSuccess }] = useSaveSiteMutation();
   const [increment] = useIncrementForkMutation();
   const userId = useAppSelector(getUserId);
@@ -19,12 +20,17 @@ export const SiteFork = ({ site }: SiteForkProps) => {
   useEffect(() => {
     if (isSuccess && site.authorId !== userId) {
       increment({ id: site.id, forkCount: site.forkCount + 1 });
+      onSuccess();
     }
   }, [isSuccess]);
 
   const handleClick = () => {
+    const dateFork = new Date;
+    const siteName = String(dateFork).split(' ').slice(1, 5).join(' ');
+
     saveSite({
       ...site,
+      name: `${site.name} (${siteName})`,
       id: uuidv4(),
       authorId: userId,
       updatedAt: Date.now(),
