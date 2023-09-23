@@ -118,6 +118,11 @@ export const LoginForm: FC = () => {
               Зарегистрироваться
             </Link>
           </div>
+          <div className={styles.register}>
+            <Link className={styles.register_link} to="/forgot-password">
+              Забыл пароль
+            </Link>
+          </div>
         </form>
       </div>
     </>

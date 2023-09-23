@@ -56,6 +56,13 @@ export interface IUserProfileReq {
   displayName?: string;
   returnSecureToken?: boolean;
 }
+export interface IResetPasswordReq {
+  requestType?: string;
+  email: string;
+}
+export interface IResetPasswordRes {
+  email: string;
+}
 
 export interface IProviderUserInfo {
   providerId: string;
