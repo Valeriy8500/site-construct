@@ -111,6 +111,7 @@ export const UserProfile = (): ReactElement => {
                 value={inputValue.name}
                 placeholder="Name"
                 style={{ color: "black", width: "100%" }}
+                data-testid="user-profile-input-name"
               />
             </div>
             <div className={cls[`profile__input_container`]}>

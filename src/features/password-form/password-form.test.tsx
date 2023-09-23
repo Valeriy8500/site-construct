@@ -1,5 +1,5 @@
-import { describe, expect, test, vitest } from "vitest";
-import userEvent from "@testing-library/user-event";
+import { describe, expect, test } from "vitest";
+import ue from "@testing-library/user-event";
 
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
@@ -15,22 +15,31 @@ describe("Проверка формы смены пароля", () => {
       { wrapper: BrowserRouter }
     );
 
-
-    const user = userEvent.setup({
-      advanceTimers: vitest.advanceTimersByTime,
-    });
+    const userEvent = ue.setup();
     const passwordInput: HTMLInputElement = screen.getByPlaceholderText("Новый пароль");
     const confirmPasswordInput: HTMLInputElement = screen.getByPlaceholderText("Подтверждение пароля");
-    console.log('passwordInput: ', passwordInput);
     const okBtn: HTMLElement = screen.getAllByRole("button")[0] as HTMLButtonElement;
-    // expect(passwordInput).toBeTruthy();
 
-    console.log('okBtn: ', okBtn);
-
-    await user.type(passwordInput, "123456");
-    await user.type(confirmPasswordInput, "123456");
-    await user.click(okBtn);
+    await userEvent.type(passwordInput, "123456");
+    await userEvent.type(confirmPasswordInput, "123456");
+    await userEvent.click(okBtn);
 
     expect(passwordInput.value).toEqual(confirmPasswordInput.value);
+  });
+
+  test("Проверка пароля на валидность", async () => {
+    render(
+      <Providers>
+        <PasswordForm />
+      </Providers>,
+      { wrapper: BrowserRouter }
+    );
+    const userEvent = ue.setup();
+
+    const passwordInput: HTMLInputElement = screen.getByPlaceholderText("Новый пароль");
+
+    await userEvent.type(passwordInput, "12345");
+
+    expect(screen.getByText("Пароль должен быть не менее 6 символов")).toBeInTheDocument();
   });
 });
