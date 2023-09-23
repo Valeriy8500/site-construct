@@ -1,9 +1,11 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import {
+  ErrorData,
   ILoginReq,
   ILoginRes,
   IRegisterReq,
   IRegisterRes,
+  IResetPasswordReq,
   IUserProfileReq,
   IUserProfileRes,
   RefreshRes,
@@ -44,6 +46,14 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    resetPassword: build.mutation<IRegisterRes | ErrorData, IResetPasswordReq>({
+      query: obj => ({
+        url: `accounts:sendOobCode?key=${import.meta.env.VITE_FIREBASE_KEY}`,
+        method: "POST",
+        body: obj,
+      }),
+      invalidatesTags: ["User"],
+    }),
     refresh: build.mutation<RefreshRes | ErrorType, void>({
       query: () => ({
         url: `token?key=${import.meta.env.VITE_FIREBASE_KEY}`,
@@ -59,4 +69,9 @@ export const userApi = createApi({
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useUpdateProfileMutation } = userApi;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useUpdateProfileMutation,
+  useResetPasswordMutation,
+} = userApi;

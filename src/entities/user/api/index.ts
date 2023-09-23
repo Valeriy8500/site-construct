@@ -3,4 +3,5 @@ export {
   useLoginMutation,
   useRegisterMutation,
   useUpdateProfileMutation,
+  useResetPasswordMutation,
 } from "./user.api";
