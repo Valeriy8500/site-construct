@@ -9,8 +9,8 @@ interface ButtonQuillProps {
   edit: boolean;
   id: string;
   content: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   position?: SiteElement["position"];
 }
 export const ButtonQuill = ({
@@ -54,7 +54,7 @@ export const ButtonQuill = ({
   };
 
   return (
-    <div>
+    <div data-testid="construct-button">
       {edit ? (
         <ReactQuill
           placeholder="Название кнопки"
@@ -66,7 +66,7 @@ export const ButtonQuill = ({
       ) : (
         <button
           className={cls.button}
-          style={{ width, height: height / 2, top: position?.top, left: position?.left }}
+          style={{ width, height: height! / 2, top: position?.top, left: position?.left }}
           ref={buttonRef}
         >
           <>{parse(value)}</>
