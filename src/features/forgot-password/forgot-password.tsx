@@ -1,5 +1,6 @@
 import { FormEvent, ReactElement, useState } from "react";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import { Input } from "@/shared/ui/input";
 import cls from "./forgot-password.module.scss";
 import { Button } from "@/shared/ui/button";
@@ -7,7 +8,6 @@ import { useValidate } from "./hooks/useValidate";
 import { ErrorData, ErrorType, errorLoginCodes } from "@/entities/user";
 
 import { CustomForm } from "@/entities/user/api/user.api.types";
-import { toast } from "react-toastify";
 import { useResetPasswordMutation } from "@/entities/user/api";
 
 export interface IInputValue {

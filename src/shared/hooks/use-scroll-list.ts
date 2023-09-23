@@ -48,7 +48,7 @@ export const useScrollList = () => {
     setHasMore(false);
     setIsFirstRequest(true);
     setLastId("");
-  }
+  };
 
   const observer = useRef<IntersectionObserver | null>(null);
   const lastNodeRef = useCallback(

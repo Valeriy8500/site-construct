@@ -39,10 +39,7 @@ export const NumberedListQuill = ({ edit, id, content, position }: NumberedListQ
   };
 
   return (
-    <div
-      className={cls.list}
-      style={{ top: position?.top, left: position?.left }}
-    >
+    <div className={cls.list} style={{ top: position?.top, left: position?.left }}>
       {edit ? (
         <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} />
       ) : (

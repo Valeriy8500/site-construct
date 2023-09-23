@@ -20,11 +20,10 @@ export const SiteCard = ({ site, onDeleteSite }: SiteCardProps) => {
   const [deleteSite, { isLoading }] = useDeleteSiteMutation();
   const [isFirstRefresh, setIsFirstRefresh] = useState(true);
 
-  
   const handleEdit = (id: string) => {
     navigate(`/sites/${id}`);
   };
-  
+
   useEffect(() => {
     if (!isLoading && !isFirstRefresh) {
       onDeleteSite();
@@ -34,7 +33,7 @@ export const SiteCard = ({ site, onDeleteSite }: SiteCardProps) => {
   const handleDelete = () => {
     deleteSite(site.id);
     if (isFirstRefresh) {
-      setIsFirstRefresh(false)
+      setIsFirstRefresh(false);
     }
   };
 

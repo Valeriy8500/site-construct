@@ -1,10 +1,10 @@
 import { useRef, ChangeEvent } from "react";
 import { ImUpload } from "react-icons/im";
+import { toast } from "react-toastify";
 import cls from "./construct-image.module.scss";
 import { useAppDispatch } from "@/shared/hooks/redux-hooks.ts";
 import { changeSiteElementUrl } from "@/entities/site/model/site.selectors.ts";
 import { Button } from "@/shared/ui/button";
-import { toast } from "react-toastify";
 import { SiteElement } from "@/entities/site/model/site.types";
 interface ConstructImageProps {
   edit: boolean;
@@ -67,7 +67,13 @@ export const ConstructImage = ({ id, edit, url, width, height, position }: Const
 
       <div
         className={cls.image_block}
-        style={{ backgroundImage: `url(${url})`, width, height, top: position?.top, left: position?.left }}
+        style={{
+          backgroundImage: `url(${url})`,
+          width,
+          height,
+          top: position?.top,
+          left: position?.left,
+        }}
       >
         {!url && "Изображение"}
       </div>

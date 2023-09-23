@@ -39,6 +39,7 @@ export const QuoteQuill = ({ edit, id, content, position }: QuoteQuillProps): Re
     <div
       className={cls.quote}
       style={{ top: position?.top, left: position?.left }}
+      data-testid="construct-quote"
     >
       {edit ? (
         <>

@@ -1,9 +1,9 @@
-@import "@/shared/styles/mixins.scss";
+@import "@/shared/styles/mixins";
 
 .sites_edit {
   @include container;
-  position: relative;
 
+  position: relative;
   width: 100%;
   display: flex;
   flex: 240px auto;

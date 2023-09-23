@@ -1,5 +1,6 @@
 import { FC, FormEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Button } from "@/shared/ui/button";
 import { Label } from "@/shared/ui/label";
 import { Input } from "@/shared/ui/input";
@@ -10,7 +11,6 @@ import styles from "./register-form.module.scss";
 
 import { ErrorType } from "@/entities/user/model/user.types";
 import { errorRegisterCodes } from "@/entities/user/lib/errorCodes";
-import { toast } from "react-toastify";
 
 export const RegisterForm: FC = () => {
   const [error, setError] = useState<ErrorData>({});
