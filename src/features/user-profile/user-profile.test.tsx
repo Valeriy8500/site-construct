@@ -6,44 +6,45 @@ import { BrowserRouter } from "react-router-dom";
 import { UserProfile } from "./user-profile";
 import { Providers } from "@/app/providers";
 
-describe("Проверка формы смены пароля", () => {
-  // test("Пароль и подтверждение должны быть одинаковыми", async () => {
-  //   render(
-  //     <Providers>
-  //       <UserProfile />
-  //     </Providers>,
-  //     { wrapper: BrowserRouter }
-  //   );
+describe("Проверка формы профиля", () => {
+  test("Проверка поля 'Имя' на валидность", async () => {
+    render(
+      <Providers>
+        <UserProfile />
+      </Providers>,
+      { wrapper: BrowserRouter }
+    );
 
-  //   const userEvent = ue.setup();
-  //   const passwordInput: HTMLInputElement = screen.getByPlaceholderText("Новый пароль");
-  //   const confirmPasswordInput: HTMLInputElement = screen.getByPlaceholderText("Подтверждение пароля");
-  //   console.log('passwordInput: ', passwordInput);
-  //   const okBtn: HTMLElement = screen.getAllByRole("button")[0] as HTMLButtonElement;
-  //   // expect(passwordInput).toBeTruthy();
+    const userEvent = ue.setup();
 
-  //   console.log('okBtn: ', okBtn);
+    const editBtn = screen.getByTestId("user-profile-main-btn");
 
-  //   await userEvent.type(passwordInput, "123456");
-  //   await userEvent.type(confirmPasswordInput, "123456");
-  //   await userEvent.click(okBtn);
+    await userEvent.click(editBtn);
 
-  //   expect(passwordInput.value).toEqual(confirmPasswordInput.value);
-  // });
+    const nameInput: HTMLInputElement = screen.getByLabelText("Имя");
 
-  // test("Проверка поля Имя на валидность", async () => {
-  //   render(
-  //     <Providers>
-  //       <UserProfile />
-  //     </Providers>,
-  //     { wrapper: BrowserRouter }
-  //   );
-  //   const userEvent = ue.setup();
+    await userEvent.type(nameInput, " ");
 
-  //   const nameInput: HTMLInputElement = screen.getByTestId("user-profile-input-name");
+    expect(screen.getByText("Поле не должно быть пустым")).toBeInTheDocument();
+  });
 
-  //   await userEvent.type(nameInput, "");
+  test("Проверка поля 'Email' на валидность", async () => {
+    render(
+      <Providers>
+        <UserProfile />
+      </Providers>,
+      { wrapper: BrowserRouter }
+    );
+    const userEvent = ue.setup();
 
-  //   expect(screen.getByText("Поле не должно быть пустым")).toBeInTheDocument();
-  // });
+    const editBtn = screen.getByTestId("user-profile-main-btn");
+
+    await userEvent.click(editBtn);
+
+    const emailInput: HTMLInputElement = screen.getByPlaceholderText("Email");
+
+    await userEvent.type(emailInput, "test100@test");
+
+    expect(screen.getByText("Email не валиден")).toBeInTheDocument();
+  });
 });
