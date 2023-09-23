@@ -29,11 +29,7 @@ export const useScrollList = () => {
 
   useEffect(() => {
     return () => {
-      setDataList([]);
-      setPageNumber(1);
-      setHasMore(false);
-      setIsFirstRequest(true);
-      setLastId("");
+      refreshSiteList();
     };
   }, []);
 
@@ -45,6 +41,14 @@ export const useScrollList = () => {
       }
     }
   }, [pageNumber]);
+
+  const refreshSiteList = () => {
+    setDataList([]);
+    setPageNumber(1);
+    setHasMore(false);
+    setIsFirstRequest(true);
+    setLastId("");
+  }
 
   const observer = useRef<IntersectionObserver | null>(null);
   const lastNodeRef = useCallback(
@@ -66,5 +70,5 @@ export const useScrollList = () => {
     [isLoading, hasMore]
   );
 
-  return { data: dataList, lastNodeRef, isLoading };
+  return { data: dataList, lastNodeRef, isLoading, refreshSiteList };
 };

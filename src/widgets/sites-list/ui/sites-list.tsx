@@ -9,7 +9,7 @@ import { SiteFork } from "@/features/site-fork";
 import {SortType} from "@/features/sort";
 
 export const SitesList = () => {
-  const { data, lastNodeRef, isLoading } = useScrollList();
+  const { data, lastNodeRef, isLoading, refreshSiteList } = useScrollList();
   const [searchParams] = useSearchParams();
   const sort = searchParams.get("sort") || "DATE.ASK";
   const search = searchParams.get("search") || "";
@@ -32,17 +32,17 @@ export const SitesList = () => {
             if (sorted.length === index + 1) {
               return (
                 <div ref={lastNodeRef} key={site.id} className={cls.sites_list_item}>
-                  <SiteCard site={site} />
+                  <SiteCard site={site} onDeleteSite={refreshSiteList} />
                   <SiteShow site={site} className={cls.show_site_button} />
-                  <SiteFork site={site} />
+                  <SiteFork site={site} onSuccess={refreshSiteList} />
                 </div>
               );
             }
             return (
               <div key={site.id} className={cls.sites_list_item}>
-                <SiteCard site={site} />
+                <SiteCard site={site} onDeleteSite={refreshSiteList} />
                 <SiteShow site={site} className={cls.show_site_button} />
-                <SiteFork site={site} />
+                <SiteFork site={site} onSuccess={refreshSiteList} />
               </div>
             );
           })}
