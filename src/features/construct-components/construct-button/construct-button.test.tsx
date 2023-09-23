@@ -12,7 +12,7 @@ vi.mock("react-redux", () => ({
 
 describe("construct-button", () => {
   it("exists", () => {
-    render(<ButtonQuill edit={false} id="1" content="Button" />);
+    render(<ButtonQuill edit={false} id="1" content="Button" height={100} />);
     expect(screen.getByTestId("construct-button")).toBeTruthy();
   });
 });

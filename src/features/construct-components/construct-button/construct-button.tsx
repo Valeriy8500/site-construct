@@ -10,7 +10,7 @@ interface ButtonQuillProps {
   id: string;
   content: string;
   width?: number;
-  height?: number;
+  height: number;
   position?: SiteElement["position"];
 }
 export const ButtonQuill = ({
@@ -66,7 +66,7 @@ export const ButtonQuill = ({
       ) : (
         <button
           className={cls.button}
-          style={{ width, height: height! / 2, top: position?.top, left: position?.left }}
+          style={{ width, height: height / 2, top: position?.top, left: position?.left }}
           ref={buttonRef}
         >
           <>{parse(value)}</>
